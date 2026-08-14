@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Plan | Isabela & João — 05/06/2027</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-color: #F6F4F0;
+            --card-bg: #FFFFFF;
+            --accent-green: #2C4A3E; 
+            --accent-sage: #8A9A86;  
+            --accent-gold: #C2A675;  
+            --text-dark: #1F2421;
+            --text-muted: #656A67;
+            --border-color: #E2DDD5;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+        html, body {
+            height: 100%; background-color: var(--bg-color); color: var(--text-dark);
+            font-family: var(--font-body); overflow-x: hidden; -webkit-font-smoothing: antialiased;
+        }
+        .container { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        .slide {
+            scroll-snap-align: start; min-height: 100vh; width: 100%; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 60px 20px 40px 20px; position: relative;
+            background-color: var(--bg-color); border-bottom: 1px solid var(--border-color);
+        }
+        .slide-content {
+            max-width: 980px; width: 100%; text-align: center; background: var(--card-bg); padding: 40px;
+            border-radius: 4px; box-shadow: 0 15px 40px rgba(0,0,0,0.03); border: 1px solid var(--border-color);
+            position: relative; max-height: 88vh; overflow-y: auto;
+        }
+        .slide-tag {
+            display: inline-block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 3px;
+            color: var(--accent-green); font-weight: 600; margin-bottom: 12px; border-bottom: 1px solid var(--accent-sage); padding-bottom: 4px;
+        }
+        h1 { font-family: var(--font-heading); font-size: 3.2rem; font-weight: 300; color: var(--text-dark); margin-bottom: 10px; letter-spacing: 1px; }
+        h1 span { font-style: italic; font-weight: 400; color: var(--accent-green); }
+        h2 { font-family: var(--font-heading); font-size: 2.1rem; color: var(--accent-green); margin-bottom: 10px; font-weight: 400; letter-spacing: 0.5px; }
+        .event-date { font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent-gold); letter-spacing: 2px; margin-top: 5px; margin-bottom: 20px; font-style: italic; }
+        p.subtitle { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 22px; line-height: 1.6; font-weight: 300; letter-spacing: 0.3px; }
+        .media-box {
+            width: 100%; height: 320px; background: #F0ECE4; border-radius: 4px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; border: 1px solid var(--border-color); color: var(--text-muted);
+            margin-bottom: 18px; cursor: pointer; transition: all 0.3s ease; overflow: hidden; position: relative;
+        }
+        .media-box.media-box-large { height: 420px; }
+        .media-box:hover { border-color: var(--accent-green); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .media-box img.preview-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .media-box:hover img.preview-img { transform: scale(1.03); }
+        .media-box-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(31, 36, 33, 0.88) 0%, rgba(31, 36, 33, 0.4) 70%, transparent 100%);
+            color: white; padding: 22px 20px 14px 20px; display: flex; justify-content: space-between; align-items: flex-end;
+        }
+        .media-box-overlay .overlay-title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 400; letter-spacing: 0.5px; color: #FFFFFF; text-align: left; }
+        .media-box-overlay .overlay-badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; background: var(--accent-gold); color: #1F2421; padding: 5px 12px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+        .interactive-link {
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--accent-green); text-decoration: none; font-weight: 600; margin-top: 5px; border-bottom: 1px solid var(--accent-green); padding-bottom: 2px; cursor: pointer; transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .interactive-link:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
+        .btn-primary { background: var(--accent-green); color: white; padding: 15px 35px; border: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; cursor: pointer; transition: background 0.3s ease, transform 0.2s ease; margin-top: 20px; }
+        .btn-primary:hover { background: var(--accent-gold); }
+        .btn-primary:active { transform: scale(0.98); }
+        .interactive-map-wrapper { position: relative; width: 100%; max-width: 900px; margin: 0 auto; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .map-bg-img { width: 100%; height: auto; display: block; pointer-events: none; }
+        .map-hotspot { position: absolute; background: transparent; border: none; cursor: pointer; transition: all 0.25s ease; z-index: 10; }
+        .map-hotspot:hover { background: rgba(194, 166, 117, 0.22); box-shadow: 0 0 10px rgba(194, 166, 117, 0.6); }
+        .map-hotspot.oval-spot { border-radius: 50%; }
+        .scroll-indicator { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+        .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 100; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: #C2BBB0; transition: all 0.3s ease; }
+        .dot.active { background: var(--accent-green); transform: scale(1.4); }
+        .site-credits { margin-top: 30px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .credit-designer { font-size: 0.75rem; color: var(--text-dark); letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+        .credit-developer { font-size: 0.60rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 300; margin-top: 6px; opacity: 0.8; }
+        .global-footer { margin-top: 40px; font-size: 0.60rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; text-align: center; opacity: 0.7; }
+        .gallery-modal-overlay, .zoom-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+        .gallery-modal-overlay { background: rgba(31, 36, 33, 0.88); backdrop-filter: blur(4px); }
+        .zoom-modal-overlay { background: rgba(0, 0, 0, 0.94); z-index: 2000; }
+        .gallery-modal-container { background: var(--card-bg); max-width: 920px; width: 100%; max-height: 85vh; border-radius: 4px; padding: 30px; position: relative; overflow-y: auto; border: 1px solid var(--border-color); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .gallery-close-btn, .zoom-close-btn { position: absolute; font-size: 1.8rem; color: var(--accent-green); cursor: pointer; border: none; background: none; }
+        .gallery-close-btn { top: 15px; right: 20px; }
+        .zoom-close-btn { top: 20px; right: 30px; font-size: 2.5rem; color: white; }
+        .gallery-title { font-family: var(--font-heading); font-size: 2rem; color: var(--accent-green); margin-bottom: 20px; text-align: left; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; margin-top: 15px; }
+        .gallery-item { width: 100%; height: 200px; object-fit: cover; border-radius: 2px; border: 1px solid var(--border-color); transition: transform 0.3s ease; cursor: pointer; }
+        .gallery-item:hover { transform: scale(1.03); border-color: var(--accent-gold); }
+        .zoom-modal-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 2px; }
+
+        /* Estilo para a animação de sucesso (confetes e modal de parabéns) */
+        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 3000; }
+        .success-banner { display: none; margin-top: 20px; padding: 15px; background: rgba(44, 74, 62, 0.08); border: 1px solid var(--accent-green); border-radius: 4px; color: var(--accent-green); font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+    <div class="nav-dots" id="nav-dots-container"></div>
+
+    <div class="container">
+
+        <!-- SLIDE 1: LOGOMARCA DO CASAL -->
+        <section class="slide">
+            <div class="slide-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
+                <span class="slide-tag">Identidade Visual</span>
+                <div class="media-box" style="height: 340px; max-width: 480px; background: transparent; border: none;" onclick="abrirZoom('midias/logo/foto-1.jpg')">
+                    <img src="midias/logo/foto-1.jpg" alt="Logomarca do Casal" style="width:100%; height:100%; object-fit:contain;" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/F6F4F0/2C4A3E?text=Logomarca+do+Casal';">
+                </div>
+            </div>
+            <div class="scroll-indicator">Deslize para explorar</div>
+        </section>
+
+        <!-- SLIDE 2: FOLHA DE ROSTO -->
+        <section class="slide">
+            <div class="slide-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
+                <span class="slide-tag">Projeto Cenográfico & Design de Eventos</span>
+                <h1 style="font-size: 3.6rem; margin-top: 15px; margin-bottom: 10px;">Olívia Sertã</h1>
+                <p class="subtitle" style="font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); font-weight: 400;">
+                    Design, Decoração & Arquitetura de Festas
+                </p>
+            </div>
+            <div class="scroll-indicator">Deslize para explorar</div>
+        </section>
+
+        <!-- SLIDE 3: CAPA DO EVENTO -->
+        <section class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Master Plan de Evento</span>
+                <h1>Isabela <span>&</span> João</h1>
+                <div class="event-date">05 de Junho de 2027</div>
+                <p class="subtitle">Apresentação Estruturada do Conceito e Execução Logística • Rooftop Zona Sul, RJ</p>
+
+                <div class="media-box media-box-large" data-key="capa"></div>
+
+                <div class="action-bar">
+                    <span class="interactive-link" onclick="alert('Baixando Apresentação Executiva em PDF.')">Baixar Apresentação Executiva em PDF</span>
+                </div>
+            </div>
+            <div class="scroll-indicator">Deslize para explorar</div>
+        </section>
+        
+        <!-- SLIDE 4: TOUR VIRTUAL & CIRCULAÇÃO -->
+        <section class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Tour Virtual & Circulação</span>
+                <h2>Visualização do Espaço</h2>
+                <p class="subtitle">Apresentação em vídeo demonstrando o fluxo, o tamanho real e a distribuição espacial dos ambientes.</p>
+                <div style="width: 100%; max-width: 800px; margin: 0 auto; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-color);">
+                    <video controls style="width: 100%; display: block;" poster="midias/capa/foto-1.png">
+                        <source src="midias/capa/casamento_xian_v2.mp4" type="video/mp4">
+                        Seu navegador não suporta a exibição deste vídeo.
+                    </video>
+                </div>
+            </div>
+            <div class="scroll-indicator">Deslize para explorar</div>
+        </section>
+
+        <!-- SLIDE 5: MOODBOARD & ATMOSFERA DO EVENTO -->
+        <section class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Moodboard & Conceito</span>
+                <h2>Atmosfera & Sofisticação Natural</h2>
+                <p class="subtitle">Acolhedor • Elegante • Atemporal — Luz Âmbar, Tons Botânicos e Madeira Nobre</p>
+
+                <div class="media-box media-box-large" data-key="atmosfera"></div>
+
+                <span class="interactive-link" onclick="abrirGaleria('atmosfera')">AMPLIAR MOODBOARD EM TELA CHEIA</span>
+            </div>
+            <div class="scroll-indicator">Deslize para explorar</div>
+        </section>
+
+        <!-- SLIDE 6: PLANTA BAIXA INTERATIVA -->
+        <section class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Engenharia Espacial Interativa</span>
+                <h2>Planta Baixa Interativa</h2>
+                <p class="subtitle">Clique nas áreas numeradas da planta para abrir o catálogo individual dos móveis</p>
+
+                <div class="interactive-map-wrapper">
+                    <img src="midias/planta2D.jpg" alt="Planta Baixa 2D" class="map-bg-img" onerror="this.src='midias/capa/foto-1.png';">
+
+                    <div class="map-hotspot" style="top: 28%; left: 10.5%; width: 5%; height: 5%;" onclick="abrirGaleria('moveis-1')" title="1. Recepção"></div>
+                    <div class="map-hotspot" style="top: 36%; left: 24%; width: 10%; height: 5%;" onclick="abrirGaleria('moveis-2')" title="2. Buffet"></div>
+                    <div class="map-hotspot" style="top: 37%; left: 42%; width: 3.5%; height: 6%;" onclick="abrirGaleria('moveis-3')" title="3. Mesa Alta de Banquetas"></div>
+                    <div class="map-hotspot" style="top: 42%; left: 46.5%; width: 3.5%; height: 6%;" onclick="abrirGaleria('moveis-3')" title="3. Mesa Alta de Banquetas"></div>
+                    <div class="map-hotspot" style="top: 72%; left: 47%; width: 3.5%; height: 6%;" onclick="abrirGaleria('moveis-3')" title="3. Mesa Alta de Banquetas"></div>
+                    <div class="map-hotspot" style="top: 38%; left: 82.5%; width: 6.5%; height: 10%;" onclick="abrirGaleria('moveis-4')" title="4. Mesa Retangular c/ Banquetas"></div>
+                    <div class="map-hotspot" style="top: 45%; left: 23.5%; width: 21%; height: 35%;" onclick="abrirGaleria('moveis-5')" title="5. Mesas Redondas c/ Cadeiras"></div>
+                    <div class="map-hotspot" style="top: 50%; left: 75%; width: 3.5%; height: 6%;" onclick="abrirGaleria('moveis-6')" title="6. Mesa c/ 4 Cadeiras"></div>
+                    <div class="map-hotspot oval-spot" style="top: 50%; left: 45.2%; width: 8.5%; height: 21%;" onclick="abrirGaleria('moveis-7')" title="7. Bar Central"></div>
+                    <div class="map-hotspot" style="top: 50%; left: 55%; width: 10%; height: 22%;" onclick="abrirGaleria('moveis-8')" title="8. Pista de Dança"></div>
+                    <div class="map-hotspot" style="top: 50%; left: 66.5%; width: 6%; height: 22%;" onclick="abrirGaleria('moveis-9')" title="9. Palco"></div>
+                    <div class="map-hotspot" style="top: 35%; left: 55%; width: 10%; height: 12%;" onclick="abrirGaleria('moveis-10')" title="10. Lounge Principal"></div>
+                    <div class="map-hotspot" style="top: 51%; left: 81%; width: 10%; height: 20%;" onclick="abrirGaleria('moveis-11')" title="11. Lounge Externo"></div>
+                    <div class="map-hotspot" style="top: 48%; left: 17%; width: 2.2%; height: 25%;" onclick="abrirGaleria('moveis-12')" title="12. Buffet de Apoio"></div>
+                    <div class="map-hotspot" style="top: 51%; left: 13.2%; width: 2.2%; height: 22%;" onclick="abrirGaleria('moveis-13')" title="13. Mesa de Doces"></div>
+                    
+                    <div class="map-hotspot" style="top: 77%; left: 11%; width: 3.5%; height: 7%;" onclick="abrirGaleria('moveis-15')" title="14. Estação de Bem-Casados & Café"></div>
+                    <div class="map-hotspot oval-spot" style="top: 74%; left: 8%; width: 2.5%; height: 5%;" onclick="abrirGaleria('moveis-15')" title="15. Estação de Bem-Casados & Café"></div>
+                    
+                    <div class="map-hotspot" style="top: 54%; left: 7%; width: 1%; height: 28%;" onclick="abrirGaleria('moveis-16')" title="16. Parede Cenográfica"></div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <span class="interactive-link" onclick="abrirZoom('midias/planta2D.jpg')">AMPLIAR PLANTA EM TELA CHEIA</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- AMBIENTES -->
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Espaço & Infraestrutura</span><h2>O Salão de Festas</h2><p class="subtitle">Visão geral do espaço físico, acervo de diagnóstico e arranjo espacial do rooftop.</p><div class="media-box" data-key="salao"></div></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Boas-Vindas & Cenografia</span><h2>Recepção</h2><p class="subtitle">Ambiente de recepção dos convidados, introduzindo a linguagem visual e o clima do evento.</p><div class="media-box" data-key="recepcao"></div><span class="interactive-link" onclick="abrirGaleria('moveis-1')">VER MÓVEIS DA RECEPÇÃO NA PLANTA</span></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Convivência & Conforto</span><h2>Lounge Principal</h2><p class="subtitle">Salas de estar elegantes e aconchegantes para momentos de conversa e descanso.</p><div class="media-box" data-key="lounge"></div><span class="interactive-link" onclick="abrirGaleria('moveis-10')">VER MÓVEIS DO LOUNGE NA PLANTA</span></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Gastronomia & Serviços</span><h2>Área de Buffet</h2><p class="subtitle">Composição funcional e sofisticada para o serviço gastronômico principal e de apoio.</p><div class="media-box" data-key="buffet"></div><span class="interactive-link" onclick="abrirGaleria('moveis-2')">VER MÓVEIS DO BUFFET NA PLANTA</span></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Destaque Cenográfico</span><h2>Mesa de Doces</h2><p class="subtitle">Um dos pontos focais da festa, integrando peças decorativas, doces finos e iluminação focada.</p><div class="media-box" data-key="doces"></div><span class="interactive-link" onclick="abrirGaleria('moveis-13')">VER MÓVEIS DA MESA DE DOCES</span></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Tradição & Experiência</span><h2>Bem-Casados & Estação de Café</h2><p class="subtitle">Área integrada para celebração das lembranças do evento e encerramento aconchegante.</p><div class="media-box" data-key="bem-casados"></div><span class="interactive-link" onclick="abrirGaleria('moveis-15')">VER MÓVEIS DA ESTAÇÃO</span></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Integração & Cocktails</span><h2>Bar Central</h2><p class="subtitle">Bar ilha com design imponente para atendimento ágil e dinamismo no centro do salão.</p><div class="media-box" data-key="bar"></div><span class="interactive-link" onclick="abrirGaleria('moveis-7')">VER MÓVEIS DO BAR NA PLANTA</span></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Animação & Performances</span><h2>Pista e Palco</h2><p class="subtitle">Espaço amplo com iluminação cênica dinâmica e estrutura técnica integrada para animação e shows.</p><div class="media-box" data-key="pista"></div><span class="interactive-link" onclick="abrirGaleria('moveis-8')">VER MÓVEIS DA PISTA E PALCO NA PLANTA</span></div></section>
+        <section class="slide"><div class="slide-content"><span class="slide-tag">Vista Panorâmica & Ar Livre</span><h2>Área Externa</h2><p class="subtitle">Varanda do rooftop integrada ao paisagismo com vista e ambiente relaxante.</p><div class="media-box" data-key="externa"></div><span class="interactive-link" onclick="abrirGaleria('moveis-11')">VER MÓVEIS EXTERNOS NA PLANTA</span></div></section>
+
+        <!-- SLIDE: RESUMO FINANCEIRO (POR ÚLTIMO ANTES DO FINAL) -->
+        <section class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Gestão & Orçamentos</span>
+                <h2>Resumo Financeiro Parcial</h2>
+                <p class="subtitle">Consolidação dos orçamentos para Mobiliário, Cenografia e Iluminação levantados até o momento.</p>
+                
+                <div style="text-align: left; background: #F0ECE4; padding: 30px; border-radius: 4px; border: 1px solid var(--border-color); margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid var(--accent-sage); margin-bottom: 15px;">
+                        <span style="font-weight: 600; color: var(--accent-green);">Festah (Mobiliário)</span>
+                        <span style="font-family: var(--font-heading); font-size: 1.3rem;">R$ 47.089,00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid var(--accent-sage); margin-bottom: 15px;">
+                        <span style="font-weight: 600; color: var(--accent-green);">Essenciale (Cenografia)</span>
+                        <span style="font-family: var(--font-heading); font-size: 1.3rem;">R$ 53.170,00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid var(--accent-sage); margin-bottom: 15px;">
+                        <span style="font-weight: 600; color: var(--accent-green);">KML Eventos (Iluminação)</span>
+                        <span style="font-family: var(--font-heading); font-size: 1.3rem;">R$ 6.800,00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 25px; color: var(--accent-gold);">
+                        <span style="font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">Total Parcial</span>
+                        <span style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 600;">R$ 107.059,00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">Deslize para explorar</div>
+        </section>
+
+        <!-- SLIDE FINAL: CONCLUSÃO & CRÉDITOS -->
+        <section class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Validação do Master Plan</span>
+                <h2>Próximos Passos & Confirmação</h2>
+                <p class="subtitle">Após a validação deste projeto, daremos início ao formalismo de contratos e envio dos briefings técnicos.</p>
+                
+                <button class="btn-primary" id="btn-aprovar" onclick="dispararAnimacaoSucesso()">Aprovar Master Plan do Casamento</button>
+                
+                <div id="success-banner" class="success-banner">
+                    Aprovado com sucesso!
+                </div>
+
+                <div class="site-credits">
+                    <div class="credit-designer">Conceito e Design por Olívia Sertã</div>
+                    <div class="credit-developer">Assistência Técnica e Computação Gráfica por Paloma Sá</div>
+                </div>
+            </div>
+            <div class="global-footer">Site criado por Paloma Sá (palomasa.art@gmail.com) - 2026</div>
+        </section>
+
+    </div>
+
+    <!-- MODAIS -->
+    <div id="gallery-modal" class="gallery-modal-overlay" onclick="fecharGaleriaFora(event)">
+        <div class="gallery-modal-container">
+            <button class="gallery-close-btn" onclick="fecharGaleria()">&times;</button>
+            <h3 id="gallery-title" class="gallery-title">Galeria de Mídias</h3>
+            <div id="gallery-content" class="gallery-grid"></div>
+        </div>
+    </div>
+    <div id="zoom-modal" class="zoom-modal-overlay" onclick="fecharZoom()">
+        <button class="zoom-close-btn" onclick="fecharZoom()">&times;</button>
+        <img id="zoom-img" src="" alt="Imagem Ampliada">
+    </div>
+
+    <script>
+        const midiasDoProjeto = {
+            'capa': {
+                titulo: 'Renderizações 3D da Cenografia',
+                fotos: Array.from({ length: 27 }, (_, i) => `midias/capa/foto-${i + 1}.png`)
+            },
+            'logo': { titulo: 'Identidade Visual', fotos: ['midias/logo/foto-1.jpg'] },
+            'atmosfera': { titulo: 'Moodboard & Conceito de Atmosfera', fotos: ['midias/atmosfera/foto-1.jpeg'] },
+            'arranjos': { titulo: 'Arranjos e Paisagismo', fotos: ['midias/arranjos/foto-1.png', 'midias/arranjos/foto-2.png'] },
+
+            'salao': { titulo: 'Mídias do Salão de Festas', fotos: ['midias/salao/foto-1.jpeg', 'midias/salao/foto-2.jpeg', 'midias/salao/foto-3.jpeg'] },
+            'recepcao': { titulo: 'Composição da Recepção', fotos: ['midias/recepcao/foto-1.jpeg', 'midias/recepcao/foto-2.jpeg'] },
+            'lounge': { titulo: 'Composição do Lounge Principal', fotos: ['midias/lounge/foto-1.jpeg'] },
+            'buffet': { titulo: 'Composição da Área de Buffet', fotos: ['midias/buffet/foto-1.jpg', 'midias/buffet/foto-2.jpeg'] },
+            'doces': { titulo: 'Composição da Mesa de Doces', fotos: ['midias/doces/foto-1.jpeg', 'midias/doces/foto-2.jpeg', 'midias/doces/foto-3.jpeg'] },
+            'bem-casados': { titulo: 'Estação de Bem-Casados & Café', fotos: ['midias/bem-casados/foto-1.jpeg'] },
+            'bar': { titulo: 'Composição do Bar Central', fotos: ['midias/bar/foto-1.jpeg', 'midias/bar/foto-2.jpeg', 'midias/bar/foto-3.jpeg'] },
+            'pista': { titulo: 'Composição da Pista e Palco', fotos: ['midias/pista/foto-1.jpeg', 'midias/pista/foto-2.jpeg'] },
+            'externa': { titulo: 'Composição da Área Externa', fotos: ['midias/externa/foto-1.jpeg'] },
+
+            'moveis-1': { titulo: '1. Mobiliário da Recepção', fotos: ['midias/moveis/item-1/foto-1.jpg', 'midias/moveis/item-1/foto-2.png', 'midias/moveis/item-1/foto-3.png', 'midias/moveis/item-1/foto-4.png'] },
+            'moveis-2': { titulo: '2. Mobiliário do Buffet Principal', fotos: ['midias/moveis/item-2/foto-1.jpg', 'midias/moveis/item-2/foto-2.jpeg'] },
+            'moveis-3': { titulo: '3. Mesa Alta com 4 Banquetas', fotos: ['midias/moveis/item-3/foto-1.jpg', 'midias/moveis/item-3/foto-2.jpg', 'midias/moveis/item-3/foto-3.jpg'] },
+            'moveis-4': { titulo: '4. Mesa Retangular com 6 Banquetas', fotos: ['midias/moveis/item-4/foto-1.jpeg', 'midias/moveis/item-4/foto-2.jpeg'] },
+            'moveis-5': { titulo: '5. Mesas Redondas com Cadeiras', fotos: ['midias/moveis/item-5/foto-1.jpg', 'midias/moveis/item-5/foto-2.jpeg'] },
+            'moveis-6': { titulo: '6. Mesa com 4 Cadeiras', fotos: ['midias/moveis/item-6/foto-1.jpeg', 'midias/moveis/item-6/foto-2.jpeg', 'midias/moveis/item-6/foto-3.jpeg'] },
+            'moveis-7': { titulo: '7. Bar Central & Banquetas', fotos: ['midias/moveis/item-7/foto-1.png', 'midias/moveis/item-7/foto-2.jpeg', 'midias/moveis/item-7/foto-3.jpeg'] },
+            'moveis-8': { titulo: '8. Pista de Dança', fotos: ['midias/moveis/item-8/foto-1.jpg'] },
+            'moveis-9': { titulo: '9. Estrutura do Palco', fotos: [] },
+            'moveis-10': { titulo: '10. Mobiliário do Lounge Principal', fotos: ['midias/moveis/item-10/foto-1.jpg', 'midias/moveis/item-10/foto-2.jpg', 'midias/moveis/item-10/foto-3.jpg', 'midias/moveis/item-10/foto-4.jpg', 'midias/moveis/item-10/foto-5.jpeg', 'midias/moveis/item-10/foto-6.jpeg', 'midias/moveis/item-10/foto-7.jpeg'] },
+            'moveis-11': { titulo: '11. Mobiliário do Lounge Externo', fotos: ['midias/moveis/item-11/foto-1.jpg'] },
+            'moveis-12': { titulo: '12. Buffet de Apoio', fotos: ['midias/moveis/item-12/foto-1.jpg', 'midias/moveis/item-12/foto-2.jpeg'] },
+            'moveis-13': { titulo: '13. Mesa de Doces', fotos: ['midias/moveis/item-13/foto-1.jpg'] },
+            'moveis-15': { titulo: '14/15. Estação de Bem-Casados & Café', fotos: ['midias/moveis/item-15/foto-1.jpg'] },
+            'moveis-16': { titulo: '16. Parede Cenográfica', fotos: [] }
+        };
+
+        function inicializarMediaBoxes() {
+            document.querySelectorAll('.media-box[data-key]').forEach(box => {
+                const chave = box.getAttribute('data-key');
+                const item = midiasDoProjeto[chave];
+                if (!item) return;
+
+                if (item.fotos && item.fotos.length > 0) {
+                    const primeiraFoto = item.fotos[0];
+                    const qtd = item.fotos.length;
+                    const badgeTxt = qtd === 1 ? '1 FOTO' : `VER GALERIA (${qtd} FOTOS)`;
+
+                    box.innerHTML = `
+                        <img src="${primeiraFoto}" class="preview-img" alt="${item.titulo}" onerror="this.onerror=null; renderPlaceholderBox(this.parentElement, '${item.titulo}');">
+                        <div class="media-box-overlay">
+                            <span class="overlay-title">${item.titulo}</span>
+                            <span class="overlay-badge">${badgeTxt}</span>
+                        </div>
+                    `;
+                } else {
+                    renderPlaceholderBox(box, item.titulo);
+                }
+                box.onclick = function() { abrirGaleria(chave); };
+            });
+        }
+
+        function renderPlaceholderBox(container, titulo) {
+            container.innerHTML = `<span class="label">${titulo}</span><span class="sublabel">Em breve • Mídias em atualização</span>`;
+        }
+
+        function abrirGaleria(chave) {
+            const modal = document.getElementById('gallery-modal');
+            const tituloEl = document.getElementById('gallery-title');
+            const gridEl = document.getElementById('gallery-content');
+            gridEl.innerHTML = '';
+            const categoria = midiasDoProjeto[chave];
+            if (categoria && categoria.fotos && categoria.fotos.length > 0) {
+                tituloEl.innerText = categoria.titulo;
+                categoria.fotos.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src; img.className = 'gallery-item'; img.alt = categoria.titulo;
+                    img.onclick = function() { abrirZoom(src); };
+                    img.onerror = function() { this.onerror = null; this.style.display = 'none'; };
+                    gridEl.appendChild(img);
+                });
+            } else {
+                tituloEl.innerText = categoria ? categoria.titulo : 'Galeria de Mídias';
+                gridEl.innerHTML = '<div style="grid-column: 1/-1; color:var(--text-muted); font-size:0.9rem; padding: 20px 0;">Nenhuma mídia cadastrada para este ambiente no momento. À medida que novas fotos chegarem, elas aparecerão aqui.</div>';
+            }
+            modal.style.display = 'flex';
+        }
+
+        function fecharGaleria() { document.getElementById('gallery-modal').style.display = 'none'; }
+        function fecharGaleriaFora(e) { if (e.target.id === 'gallery-modal') fecharGaleria(); }
+        function abrirZoom(src) { document.getElementById('zoom-img').src = src; document.getElementById('zoom-modal').style.display = 'flex'; }
+        function fecharZoom() { document.getElementById('zoom-modal').style.display = 'none'; }
+
+        // Animação de Confetes e Feedback Visual
+        function dispararAnimacaoSucesso() {
+            const btn = document.getElementById('btn-aprovar');
+            const banner = document.getElementById('success-banner');
+            
+            btn.innerText = "Master Plan Aprovado ✓";
+            btn.style.backgroundColor = "var(--accent-gold)";
+            btn.disabled = true;
+            banner.style.display = "block";
+
+            // Disparar efeito de confetes leves na tela
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+            const colors = ['#2C4A3E', '#8A9A86', '#C2A675', '#1F2421'];
+
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: window.innerWidth / 2,
+                    y: window.innerHeight / 2 + 50,
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: (Math.random() - 0.7) * 12 - 3,
+                    size: Math.random() * 6 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    vRot: (Math.random() - 0.5) * 10
+                });
+            }
+
+            function updateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, index) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.3; // gravidade
+                    p.rotation += p.vRot;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+
+                    if (p.y > canvas.height) {
+                        particles.splice(index, 1);
+                    }
+                });
+
+                if (particles.length > 0) {
+                    requestAnimationFrame(updateConfetti);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+
+            updateConfetti();
+        }
+
+        const container = document.querySelector('.container');
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.getElementById('nav-dots-container');
+
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (idx === 0 ? ' active' : '');
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+        container.addEventListener('scroll', () => {
+            let current = 0;
+            slides.forEach((slide, index) => { if (container.scrollTop >= slide.offsetTop - 100) current = index; });
+            dots.forEach((dot, index) => {
+                if (index === current) dot.classList.add('active'); else dot.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', inicializarMediaBoxes);
+        inicializarMediaBoxes();
+    </script>
+</body>
+</html>
