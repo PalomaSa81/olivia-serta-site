@@ -1,0 +1,95 @@
+olivia_paloma@palomasa-lubuntu:~/olivia-serta-site$ firebase init
+
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/olivia_paloma/olivia-serta-site
+
+✔ Which Firebase features do you want to set up for this directory? Press Space to select features, then Enter to confirm your choices. Hosting: Set up deployments for
+ static web apps
+
+=== Project Setup
+
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add, 
+
+✔ Please select an option: Create a new project
+i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project.
+✔ Please specify a unique project id (warning: cannot be modified afterward) [6-30 characters]:
+ olivia-serta-2026
+✔ What would you like to call your project? (defaults to your project ID) olivia-serta-2026
+✔ Creating Google Cloud Platform project
+✔ Adding Firebase resources to Google Cloud Platform project
+
+🎉🎉🎉 Your Firebase project is ready! 🎉🎉🎉
+
+Project information:
+   - Project ID: olivia-serta-2026
+   - Project Name: olivia-serta-2026
+
+Firebase console is available at
+https://console.firebase.google.com/project/olivia-serta-2026/overview
+
+=== Hosting Setup
+
+Your public directory is the folder (relative to your project directory) that
+will contain Hosting assets to be uploaded with firebase deploy. If you
+have a build process for your assets, use your build's output directory.
+
+✔ What do you want to use as your public directory? .
+✔ Configure as a single-page app (rewrite all urls to /index.html)? Yes
+✔ Set up automatic builds and deploys with GitHub? Yes
+
+i  Didn't detect a .git folder. Assuming /home/olivia_paloma/olivia-serta-site is the project root.
+i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store.
+
+Visit this URL on this device to log in:
+https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=614640506&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+
+Waiting for authentication...
+
+✔  Success! Logged into GitHub as PalomaSa81
+
+⠋ For which GitHub repository would you like to set up a GitHub workflow? (format: user/repository) PalomaSa81/olivia-serta-site
+
+⚠  The provided authorization cannot be used with this repository. If this repository is in an organization, did you remember to grant access?
+
+i  Action required: Visit this URL to ensure access has been granted to the appropriate organization(s) for the Firebase CLI GitHub OAuth App:
+https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+
+✔ For which GitHub repository would you like to set up a GitHub workflow? (format: user/repository) PalomaSa81/olivia-serta-site
+> You must provide a valid value
+
+✔  Created service account github-action-1334572611 with Firebase Hosting admin permissions.
+✔  Uploaded service account JSON to GitHub as secret FIREBASE_SERVICE_ACCOUNT_OLIVIA_SERTA_2026.
+i  You can manage your secrets at https://github.com/PalomaSa81/olivia-serta-site/settings/secrets.
+
+✔ Set up the workflow to run a build script before every deploy? No
+
+✔  Created workflow file /home/olivia_paloma/olivia-serta-site/.github/workflows/firebase-hosting-pull-request.yml
+✔ Set up automatic deployment to your site's live channel when a PR is merged? Yes
+✔ What is the name of the GitHub branch associated with your site's live channel? main
+
+✔  Created workflow file /home/olivia_paloma/olivia-serta-site/.github/workflows/firebase-hosting-merge.yml
+
+i  Action required: Visit this URL to revoke authorization for the Firebase CLI GitHub OAuth App:
+https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+i  Action required: Push any new workflow file(s) to your repo
+✔ File index.html already exists. Overwrite? No
+i  Skipping write of index.html
+
+=== Agent Skills Setup
+If you are using an AI coding agent, Firebase Agent Skills make it an expert at Firebase.
+✔ Would you like to install agent skills for Firebase? No
+
+✔  Wrote configuration info to firebase.json
+✔  Wrote project information to .firebaserc
+✔  Wrote .gitignore
+
+✔  Firebase initialization complete!
+olivia_paloma@palomasa-lubuntu:~/olivia-serta-site$ 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olívia Sertã | Curadoria & Design de Eventos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-color: #F6F4F0;
+            --card-bg: #FFFFFF;
+            --accent-green: #2C4A3E; 
+            --accent-sage: #8A9A86;  
+            --accent-gold: #C2A675;  
+            --text-dark: #1F2421;
+            --text-muted: #656A67;
+            --border-color: #E2DDD5;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        header p {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        nav a {
+            color: var(--accent-green);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+        .section-card {
+            background: var(--card-bg);
+            padding: 50px 40px;
+            border-radius: 4px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        p.lead {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent-green);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border-radius: 2px;
+        }
+        .btn-primary:hover {
+            background: var(--accent-gold);
+            color: #1F2421;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Olívia Sertã</h1>
+            <p>Curadoria, Design & Organização de Eventos</p>
+            <nav>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </header>
+
+        <section id="sobre" class="section-card">
+            <h2>A Essência da Marca</h2>
+            <p class="lead">Transformando espaços e momentos através de uma visão estética refinada, rigor técnico e design de alto padrão.</p>
+        </section>
+
+        <section id="servicos" class="section-card">
+            <h2>Atuação</h2>
+            <p class="lead">Projetos autorais, curadoria de detalhes e planejamento completo estruturados sob medida para experiências memorables.</p>
+            <a href="#contato" class="btn-primary">Iniciar Projeto</a>
+        </section>
+
+        <section id="contato" class="section-card">
+            <h2>Contato</h2>
+            <p class="lead">Vamos conversar sobre a sua próxima realização? Entre em contato para consultas e agendamentos.</p>
+            <a href="https://wa.me/5521976100525" target="_blank" class="btn-primary">Falar pelo WhatsApp</a>
+        </section>
+
+        <footer>
+            Olívia Sertã — Todos os direitos reservados
+        </footer>
+    </div>
+</body>
+</html>
