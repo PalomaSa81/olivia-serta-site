@@ -3,51 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olívia Sertã | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Olívia Sertã | Design, Decoração & Eventos</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* Mantendo o seu estilo de cores e tipografia de sucesso[cite: 1] */
         :root {
             --bg-color: #F6F4F0;
             --accent-green: #2C4A3E; 
             --accent-gold: #C2A675;  
             --text-dark: #1F2421;
             --text-muted: #656A67;
-            --font-heading: 'Cormorant Garamond', serif;
-            --font-body: 'Montserrat', sans-serif;
+            --border-color: #E2DDD5;
         }
-        body {
-            height: 100vh;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            font-family: var(--font-body);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .content { text-align: center; padding: 40px; }
-        .slide-tag {
-            display: inline-block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 3px;
-            color: var(--accent-green); font-weight: 600; margin-bottom: 20px; 
-            border-bottom: 1px solid var(--accent-green); padding-bottom: 4px;
-        }
-        h1 { font-family: var(--font-heading); font-size: 3.6rem; font-weight: 300; color: var(--text-dark); margin-bottom: 10px; }
-        .subtitle { 
-            color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 25px; 
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 400; 
-        }
-        .status { color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1.5px; font-style: italic; }
+        body { background-color: var(--bg-color); color: var(--text-dark); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        
+        /* Navbar */
+        nav { padding: 40px; text-align: center; border-bottom: 1px solid var(--border-color); }
+        nav h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--accent-green); margin: 0; }
+        
+        /* Seções */
+        section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--accent-green); margin-bottom: 40px; }
+        
+        /* Grid de Portfólio (Adaptado do Media Box) */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .portfolio-item { height: 400px; background: #E2DDD5; border-radius: 4px; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; }
+        .portfolio-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; }
+        .item-label { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; text-align: left; font-size: 0.9rem; letter-spacing: 1px; }
+
+        /* Botão */
+        .btn-cta { display: inline-block; padding: 15px 40px; background: var(--accent-green); color: white; text-transform: uppercase; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; margin-top: 30px; }
     </style>
 </head>
 <body>
-    <div class="content">
-        <span class="slide-tag">Portfólio Profissional</span>
+
+    <nav>
         <h1>Olívia Sertã</h1>
-        <p class="subtitle">Design, Decoração & Arquitetura de Festas</p>
-        <p class="status">Página em construção</p>
-    </div>
+    </nav>
+
+    <!-- Hero -->
+    <section>
+        <h2 style="font-size: 3.5rem;">Criação de Momentos e Ambientes.</h2>
+        <p style="color: var(--text-muted); line-height: 1.8; max-width: 600px; margin: 0 auto;">Design de eventos, cerimonial e curadoria floral. Transformo a sua visão em uma experiência memorável e estruturada.</p>
+        <a href="mailto:contato@oliviaserta.com" class="btn-cta">Iniciar um Projeto</a>
+    </section>
+
+    <!-- Eventos (Carro-Chefe) -->
+    <section style="background: white;">
+        <span style="letter-spacing: 3px; font-size: 0.7rem; text-transform: uppercase; color: var(--accent-gold);">Carro-Chefe</span>
+        <h2>Eventos & Cerimonial</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="/assets/eventos/casamento-01.jpg" alt="Casamento">
+                <div class="item-label">Casamentos</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/assets/eventos/formatura-01.jpg" alt="Formaturas">
+                <div class="item-label">Aniversários & Celebrações</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floral e Decor -->
+    <section>
+        <h2>Floral & Decoração</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="/assets/floral/arranjo-mesa-01.jpg" alt="Arranjo">
+                <div class="item-label">Assinaturas Florais</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/assets/decor/home-office-01.jpg" alt="Decor">
+                <div class="item-label">Ambientes & Consultoria</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div style="text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;">
+            © 2026 Olívia Sertã • Design de Experiências
+        </div>
+    </footer>
+
 </body>
 </html>
