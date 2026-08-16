@@ -3,88 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olívia Sertã | Design, Decoração & Eventos</title>
+    <title>Olívia Sertã — Design de Experiências & Eventos</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Mantendo o seu estilo de cores e tipografia de sucesso[cite: 1] */
         :root {
             --bg-color: #F6F4F0;
+            --card-bg: #FFFFFF;
             --accent-green: #2C4A3E; 
             --accent-gold: #C2A675;  
             --text-dark: #1F2421;
             --text-muted: #656A67;
             --border-color: #E2DDD5;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
         }
-        body { background-color: var(--bg-color); color: var(--text-dark); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
         
-        /* Navbar */
-        nav { padding: 40px; text-align: center; border-bottom: 1px solid var(--border-color); }
-        nav h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--accent-green); margin: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-dark); font-family: var(--font-body); line-height: 1.7; }
         
-        /* Seções */
-        section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--accent-green); margin-bottom: 40px; }
-        
-        /* Grid de Portfólio (Adaptado do Media Box) */
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
-        .portfolio-item { height: 400px; background: #E2DDD5; border-radius: 4px; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; }
-        .portfolio-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; }
-        .item-label { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; text-align: left; font-size: 0.9rem; letter-spacing: 1px; }
+        header { padding: 60px 20px; text-align: center; border-bottom: 1px solid var(--border-color); background: var(--card-bg); }
+        header h1 { font-family: var(--font-heading); font-size: 3rem; font-weight: 300; color: var(--accent-green); letter-spacing: 1px; }
+        header p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-top: 10px; }
 
-        /* Botão */
-        .btn-cta { display: inline-block; padding: 15px 40px; background: var(--accent-green); color: white; text-transform: uppercase; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; margin-top: 30px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+        
+        section { margin-bottom: 80px; background: var(--card-bg); padding: 50px; border-radius: 4px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        
+        h2 { font-family: var(--font-heading); font-size: 2.2rem; color: var(--accent-green); margin-bottom: 25px; font-weight: 400; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-dark); margin: 25px 0 10px 0; }
+        p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; font-weight: 300; }
+        
+        .tag { display: inline-block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-green); background: rgba(44, 74, 62, 0.08); padding: 4px 10px; border-radius: 20px; margin-bottom: 15px; font-weight: 600; }
+
+        /* Estilo para listas e destaques */
+        ul { margin-bottom: 20px; padding-left: 20px; color: var(--text-muted); font-weight: 300; font-size: 0.95rem; }
+        ul li { margin-bottom: 8px; }
+
+        /* Formulário de WhatsApp */
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green); margin-bottom: 8px; font-weight: 600; }
+        .form-control { width: 100%; padding: 14px; border: 1px solid var(--border-color); background: var(--bg-color); font-family: var(--font-body); font-size: 0.9rem; border-radius: 2px; color: var(--text-dark); }
+        .form-control:focus { outline: none; border-color: var(--accent-green); }
+        
+        .btn-whatsapp { display: block; width: 100%; padding: 16px; background: var(--accent-green); color: white; border: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; cursor: pointer; transition: background 0.3s ease; text-align: center; text-decoration: none; margin-top: 10px; }
+        .btn-whatsapp:hover { background: var(--accent-gold); color: #1F2421; }
+
+        footer { text-align: center; padding: 40px; font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; border-top: 1px solid var(--border-color); }
     </style>
 </head>
 <body>
 
-    <nav>
+    <header>
         <h1>Olívia Sertã</h1>
-    </nav>
+        <p>Design de Eventos, Cenografia & Curadoria Estética</p>
+    </header>
 
-    <!-- Hero -->
-    <section>
-        <h2 style="font-size: 3.5rem;">Criação de Momentos e Ambientes.</h2>
-        <p style="color: var(--text-muted); line-height: 1.8; max-width: 600px; margin: 0 auto;">Design de eventos, cerimonial e curadoria floral. Transformo a sua visão em uma experiência memorável e estruturada.</p>
-        <a href="mailto:contato@oliviaserta.com" class="btn-cta">Iniciar um Projeto</a>
-    </section>
+    <div class="container">
 
-    <!-- Eventos (Carro-Chefe) -->
-    <section style="background: white;">
-        <span style="letter-spacing: 3px; font-size: 0.7rem; text-transform: uppercase; color: var(--accent-gold);">Carro-Chefe</span>
-        <h2>Eventos & Cerimonial</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="/assets/eventos/casamento-01.jpg" alt="Casamento">
-                <div class="item-label">Casamentos</div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/assets/eventos/formatura-01.jpg" alt="Formaturas">
-                <div class="item-label">Aniversários & Celebrações</div>
-            </div>
-        </div>
-    </section>
+        <!-- PARTE 1: QUEM SOU EU -->
+        <section>
+            <span class="tag">Capítulo I</span>
+            <h2>Quem Sou Eu</h2>
+            <p>Acredito que os melhores eventos não nascem de planilhas engessadas, mas de repertório, escuta atenta e de uma curadoria estética apurada. Meu trabalho une a visão espacial à sensibilidade de traduzir a essência de quem está celebrando em cada detalhe físico.</p>
+            
+            <h3>Formação & Trajetória</h3>
+            <p>Com trânsito entre a arquitetura de interiores, o design floral e a organização de grandes celebrações, construí uma carreira baseada no rigor técnico aliado a uma forte assinatura artística.</p>
 
-    <!-- Floral e Decor -->
-    <section>
-        <h2>Floral & Decoração</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="/assets/floral/arranjo-mesa-01.jpg" alt="Arranjo">
-                <div class="item-label">Assinaturas Florais</div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/assets/decor/home-office-01.jpg" alt="Decor">
-                <div class="item-label">Ambientes & Consultoria</div>
-            </div>
-        </div>
-    </section>
+            <h3>Inspirações & Aspirações</h3>
+            <p>Minhas referências vêm da natureza, da arquitetura limpa e de atmosferas atemporais. Busco criar projetos que fujam do efêmero descartável: festas e ambientes que gerem memórias visuais duradouras e conforto genuíno.</p>
+
+            <h3>Minha Missão</h3>
+            <p>Retirar o peso e o estresse do processo de planejamento dos ombros dos meus clientes, garantindo que o caminho até o grande dia seja tão leve e prazeroso quanto a própria festa.</p>
+        </section>
+
+        <!-- PARTE 2: O QUE EU FAÇO -->
+        <section>
+            <span class="tag">Capítulo II</span>
+            <h2>O Que Eu Faço & Como Trabalho</h2>
+            
+            <p>Minha atuação principal foca na <strong>arquitetura e curadoria de eventos sociais</strong> (casamentos, aniversários marcantes e Bar/Bat Mitzvahs), estendendo-se também para projetos de arranjos florais sob medida e consultoria de decoração de ambientes.</p>
+
+            <h3>Como Eu Trabalho (Minha Metodologia)</h3>
+            <ul>
+                <li><strong>Imersão e Escuta:</strong> Começamos entendendo os desejos, o tom e a estética que fazem sentido para você.</li>
+                <li><strong>Master Plan & Cenografia:</strong> Desenvolvo o conceito visual, distribuição de espaços e cronogramas detalhados.</li>
+                <li><strong>Curadoria de Fornecedores:</strong> Seleção rigorosa de parceiros que mantêm o padrão de excelência.</li>
+                <li><strong>Execução e Cerimonial:</strong> No dia do evento, coordeno cada engrenagem para que você apenas viva o momento.</li>
+            </ul>
+
+            <h3>Agenda & Disponibilidade</h3>
+            <p>Para garantir um atendimento boutique e dedicação exclusiva a cada projeto, aceito um número limitado de eventos e consultorias por temporada. Entre em contato para verificar datas abertas para o ano corrente e seguinte.</p>
+        </section>
+
+        <!-- PARTE 3: CONTATO E WHATSAPP -->
+        <section>
+            <span class="tag">Capítulo III</span>
+            <h2>Vamos Conversar?</h2>
+            <p>Se você se identifica com essa visão e quer estruturar um projeto conosco, preencha os campos abaixo. Ao enviar, nossa conversa continuará diretamente pelo WhatsApp da Olívia.</p>
+
+            <form id="whatsapp-form" onsubmit="enviarParaWhatsApp(event)">
+                <div class="form-group">
+                    <label for="nome">Seu Nome / Família</label>
+                    <input type="text" id="nome" class="form-control" placeholder="Ex: Isabela & João" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="detalhes">Conte um pouco sobre a sua ideia ou evento</label>
+                    <textarea id="detalhes" class="form-control" rows="4" placeholder="Ex: Casamento planejado para meados de 2027, buscamos uma estética intimista..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-whatsapp">Iniciar Conversa no WhatsApp</button>
+            </form>
+        </section>
+
+    </div>
 
     <footer>
-        <div style="text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;">
-            © 2026 Olívia Sertã • Design de Experiências
-        </div>
+        © 2026 Olívia Sertã • Todos os direitos reservados
     </footer>
 
+    <script>
+        function enviarParaWhatsApp(event) {
+            event.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const detalhes = document.getElementById('detalhes').value;
+            
+            // Substitua pelo número real da Olívia com DDI e DDD (ex: 5521999999999)
+            const telefoneOlivia = "5521999999999"; 
+            
+            const texto = `Olá, Olívia! Meu nome é *${nome}*.\n\nLi seu site e gostaria de conversar sobre:\n${detalhes}`;
+            const mensagemFormatada = encodeURIComponent(texto);
+            
+            const url = `https://wa.me/${telefoneOlivia}?text=${mensagemFormatada}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
