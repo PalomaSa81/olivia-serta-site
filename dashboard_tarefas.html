@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Projetos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfbf7;
+            color: #333;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            color: #2C4A3E;
+            border-bottom: 2px solid #2C4A3E;
+            padding-bottom: 10px;
+        }
+        .controls {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* Estilo da Sanfona (Indentações) */
+        details {
+            background: #fff;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        summary {
+            padding: 18px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            color: #2C4A3E;
+            background-color: #f4f7f6;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::-webkit-details-marker { display: none; } /* Oculta a seta padrão */
+        summary:after { content: "▼"; font-size: 14px; color: #888; }
+        details[open] summary:after { content: "▲"; }
+        
+        .task-list {
+            padding: 15px 20px;
+            margin: 0;
+            list-style: none;
+        }
+        .task-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+        .task-item:last-child { border-bottom: none; }
+        
+        /* Status Visual */
+        .status-icon {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        .concluido { color: #888; text-decoration: line-through; }
+        .pendente { color: #333; font-weight: 500; }
+        
+        .loader { text-align: center; color: #888; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <h1>Visão Geral de Projetos</h1>
+    
+    <div class="controls">
+        <label for="projectSelector"><strong>Selecione o Projeto:</strong></label>
+        <select id="projectSelector">
+            <option value="">Carregando projetos...</option>
+        </select>
+    </div>
+
+    <div id="dashboardArea" class="loader">
+        Buscando dados em tempo real...
+    </div>
+
+<script>
+    // === COLE A SUA URL DO GOOGLE APPS SCRIPT AQUI ===
+    const SCRIPT_URL = 'SUA_URL_DO_APP_DA_WEB_AQUI'; 
+
+    let rawData = [];
+    let headers = [];
+
+    // Função para buscar os dados
+    fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(data => {
+            headers = data[0]; // A primeira linha é o cabeçalho
+            rawData = data.slice(1); // O resto são os dados
+            iniciarDashboard();
+        })
+        .catch(error => {
+            document.getElementById('dashboardArea').innerHTML = "Erro ao carregar dados.";
+            console.error(error);
+        });
+
+    function iniciarDashboard() {
+        const projIndex = headers.indexOf('Projeto');
+        if (projIndex === -1) {
+            document.getElementById('dashboardArea').innerHTML = "Erro: Coluna 'Projeto' não encontrada na planilha.";
+            return;
+        }
+
+        // Extrai projetos únicos para o menu dropdown
+        const projetosUnicos = [...new Set(rawData.map(row => row[projIndex]).filter(p => p !== ""))];
+        
+        const selector = document.getElementById('projectSelector');
+        selector.innerHTML = '<option value="">-- Escolha um Projeto --</option>';
+        projetosUnicos.forEach(proj => {
+            selector.innerHTML += `<option value="${proj}">${proj}</option>`;
+        });
+
+        document.getElementById('dashboardArea').innerHTML = "Selecione um projeto acima para ver o status.";
+
+        // Adiciona evento de mudança no seletor
+        selector.addEventListener('change', (e) => {
+            if(e.target.value) renderizarProjeto(e.target.value);
+            else document.getElementById('dashboardArea').innerHTML = "";
+        });
+    }
+
+    function renderizarProjeto(nomeProjeto) {
+        const projIdx = headers.indexOf('Projeto');
+        const faseIdx = headers.indexOf('Fase');
+        const tarefaIdx = headers.indexOf('Tarefa');
+        const statusIdx = headers.indexOf('Status');
+
+        // Filtra só as linhas do projeto selecionado
+        const linhasProjeto = rawData.filter(row => row[projIdx] === nomeProjeto);
+        
+        // Agrupa por Fase
+        const fasesAgrupadas = {};
+        linhasProjeto.forEach(row => {
+            const fase = row[faseIdx] || "Geral";
+            if (!fasesAgrupadas[fase]) fasesAgrupadas[fase] = [];
+            fasesAgrupadas[fase].push({
+                tarefa: row[tarefaIdx],
+                status: row[statusIdx]
+            });
+        });
+
+        // Constrói o HTML (Sanfonas)
+        let htmlFinal = '';
+        
+        for (const [fase, tarefas] of Object.entries(fasesAgrupadas)) {
+            htmlFinal += `<details>
+                            <summary>${fase}</summary>
+                            <ul class="task-list">`;
+            
+            tarefas.forEach(t => {
+                const isConcluido = t.status && t.status.toString().toLowerCase().includes('concluído');
+                const icone = isConcluido ? '✅' : '⏳';
+                const classeCSS = isConcluido ? 'concluido' : 'pendente';
+                
+                htmlFinal += `<li class="task-item ${classeCSS}">
+                                <span class="status-icon">${icone}</span> 
+                                ${t.tarefa}
+                              </li>`;
+            });
+            
+            htmlFinal += `  </ul>
+                          </details>`;
+        }
+
+        document.getElementById('dashboardArea').innerHTML = htmlFinal;
+    }
+</script>
+
+</body>
+</html>
