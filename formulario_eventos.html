@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de Status - Projetos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            border-top: 5px solid #2C4A3E; /* Verde executivo do cabeçalho da planilha */
+        }
+        h2 {
+            color: #2C4A3E;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #2C4A3E;
+            outline: none;
+        }
+        button {
+            background-color: #2C4A3E;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #1e332a;
+        }
+        .status-msg {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .success { color: #2C4A3E; }
+        .error { color: #d9534f; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Atualizar Status do Projeto</h2>
+    
+    <form id="checklistForm">
+        <div class="form-group">
+            <label for="projeto">Nome do Evento/Projeto</label>
+            <input type="text" id="projeto" name="projeto" placeholder="Ex: Casamento Ana e Ademar" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fase">Fase da Produção</label>
+            <select id="fase" name="fase" required>
+                <option value="">Selecione a fase...</option>
+                <option value="1. Iniciação">1. Iniciação (Briefing, Orçamento)</option>
+                <option value="2. Infraestrutura">2. Infraestrutura (Local, Visitas)</option>
+                <option value="3. Design">3. Design (Identidade Visual, Papelaria)</option>
+                <option value="4. Cerimonial">4. Cerimonial (Botânica, Ritos, Trilha Sonora)</option>
+                <option value="5. Fornecedores">5. Fornecedores (Buffet, Decoração, Som)</option>
+                <option value="6. D-Day">6. D-Day (Montagem, Cronograma)</option>
+                <option value="7. Encerramento">7. Encerramento (Desmontagem, Pagamentos)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="tarefa">Tarefa Concluída</label>
+            <input type="text" id="tarefa" name="tarefa" placeholder="Ex: Contrato do local assinado" required>
+        </div>
+
+        <div class="form-group">
+            <label for="responsavel">Quem executou?</label>
+            <input type="text" id="responsavel" name="responsavel" required>
+        </div>
+
+        <button type="submit" id="btnSubmit">Salvar Atualização</button>
+        <div id="mensagem" class="status-msg"></div>
+    </form>
+</div>
+
+<script>
+    // 1. COLE AQUI A URL GERADA NO PASSO 2
+    const SCRIPT_URL = 'SUA_URL_DO_APP_DA_WEB_AQUI';
+
+    const form = document.getElementById('checklistForm');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const mensagemDiv = document.getElementById('mensagem');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Feedback visual de carregamento
+        btnSubmit.innerText = 'Enviando...';
+        btnSubmit.disabled = true;
+        mensagemDiv.innerText = '';
+
+        const formData = new FormData(form);
+
+        // Disparo dos dados para o Google Apps Script
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Evita bloqueios de segurança do navegador (CORS)
+            body: formData
+        })
+        .then(() => {
+            mensagemDiv.innerText = '✅ Status atualizado com sucesso!';
+            mensagemDiv.className = 'status-msg success';
+            form.reset();
+        })
+        .catch(error => {
+            mensagemDiv.innerText = '❌ Erro ao atualizar. Verifique a conexão.';
+            mensagemDiv.className = 'status-msg error';
+            console.error('Erro!', error);
+        })
+        .finally(() => {
+            btnSubmit.innerText = 'Salvar Atualização';
+            btnSubmit.disabled = false;
+        });
+    });
+</script>
+
+</body>
+</html>

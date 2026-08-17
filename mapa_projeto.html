@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa do Projeto — Olívia Sertã</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F6F4F0;
+            --card-bg: #FFFFFF;
+            --accent-green: #2C4A3E; 
+            --accent-gold: #C2A675;  
+            --text-dark: #1F2421;
+            --text-muted: #656A67;
+            --border-color: #E2DDD5;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-dark); font-family: 'Montserrat', sans-serif; padding: 40px 20px; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--accent-green); font-weight: 300; margin-bottom: 8px; }
+        p.subtitle { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
+        
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 20px; }
+        
+        .folder-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--accent-green); margin: 25px 0 10px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; }
+        
+        .file-item { display: flex; align-items: center; justify-content: space-between; background: #FAFAFA; border: 1px solid var(--border-color); padding: 12px 18px; border-radius: 4px; margin: 8px 0; transition: transform 0.2s; }
+        .file-item:hover { border-color: var(--accent-gold); transform: translateX(4px); }
+        
+        .file-left { display: flex; align-items: center; gap: 12px; }
+        .file-name { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); text-decoration: none; }
+        .file-name:hover { color: var(--accent-gold); }
+        
+        .file-badge { background: var(--accent-green); color: white; padding: 3px 8px; border-radius: 3px; font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
+        .file-meta { display: flex; gap: 20px; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        
+        .subfolder { margin-left: 20px; border-left: 2px solid var(--border-color); padding-left: 15px; margin-top: 15px; }
+        
+        .btn-refresh { display: inline-block; background: var(--accent-green); color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 25px; transition: background 0.3s; cursor: pointer; border: none; }
+        .btn-refresh:hover { background: var(--accent-gold); color: var(--text-dark); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mapa Visual do Projeto</h1>
+        <p class="subtitle">Estrutura de diretórios, arquivos, tamanhos e datas</p>
+        
+        <button onclick="location.reload();" class="btn-refresh">🔄 Atualizar Mapa Agora</button>
+
+        <div class="card">
+
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">FIREBASERC</span>
+                    <a href=".firebaserc" target="_blank" class="file-name">.firebaserc</a>
+                </div>
+                <div class="file-meta">
+                    <span>0.1 KB</span>
+                    <span>14/08/2026 18:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">GITIGNORE</span>
+                    <a href=".gitignore" target="_blank" class="file-name">.gitignore</a>
+                </div>
+                <div class="file-meta">
+                    <span>1.2 KB</span>
+                    <span>14/08/2026 18:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">HTML</span>
+                    <a href="bela_&_joao.html" target="_blank" class="file-name">bela_&_joao.html</a>
+                </div>
+                <div class="file-meta">
+                    <span>35.6 KB</span>
+                    <span>12/08/2026 18:57</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JSON</span>
+                    <a href="firebase.json" target="_blank" class="file-name">firebase.json</a>
+                </div>
+                <div class="file-meta">
+                    <span>0.2 KB</span>
+                    <span>14/08/2026 18:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">TXT</span>
+                    <a href="firebase_init.txt" target="_blank" class="file-name">firebase_init.txt</a>
+                </div>
+                <div class="file-meta">
+                    <span>4.6 KB</span>
+                    <span>14/08/2026 18:04</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">HTML</span>
+                    <a href="index.html" target="_blank" class="file-name">index.html</a>
+                </div>
+                <div class="file-meta">
+                    <span>29.9 KB</span>
+                    <span>16/08/2026 22:36</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">HTML</span>
+                    <a href="site_em_construcao.html" target="_blank" class="file-name">site_em_construcao.html</a>
+                </div>
+                <div class="file-meta">
+                    <span>39.6 KB</span>
+                    <span>16/08/2026 22:28</span>
+                </div>
+            </div>
+        <div class='folder-title'>📁 .github/</div><div class='subfolder'><div class='folder-title'>📁 workflows/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">YML</span>
+                    <a href="firebase-hosting-merge.yml" target="_blank" class="file-name">firebase-hosting-merge.yml</a>
+                </div>
+                <div class="file-meta">
+                    <span>0.5 KB</span>
+                    <span>14/08/2026 18:01</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">YML</span>
+                    <a href="firebase-hosting-pull-request.yml" target="_blank" class="file-name">firebase-hosting-pull-request.yml</a>
+                </div>
+                <div class="file-meta">
+                    <span>0.6 KB</span>
+                    <span>14/08/2026 17:59</span>
+                </div>
+            </div>
+        </div></div><div class='folder-title'>📁 assets/</div><div class='subfolder'></div><div class='folder-title'>📁 midias/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="planta2D.jpg" target="_blank" class="file-name">planta2D.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>95.3 KB</span>
+                    <span>12/08/2026 12:41</span>
+                </div>
+            </div>
+        <div class='folder-title'>📁 arranjos/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-1.png" target="_blank" class="file-name">foto-1.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>1.3 MB</span>
+                    <span>11/08/2026 19:25</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-2.png" target="_blank" class="file-name">foto-2.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>1.5 MB</span>
+                    <span>12/08/2026 06:04</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 atmosfera/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>162.4 KB</span>
+                    <span>12/08/2026 15:53</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 bar/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>118.9 KB</span>
+                    <span>12/08/2026 13:45</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>141.4 KB</span>
+                    <span>12/08/2026 09:51</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-3.jpeg" target="_blank" class="file-name">foto-3.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>141.4 KB</span>
+                    <span>11/08/2026 12:37</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 bem-casados/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>193.5 KB</span>
+                    <span>12/08/2026 17:52</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 buffet/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>104.7 KB</span>
+                    <span>12/08/2026 06:02</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>145.6 KB</span>
+                    <span>12/08/2026 13:46</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 cafe/</div><div class='subfolder'></div><div class='folder-title'>📁 capa/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">MP4</span>
+                    <a href="casamento_xian_v2.mp4" target="_blank" class="file-name">casamento_xian_v2.mp4</a>
+                </div>
+                <div class="file-meta">
+                    <span>3.2 MB</span>
+                    <span>12/08/2026 09:27</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-1.png" target="_blank" class="file-name">foto-1.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>746.4 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-10.png" target="_blank" class="file-name">foto-10.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>678.0 KB</span>
+                    <span>12/08/2026 16:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-11.png" target="_blank" class="file-name">foto-11.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>393.9 KB</span>
+                    <span>12/08/2026 16:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-12.png" target="_blank" class="file-name">foto-12.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>629.6 KB</span>
+                    <span>12/08/2026 16:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-13.png" target="_blank" class="file-name">foto-13.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>775.0 KB</span>
+                    <span>12/08/2026 16:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-14.png" target="_blank" class="file-name">foto-14.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>884.5 KB</span>
+                    <span>12/08/2026 16:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-15.png" target="_blank" class="file-name">foto-15.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>437.6 KB</span>
+                    <span>12/08/2026 16:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-17.png" target="_blank" class="file-name">foto-17.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>834.6 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-18.png" target="_blank" class="file-name">foto-18.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>890.0 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-19.png" target="_blank" class="file-name">foto-19.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>965.0 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-2.png" target="_blank" class="file-name">foto-2.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>619.0 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-20.png" target="_blank" class="file-name">foto-20.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>636.9 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-21.png" target="_blank" class="file-name">foto-21.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>391.6 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-22.png" target="_blank" class="file-name">foto-22.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>980.1 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-23.png" target="_blank" class="file-name">foto-23.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>262.9 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-24.png" target="_blank" class="file-name">foto-24.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>523.8 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-25.png" target="_blank" class="file-name">foto-25.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>472.3 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-26.png" target="_blank" class="file-name">foto-26.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>1000.0 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-27.png" target="_blank" class="file-name">foto-27.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>664.9 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-3.png" target="_blank" class="file-name">foto-3.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>713.7 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-4.png" target="_blank" class="file-name">foto-4.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>885.1 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-5.png" target="_blank" class="file-name">foto-5.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>1.1 MB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-6.png" target="_blank" class="file-name">foto-6.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>636.3 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-7.png" target="_blank" class="file-name">foto-7.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>494.9 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-8.png" target="_blank" class="file-name">foto-8.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>8.7 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-9.png" target="_blank" class="file-name">foto-9.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>29.8 KB</span>
+                    <span>12/08/2026 16:03</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 doces/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>119.3 KB</span>
+                    <span>11/08/2026 12:37</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>216.9 KB</span>
+                    <span>12/08/2026 13:46</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-3.jpeg" target="_blank" class="file-name">foto-3.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>258.5 KB</span>
+                    <span>12/08/2026 17:52</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 enxoval/</div><div class='subfolder'></div><div class='folder-title'>📁 externa/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>129.8 KB</span>
+                    <span>12/08/2026 17:53</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 iluminacao/</div><div class='subfolder'></div><div class='folder-title'>📁 logo/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>166.5 KB</span>
+                    <span>11/08/2026 16:34</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 lounge/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>108.4 KB</span>
+                    <span>12/08/2026 13:46</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 moveis/</div><div class='subfolder'><div class='folder-title'>📁 item-1/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>53.8 KB</span>
+                    <span>11/08/2026 18:02</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-2.png" target="_blank" class="file-name">foto-2.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>789.8 KB</span>
+                    <span>12/08/2026 09:15</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-3.png" target="_blank" class="file-name">foto-3.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>805.3 KB</span>
+                    <span>12/08/2026 09:15</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-4.png" target="_blank" class="file-name">foto-4.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>845.9 KB</span>
+                    <span>12/08/2026 09:16</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-10/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>42.3 KB</span>
+                    <span>11/08/2026 18:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-2.jpg" target="_blank" class="file-name">foto-2.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>45.2 KB</span>
+                    <span>11/08/2026 18:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-3.jpg" target="_blank" class="file-name">foto-3.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>45.2 KB</span>
+                    <span>11/08/2026 18:03</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-4.jpg" target="_blank" class="file-name">foto-4.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>94.7 KB</span>
+                    <span>11/08/2026 18:02</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-5.jpeg" target="_blank" class="file-name">foto-5.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>21.3 KB</span>
+                    <span>11/08/2026 12:38</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-6.jpeg" target="_blank" class="file-name">foto-6.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>32.6 KB</span>
+                    <span>11/08/2026 12:39</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-7.jpeg" target="_blank" class="file-name">foto-7.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>27.9 KB</span>
+                    <span>11/08/2026 12:39</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-11/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>179.4 KB</span>
+                    <span>12/08/2026 05:34</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-12/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>38.6 KB</span>
+                    <span>11/08/2026 17:50</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>24.1 KB</span>
+                    <span>11/08/2026 12:38</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-13/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>41.1 KB</span>
+                    <span>11/08/2026 14:03</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-14/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>53.8 KB</span>
+                    <span>11/08/2026 18:02</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-15/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>32.0 KB</span>
+                    <span>11/08/2026 18:02</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-16/</div><div class='subfolder'></div><div class='folder-title'>📁 item-2/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>38.6 KB</span>
+                    <span>11/08/2026 17:50</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>24.1 KB</span>
+                    <span>11/08/2026 12:38</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-3/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>6.4 KB</span>
+                    <span>11/08/2026 17:51</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-2.jpg" target="_blank" class="file-name">foto-2.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>183.2 KB</span>
+                    <span>12/08/2026 17:55</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-3.jpg" target="_blank" class="file-name">foto-3.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>46.7 KB</span>
+                    <span>12/08/2026 17:56</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-4/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>19.6 KB</span>
+                    <span>11/08/2026 12:39</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>46.3 KB</span>
+                    <span>11/08/2026 12:40</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-5/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>79.1 KB</span>
+                    <span>11/08/2026 15:20</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>10.2 KB</span>
+                    <span>11/08/2026 17:35</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-6/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>105.9 KB</span>
+                    <span>11/08/2026 12:40</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>40.8 KB</span>
+                    <span>11/08/2026 12:40</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-3.jpeg" target="_blank" class="file-name">foto-3.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>10.2 KB</span>
+                    <span>11/08/2026 17:35</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-7/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="foto-1.png" target="_blank" class="file-name">foto-1.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>209.6 KB</span>
+                    <span>11/08/2026 19:37</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>39.1 KB</span>
+                    <span>11/08/2026 12:40</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-3.jpeg" target="_blank" class="file-name">foto-3.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>33.7 KB</span>
+                    <span>11/08/2026 12:40</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-8/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="foto-1.jpg" target="_blank" class="file-name">foto-1.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>166.5 KB</span>
+                    <span>11/08/2026 16:34</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 item-9/</div><div class='subfolder'></div></div><div class='folder-title'>📁 palco/</div><div class='subfolder'></div><div class='folder-title'>📁 pista/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>143.4 KB</span>
+                    <span>12/08/2026 13:44</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>124.9 KB</span>
+                    <span>12/08/2026 13:45</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 recepcao/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>109.1 KB</span>
+                    <span>12/08/2026 14:32</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>109.1 KB</span>
+                    <span>12/08/2026 14:32</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 rooftop/</div><div class='subfolder'></div><div class='folder-title'>📁 salao/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-1.jpeg" target="_blank" class="file-name">foto-1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>177.7 KB</span>
+                    <span>12/08/2026 13:45</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-2.jpeg" target="_blank" class="file-name">foto-2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>144.3 KB</span>
+                    <span>12/08/2026 13:45</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="foto-3.jpeg" target="_blank" class="file-name">foto-3.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>135.4 KB</span>
+                    <span>12/08/2026 13:45</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 texturas/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="madeira_cadeira.jpeg" target="_blank" class="file-name">madeira_cadeira.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>22.4 KB</span>
+                    <span>11/08/2026 13:05</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="madeira_mesa.png" target="_blank" class="file-name">madeira_mesa.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>900.6 KB</span>
+                    <span>11/08/2026 13:05</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="mostrandotextura.jpg" target="_blank" class="file-name">mostrandotextura.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>131.7 KB</span>
+                    <span>11/08/2026 12:54</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="teto_textura.png" target="_blank" class="file-name">teto_textura.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>1.6 MB</span>
+                    <span>11/08/2026 12:46</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="textura_cadeira.jpeg" target="_blank" class="file-name">textura_cadeira.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>22.4 KB</span>
+                    <span>11/08/2026 13:30</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="textura_carpete.jpg" target="_blank" class="file-name">textura_carpete.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>28.9 KB</span>
+                    <span>11/08/2026 13:07</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="textura_folhagens02.jpg" target="_blank" class="file-name">textura_folhagens02.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>26.3 KB</span>
+                    <span>11/08/2026 13:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="textura_linho.jpeg" target="_blank" class="file-name">textura_linho.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>32.8 KB</span>
+                    <span>11/08/2026 13:06</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="textura_madeira_clara.jpeg" target="_blank" class="file-name">textura_madeira_clara.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>18.6 KB</span>
+                    <span>11/08/2026 13:25</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="textura_madeira_clara.jpg" target="_blank" class="file-name">textura_madeira_clara.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>17.2 KB</span>
+                    <span>11/08/2026 13:21</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="textura_taco.png" target="_blank" class="file-name">textura_taco.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>833.5 KB</span>
+                    <span>11/08/2026 13:04</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPG</span>
+                    <a href="textura_tecido_teto.jpg" target="_blank" class="file-name">textura_tecido_teto.jpg</a>
+                </div>
+                <div class="file-meta">
+                    <span>211.4 KB</span>
+                    <span>11/08/2026 13:08</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="textura_veludo_verde.jpeg" target="_blank" class="file-name">textura_veludo_verde.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>3.7 KB</span>
+                    <span>11/08/2026 13:12</span>
+                </div>
+            </div>
+        </div><div class='folder-title'>📁 whatsapp_inbox/</div><div class='subfolder'>
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="05.png" target="_blank" class="file-name">05.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>700.2 KB</span>
+                    <span>11/08/2026 16:06</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="07.png" target="_blank" class="file-name">07.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>291.5 KB</span>
+                    <span>11/08/2026 16:09</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">PNG</span>
+                    <a href="08.png" target="_blank" class="file-name">08.png</a>
+                </div>
+                <div class="file-meta">
+                    <span>484.3 KB</span>
+                    <span>11/08/2026 16:10</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-11_10.18.42.jpeg" target="_blank" class="file-name">zap_2026-08-11_10.18.42.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>230.5 KB</span>
+                    <span>11/08/2026 12:36</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-11_10.18.43.jpeg" target="_blank" class="file-name">zap_2026-08-11_10.18.43.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>355.9 KB</span>
+                    <span>11/08/2026 12:36</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-12_09.50.42.jpeg" target="_blank" class="file-name">zap_2026-08-12_09.50.42.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>355.9 KB</span>
+                    <span>12/08/2026 09:51</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-12_09.50.42_1.jpeg" target="_blank" class="file-name">zap_2026-08-12_09.50.42_1.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>163.7 KB</span>
+                    <span>12/08/2026 09:51</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-12_09.50.42_2.jpeg" target="_blank" class="file-name">zap_2026-08-12_09.50.42_2.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>230.5 KB</span>
+                    <span>12/08/2026 09:51</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-12_09.50.43.jpeg" target="_blank" class="file-name">zap_2026-08-12_09.50.43.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>355.2 KB</span>
+                    <span>12/08/2026 09:51</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-12_10.53.53.jpeg" target="_blank" class="file-name">zap_2026-08-12_10.53.53.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>216.9 KB</span>
+                    <span>12/08/2026 13:45</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-12_10.53.54.jpeg" target="_blank" class="file-name">zap_2026-08-12_10.53.54.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>258.5 KB</span>
+                    <span>12/08/2026 13:45</span>
+                </div>
+            </div>
+        
+            <div class="file-item">
+                <div class="file-left">
+                    <span class="file-badge">JPEG</span>
+                    <a href="zap_2026-08-12_15.00.50.jpeg" target="_blank" class="file-name">zap_2026-08-12_15.00.50.jpeg</a>
+                </div>
+                <div class="file-meta">
+                    <span>162.4 KB</span>
+                    <span>12/08/2026 15:46</span>
+                </div>
+            </div>
+        </div></div>
+        </div>
+    </div>
+</body>
+</html>
