@@ -1,11 +1,11 @@
-Implantação:
-
+Implantação atualizada.
+Versão 2 em 17 de ago. de 2026, 17:26
+Código de implantação
 AKfycbzUY30OuM0ZOZIPrapmtW3Hrm0BgfLFWypsUwKyi9HiuTCoB5c-8hb_5oFklcwA7mU4cw
-
 App da Web
 URL
 https://script.google.com/macros/s/AKfycbzUY30OuM0ZOZIPrapmtW3Hrm0BgfLFWypsUwKyi9HiuTCoB5c-8hb_5oFklcwA7mU4cw/exec
-
 Biblioteca
 URL
-https://script.google.com/macros/library/d/116oJ3E6Q-rjuV9kddIRAiUojQMZFGC6v2MwhFVYQ2mVQ2rN7DNs5_aqv/1
+https://script.google.com/macros/library/d/116oJ3E6Q-rjuV9kddIRAiUojQMZFGC6v2MwhFVYQ2mVQ2rN7DNs5_aqv/2
+Para permitir que outros grupos e pessoas usem este projeto como uma biblioteca, compartilhe o projeto com eles.
