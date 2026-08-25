@@ -1,0 +1,10 @@
+Implantação atualizada.
+Versão 3 em 25 de ago. de 2026, 15:38
+Código de implantação
+AKfycbxek9MoXWBYacL0pAiurL4pH-pwPlbvryBHDObKzkovZEstJlV-M3_pXURdSAduO1mGOQ
+App da Web
+URL
+https://script.google.com/macros/s/AKfycbxek9MoXWBYacL0pAiurL4pH-pwPlbvryBHDObKzkovZEstJlV-M3_pXURdSAduO1mGOQ/exec
+Biblioteca
+URL
+https://script.google.com/macros/library/d/1_pYY2yYDNPNJf3NVnfAwzIHRvo2C14-mfMi6kPGXxsrbdAwVUxO9nUR5/3

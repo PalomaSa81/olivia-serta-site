@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hub de Gestão de Eventos - Olívia & Paloma</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- CABEÇALHO COM IDENTIFICAÇÃO AUTOMÁTICA DO USUÁRIO -->
+  <header class="bg-indigo-900 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center flex-wrap gap-3">
+      <div class="flex items-center space-x-3">
+        <i class="fa-solid fa-calendar-star text-2xl text-amber-400"></i>
+        <div>
+          <h1 class="text-xl font-bold tracking-wide">Hub de Gestão de Eventos</h1>
+          <p class="text-xs text-indigo-200">Painel Operacional & Estratégico</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-3">
+        <!-- BADGE DE USUÁRIO LOGADO -->
+        <div class="bg-indigo-800 border border-indigo-700 rounded-lg px-3 py-1.5 text-xs flex items-center gap-2">
+          <i class="fa-solid fa-user-check text-amber-400"></i>
+          <div>
+            <span class="text-indigo-300 block text-[10px] leading-none">Usuário Conectado</span>
+            <span id="user-display" class="font-bold text-white text-xs">Identificando...</span>
+          </div>
+        </div>
+
+        <!-- DRIVE -->
+        <button onclick="mudarPagina('dossie-evento'); mudarSubAba('drive');" class="bg-indigo-800 hover:bg-indigo-700 px-3 py-1.5 rounded-lg text-xs font-semibold text-indigo-100 flex items-center gap-2 transition border border-indigo-700 shadow-sm">
+          <i class="fa-brands fa-google-drive text-amber-400 text-sm"></i> Drive
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVEGAÇÃO PRINCIPAL -->
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 flex space-x-2">
+      <button onclick="mudarPagina('visao-geral')" id="tab-visao-geral" class="py-3 px-4 font-semibold text-indigo-600 border-b-2 border-indigo-600 flex items-center gap-2 text-sm">
+        <i class="fa-solid fa-chart-pie"></i> Visão Geral dos Eventos
+      </button>
+      <button onclick="mudarPagina('dossie-evento')" id="tab-dossie-evento" class="py-3 px-4 font-semibold text-gray-500 border-b-2 border-transparent hover:text-indigo-600 flex items-center gap-2 text-sm">
+        <i class="fa-solid fa-folder-open"></i> Dossiê Operacional
+      </button>
+      <button onclick="mudarPagina('linha-tempo')" id="tab-linha-tempo" class="py-3 px-4 font-semibold text-gray-500 border-b-2 border-transparent hover:text-indigo-600 flex items-center gap-2 text-sm">
+        <i class="fa-solid fa-timeline"></i> Linha do Tempo
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+
+    <!-- 1. VISÃO GERAL -->
+    <section id="page-visao-geral" class="space-y-6">
+      <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm space-y-4">
+        <h3 class="font-bold text-gray-800 text-base">Status e Progresso dos Eventos</h3>
+        <div id="lista-progresso-projetos" class="space-y-4 pt-2">
+          <p class="text-xs text-gray-400 italic">Carregando eventos...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DOSSIÊ DO EVENTO (SEGMENTADO) -->
+    <section id="page-dossie-evento" class="hidden space-y-6">
+      
+      <!-- CONTROLE DE SELEÇÃO DO EVENTO -->
+      <div class="bg-white p-4 rounded-xl border shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="flex items-center gap-3">
+          <label class="text-xs font-bold text-gray-500 uppercase">Selecione o Evento:</label>
+          <select id="seletor-evento" onchange="selecionarEventoAtivo()" class="border rounded-lg p-2 font-bold text-indigo-900 bg-gray-50 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+            <!-- Opções populadas via JS -->
+          </select>
+        </div>
+
+        <button id="btn-acao-subaba" onclick="executarAcaoSubAba()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow">
+          <i class="fa-solid fa-plus"></i> + Adicionar Item
+        </button>
+      </div>
+
+      <!-- SUB-NAVEGAÇÃO DAS ETAPAS DO DOSSIÊ -->
+      <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
+        
+        <div class="bg-gray-50 border-b flex overflow-x-auto text-xs font-bold text-gray-600">
+          <button onclick="mudarSubAba('tarefas')" id="subtab-tarefas" class="px-4 py-3 border-b-2 border-indigo-600 text-indigo-600 bg-white flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fa-solid fa-list-check"></i> Tarefas & Checklist
+          </button>
+          <button onclick="mudarSubAba('roteiro')" id="subtab-roteiro" class="px-4 py-3 border-b-2 border-transparent hover:text-indigo-600 flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fa-solid fa-clock-rotate-left"></i> Roteiro (Run of Show)
+          </button>
+          <button onclick="mudarSubAba('cenografia')" id="subtab-cenografia" class="px-4 py-3 border-b-2 border-transparent hover:text-indigo-600 flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fa-solid fa-couch"></i> Cenografia & Infra
+          </button>
+          <button onclick="mudarSubAba('escalas')" id="subtab-escalas" class="px-4 py-3 border-b-2 border-transparent hover:text-indigo-600 flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fa-solid fa-people-group"></i> Escalas de Equipe
+          </button>
+          <button onclick="mudarSubAba('fornecedores')" id="subtab-fornecedores" class="px-4 py-3 border-b-2 border-transparent hover:text-indigo-600 flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fa-solid fa-truck-ramp-box"></i> Fornecedores
+          </button>
+          <button onclick="mudarSubAba('drive')" id="subtab-drive" class="px-4 py-3 border-b-2 border-transparent hover:text-indigo-600 flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fa-brands fa-google-drive"></i> Arquivos
+          </button>
+        </div>
+
+        <!-- TABELA: TAREFAS -->
+        <div id="subconteudo-tarefas" class="p-4 overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead class="bg-gray-50 text-xs font-bold text-gray-500 border-b">
+              <tr>
+                <th class="p-3 w-10">Fim</th>
+                <th class="p-3">Tarefa</th>
+                <th class="p-3">Fase / Etapa</th>
+                <th class="p-3">Responsável</th>
+                <th class="p-3">Status</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-tarefas" class="divide-y text-gray-700"></tbody>
+          </table>
+        </div>
+
+        <!-- TABELA: ROTEIRO -->
+        <div id="subconteudo-roteiro" class="hidden p-4 overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead class="bg-gray-50 text-xs font-bold text-gray-500 border-b">
+              <tr>
+                <th class="p-3">Horário</th>
+                <th class="p-3">Momento</th>
+                <th class="p-3">Ação / Atividade</th>
+                <th class="p-3">Responsável</th>
+                <th class="p-3">Obs. Som/Luz/Técnica</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-roteiro" class="divide-y text-gray-700"></tbody>
+          </table>
+        </div>
+
+        <!-- TABELA: CENOGRAFIA -->
+        <div id="subconteudo-cenografia" class="hidden p-4 overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead class="bg-gray-50 text-xs font-bold text-gray-500 border-b">
+              <tr>
+                <th class="p-3">Categoria</th>
+                <th class="p-3">Item / Descrição</th>
+                <th class="p-3">Qtd</th>
+                <th class="p-3">Setor</th>
+                <th class="p-3">Montagem</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-cenografia" class="divide-y text-gray-700"></tbody>
+          </table>
+        </div>
+
+        <!-- TABELA: ESCALAS -->
+        <div id="subconteudo-escalas" class="hidden p-4 overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead class="bg-gray-50 text-xs font-bold text-gray-500 border-b">
+              <tr>
+                <th class="p-3">Etapa</th>
+                <th class="p-3">Profissional</th>
+                <th class="p-3">Função</th>
+                <th class="p-3">Horário</th>
+                <th class="p-3">Status</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-escalas" class="divide-y text-gray-700"></tbody>
+          </table>
+        </div>
+
+        <!-- TABELA: FORNECEDORES -->
+        <div id="subconteudo-fornecedores" class="hidden p-4 overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead class="bg-gray-50 text-xs font-bold text-gray-500 border-b">
+              <tr>
+                <th class="p-3">Serviço</th>
+                <th class="p-3">Contato / Empresa</th>
+                <th class="p-3">Telefone/E-mail</th>
+                <th class="p-3">Status Contrato</th>
+                <th class="p-3">Valor Fechado</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-fornecedores" class="divide-y text-gray-700"></tbody>
+          </table>
+        </div>
+
+        <!-- PAINEL: DRIVE -->
+        <div id="subconteudo-drive" class="hidden p-5 space-y-4">
+          <div id="lista-arquivos-drive" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. LINHA DO TEMPO -->
+    <section id="page-linha-tempo" class="hidden space-y-6">
+      <h2 class="text-xl font-bold text-gray-800">Linha do Tempo dos Eventos</h2>
+      <div id="conteudo-linha-tempo" class="bg-white p-6 rounded-xl border shadow-sm space-y-3"></div>
+    </section>
+
+  </main>
+
+  <!-- MODAIS CADASTRO E EDIÇÃO (CRUD) -->
+
+  <!-- MODAL: TAREFA -->
+  <div id="modal-tarefa" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center hidden z-50">
+    <div class="bg-white w-full max-w-md rounded-xl shadow-2xl p-6 space-y-4">
+      <h3 id="titulo-modal-tarefa" class="text-base font-bold text-indigo-900 border-b pb-2">Salvar Tarefa</h3>
+      <input type="hidden" id="input-tarefa-pk">
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">NOME DA TAREFA</label>
+          <input id="input-tarefa-nome" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">FASE / ETAPA</label>
+            <input id="input-tarefa-fase" type="text" placeholder="Pré-evento, Montagem..." class="w-full border rounded p-2 text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">RESPONSÁVEL</label>
+            <select id="input-tarefa-resp" class="w-full border rounded p-2 text-sm">
+              <option value="Paloma">Paloma</option>
+              <option value="Olívia">Olívia</option>
+              <option value="Ambas">Ambas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-3 border-t">
+        <button onclick="fecharModais()" class="px-3 py-1.5 border rounded text-xs">Cancelar</button>
+        <button onclick="salvarTarefa()" class="px-4 py-1.5 bg-indigo-600 text-white rounded text-xs font-semibold">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ROTEIRO -->
+  <div id="modal-roteiro" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center hidden z-50">
+    <div class="bg-white w-full max-w-md rounded-xl shadow-2xl p-6 space-y-4">
+      <h3 id="titulo-modal-roteiro" class="text-base font-bold text-indigo-900 border-b pb-2">Salvar Item de Roteiro</h3>
+      <input type="hidden" id="input-roteiro-pk">
+      <div class="space-y-3 text-xs">
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">INÍCIO</label>
+            <input id="input-rot-inicio" type="text" placeholder="18:00" class="w-full border rounded p-2 text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">FIM</label>
+            <input id="input-rot-fim" type="text" placeholder="18:30" class="w-full border rounded p-2 text-sm">
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">FASE / MOMENTO</label>
+          <input id="input-rot-fase" type="text" placeholder="Recepção, Abertura..." class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">ATIVIDADE / AÇÃO</label>
+          <input id="input-rot-acao" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">RESPONSÁVEL GERAL</label>
+          <input id="input-rot-resp" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">OBSERVAÇÕES SOM/LUZ/CENA</label>
+          <input id="input-rot-som" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-3 border-t">
+        <button onclick="fecharModais()" class="px-3 py-1.5 border rounded text-xs">Cancelar</button>
+        <button onclick="salvarRoteiro()" class="px-4 py-1.5 bg-indigo-600 text-white rounded text-xs font-semibold">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CENOGRAFIA -->
+  <div id="modal-cenografia" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center hidden z-50">
+    <div class="bg-white w-full max-w-md rounded-xl shadow-2xl p-6 space-y-4">
+      <h3 id="titulo-modal-cenografia" class="text-base font-bold text-indigo-900 border-b pb-2">Salvar Item Cenográfico</h3>
+      <input type="hidden" id="input-ceno-pk">
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">CATEGORIA</label>
+          <input id="input-ceno-cat" type="text" placeholder="Mobiliário, Iluminação..." class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">NOME / DESCRIÇÃO DO ITEM</label>
+          <input id="input-ceno-nome" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">QUANTIDADE</label>
+            <input id="input-ceno-qtd" type="number" value="1" class="w-full border rounded p-2 text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">SETOR / LOCAL</label>
+            <input id="input-ceno-local" type="text" placeholder="Palco, Entrada..." class="w-full border rounded p-2 text-sm">
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">STATUS MONTAGEM</label>
+          <select id="input-ceno-status" class="w-full border rounded p-2 text-sm">
+            <option value="Pendente">Pendente</option>
+            <option value="Em Andamento">Em Andamento</option>
+            <option value="Concluído">Concluído</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-3 border-t">
+        <button onclick="fecharModais()" class="px-3 py-1.5 border rounded text-xs">Cancelar</button>
+        <button onclick="salvarCenografia()" class="px-4 py-1.5 bg-indigo-600 text-white rounded text-xs font-semibold">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ESCALAS -->
+  <div id="modal-escala" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center hidden z-50">
+    <div class="bg-white w-full max-w-md rounded-xl shadow-2xl p-6 space-y-4">
+      <h3 id="titulo-modal-escala" class="text-base font-bold text-indigo-900 border-b pb-2">Salvar Escala</h3>
+      <input type="hidden" id="input-escala-pk">
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">NOME DO PROFISSIONAL</label>
+          <input id="input-escala-nome" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">FUNÇÃO / PAPEL</label>
+            <input id="input-escala-funcao" type="text" class="w-full border rounded p-2 text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">ETAPA ATUAÇÃO</label>
+            <input id="input-escala-etapa" type="text" placeholder="Montagem, Evento..." class="w-full border rounded p-2 text-sm">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">ENTRADA</label>
+            <input id="input-escala-entrada" type="text" placeholder="08:00" class="w-full border rounded p-2 text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">SAÍDA</label>
+            <input id="input-escala-saida" type="text" placeholder="18:00" class="w-full border rounded p-2 text-sm">
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-3 border-t">
+        <button onclick="fecharModais()" class="px-3 py-1.5 border rounded text-xs">Cancelar</button>
+        <button onclick="salvarEscala()" class="px-4 py-1.5 bg-indigo-600 text-white rounded text-xs font-semibold">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: FORNECEDORES -->
+  <div id="modal-fornecedor" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center hidden z-50">
+    <div class="bg-white w-full max-w-md rounded-xl shadow-2xl p-6 space-y-4">
+      <h3 id="titulo-modal-fornecedor" class="text-base font-bold text-indigo-900 border-b pb-2">Salvar Fornecedor</h3>
+      <input type="hidden" id="input-forn-pk">
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">CATEGORIA / SERVIÇO</label>
+          <input id="input-forn-servico" type="text" placeholder="Buffet, Som, Fotografia..." class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">NOME DO CONTATO / EMPRESA</label>
+          <input id="input-forn-nome" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">TELEFONE / E-MAIL</label>
+            <input id="input-forn-contato" type="text" class="w-full border rounded p-2 text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-600 mb-1">VALOR FECHADO (R$)</label>
+            <input id="input-forn-valor" type="text" placeholder="0,00" class="w-full border rounded p-2 text-sm">
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">STATUS CONTRATO</label>
+          <select id="input-forn-status" class="w-full border rounded p-2 text-sm">
+            <option value="Em cotação">Em cotação</option>
+            <option value="Contratado">Contratado</option>
+            <option value="Pago">Pago</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-3 border-t">
+        <button onclick="fecharModais()" class="px-3 py-1.5 border rounded text-xs">Cancelar</button>
+        <button onclick="salvarFornecedor()" class="px-4 py-1.5 bg-indigo-600 text-white rounded text-xs font-semibold">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT PRINCIPAL INTEGRADO AO MÓDULO HTTP DA PARTE 2 -->
+  <script>
+    // URL da Web App para requisições do frontend
+    const API_URL = "COLE_SUA_URL_DO_WEB_APP_AQUI";
+
+    let DB = {};
+    let eventoAtivoId = null;
+    let subAbaAtual = 'tarefas';
+
+    // RECONHECIMENTO AUTOMÁTICO DO USUÁRIO LOGADO NO GOOGLE
+    const userEmailScriptlet = "<?= Session.getActiveUser().getEmail() ?>";
+    let usuarioEmail = (userEmailScriptlet && !userEmailScriptlet.includes("<?= ")) 
+      ? userEmailScriptlet 
+      : "paloma@exemplo.com"; 
+
+    let usuarioAtual = "Paloma";
+
+    // CARREGAMENTO INICIAL
+    window.addEventListener('DOMContentLoaded', () => {
+      identificarUsuario();
+      carregarDadosDoBanco();
+    });
+
+    function identificarUsuario() {
+      const emailLower = usuarioEmail.toLowerCase();
+      if (emailLower.includes("olivia")) {
+        usuarioAtual = "Olívia";
+      } else if (emailLower.includes("paloma")) {
+        usuarioAtual = "Paloma";
+      } else {
+        usuarioAtual = usuarioEmail;
+      }
+      document.getElementById('user-display').innerText = `${usuarioAtual} (${usuarioEmail})`;
+    }
+
+    // --- MÓDULO DE COMUNICAÇÃO HTTP (PARTE 2) ---
+
+    // 1. LER DADOS (GET)
+    async function buscarDados() {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Erro ao buscar dados da API:", error);
+        return null;
+      }
+    }
+
+    // 2. ENVIAR COMANDOS DE CRUD (POST)
+    async function executarAcaoAPI(action, dataPayload, sheetName = '') {
+      try {
+        const payload = {
+          action: action,
+          sheet: sheetName,
+          usuario: usuarioAtual,
+          email: usuarioEmail,
+          timestamp: new Date().toISOString(),
+          data: dataPayload
+        };
+
+        const response = await fetch(API_URL, {
+          method: "POST",
+          // text/plain evita requisições pre-flight CORS no Apps Script
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+        return await response.json();
+      } catch (error) {
+        console.error(`Erro ao executar a ação ${action}:`, error);
+        return { status: "error", message: error.message };
+      }
+    }
+
+    // RECARREGAR DASHBOARD
+    async function carregarDadosDoBanco() {
+      const result = await buscarDados();
+      if (result && result.status === 'success') {
+        DB = result.data;
+        renderizarListaProjetos();
+        popularSeletorEventos();
+        renderizarLinhaTempo();
+      } else if (result && result.data) {
+        DB = result.data;
+        renderizarListaProjetos();
+        popularSeletorEventos();
+        renderizarLinhaTempo();
+      }
+    }
+
+    // ALINHADO AO MÓDULO PARTE 2
+    async function dispararAPI(acao, aba, dados) {
+      fecharModais();
+      const resposta = await executarAcaoAPI(acao, dados, aba);
+      if (resposta && (resposta.status === 'success' || resposta.status === 'ok')) {
+        alert(`Alteração realizada com sucesso por ${usuarioAtual}!`);
+      } else {
+        alert(`Operação enviada por ${usuarioAtual}. Recarregando dados...`);
+      }
+      await carregarDadosDoBanco();
+    }
+
+    // RENDERS E REGRAS DE NEGÓCIO DA INTERFACE
+    function renderizarListaProjetos() {
+      const projetos = DB.Projetos || [];
+      const container = document.getElementById('lista-progresso-projetos');
+      container.innerHTML = '';
+
+      if (projetos.length === 0) {
+        container.innerHTML = '<p class="text-xs text-gray-400 italic">Nenhum evento cadastrado no momento.</p>';
+        return;
+      }
+
+      projetos.forEach(p => {
+        const cor = p.Cor_Tema || '#4f46e5';
+        container.innerHTML += `
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full" style="background:${cor}"></span> ${p.Nome_Projeto}</span>
+              <span class="font-bold">${p.Status_Geral || 'Em Andamento'}</span>
+            </div>
+            <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width: 75%; background:${cor}"></div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function popularSeletorEventos() {
+      const seletor = document.getElementById('seletor-evento');
+      seletor.innerHTML = '';
+      const projetos = DB.Projetos || [];
+
+      projetos.forEach((p, idx) => {
+        seletor.innerHTML += `<option value="${p['ID_Projeto (PK)']}">${p.Nome_Projeto}</option>`;
+        if (idx === 0 && !eventoAtivoId) eventoAtivoId = p['ID_Projeto (PK)'];
+      });
+
+      if (eventoAtivoId) seletor.value = eventoAtivoId;
+      selecionarEventoAtivo();
+    }
+
+    function selecionarEventoAtivo() {
+      eventoAtivoId = document.getElementById('seletor-evento').value;
+      renderizarSubAbaAtiva();
+    }
+
+    function mudarSubAba(sub) {
+      subAbaAtual = sub;
+      document.querySelectorAll('#subconteudo-tarefas, #subconteudo-roteiro, #subconteudo-cenografia, #subconteudo-escalas, #subconteudo-fornecedores, #subconteudo-drive').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('[id^="subtab-"]').forEach(btn => btn.classList.remove('text-indigo-600', 'border-indigo-600', 'bg-white'));
+
+      document.getElementById(`subtab-${sub}`).classList.add('text-indigo-600', 'border-indigo-600', 'bg-white');
+      document.getElementById(`subconteudo-${sub}`).classList.remove('hidden');
+
+      renderizarSubAbaAtiva();
+    }
+
+    function renderizarSubAbaAtiva() {
+      if (subAbaAtual === 'tarefas') renderizarTarefas();
+      if (subAbaAtual === 'roteiro') renderizarRoteiro();
+      if (subAbaAtual === 'cenografia') renderizarCenografia();
+      if (subAbaAtual === 'escalas') renderizarEscalas();
+      if (subAbaAtual === 'fornecedores') renderizarFornecedores();
+      if (subAbaAtual === 'drive') renderizarDrive();
+    }
+
+    // CRUD: TAREFAS
+    function renderizarTarefas() {
+      const tb = document.getElementById('tabela-tarefas');
+      const lista = (DB.Tarefas_Ativas || []).filter(t => String(t['ID_Projeto (FK)']) === String(eventoAtivoId));
+      
+      tb.innerHTML = lista.map(t => {
+        const id = t['ID_Tarefa (PK)'];
+        const concl = t.Status === 'Concluído';
+        return `
+          <tr class="${concl ? 'bg-gray-50 opacity-60' : ''}">
+            <td class="p-3">
+              <input type="checkbox" ${concl ? 'checked' : ''} onchange="alternarStatusTarefa('${id}', this.checked)" class="w-4 h-4 text-indigo-600 rounded cursor-pointer">
+            </td>
+            <td class="p-3 font-medium ${concl ? 'line-through text-gray-400' : ''}">${t.Nome_Tarefa}</td>
+            <td class="p-3 text-xs">${t.Fase || '-'}</td>
+            <td class="p-3 text-xs font-semibold">${t['Responsavel (FK)'] || '-'}</td>
+            <td class="p-3"><span class="text-xs font-bold px-2 py-0.5 rounded ${concl ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${t.Status || 'Pendente'}</span></td>
+            <td class="p-3 text-right text-xs">
+              <button onclick="abrirModalTarefa('${id}')" class="text-indigo-600 hover:text-indigo-800 mr-2"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="excluirItem('Tarefas_Ativas', 'ID_Tarefa (PK)', '${id}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function alternarStatusTarefa(id, isChecked) {
+      dispararAPI('update', 'Tarefas_Ativas', {
+        'ID_Tarefa (PK)': id,
+        'Status': isChecked ? 'Concluído' : 'Pendente'
+      });
+    }
+
+    function abrirModalTarefa(id = null) {
+      document.getElementById('input-tarefa-pk').value = id || '';
+      document.getElementById('titulo-modal-tarefa').innerText = id ? 'Editar Tarefa' : 'Nova Tarefa';
+
+      if (id) {
+        const item = (DB.Tarefas_Ativas || []).find(t => String(t['ID_Tarefa (PK)']) === String(id));
+        if (item) {
+          document.getElementById('input-tarefa-nome').value = item.Nome_Tarefa || '';
+          document.getElementById('input-tarefa-fase').value = item.Fase || '';
+          document.getElementById('input-tarefa-resp').value = item['Responsavel (FK)'] || usuarioAtual;
+        }
+      } else {
+        document.getElementById('input-tarefa-nome').value = '';
+        document.getElementById('input-tarefa-fase').value = '';
+        document.getElementById('input-tarefa-resp').value = usuarioAtual;
+      }
+      document.getElementById('modal-tarefa').classList.remove('hidden');
+    }
+
+    function salvarTarefa() {
+      const pk = document.getElementById('input-tarefa-pk').value;
+      const acao = pk ? 'update' : 'insert';
+      const dados = {
+        'ID_Projeto (FK)': eventoAtivoId,
+        'Nome_Tarefa': document.getElementById('input-tarefa-nome').value,
+        'Fase': document.getElementById('input-tarefa-fase').value,
+        'Responsavel (FK)': document.getElementById('input-tarefa-resp').value
+      };
+      if (pk) dados['ID_Tarefa (PK)'] = pk;
+      else dados['Status'] = 'Pendente';
+
+      dispararAPI(acao, 'Tarefas_Ativas', dados);
+    }
+
+    // CRUD: ROTEIRO
+    function renderizarRoteiro() {
+      const tb = document.getElementById('tabela-roteiro');
+      const lista = (DB.Cronograma_Roteiro || []).filter(r => String(r['ID_Projeto (FK)']) === String(eventoAtivoId));
+      tb.innerHTML = lista.map(r => {
+        const id = r['ID_Roteiro (PK)'];
+        return `
+          <tr>
+            <td class="p-3 font-bold text-indigo-900 text-xs">${r.DataHora_Inicio} - ${r.DataHora_Fim}</td>
+            <td class="p-3 text-xs">${r.Fase_Evento || '-'}</td>
+            <td class="p-3 font-medium">${r.Atividade_Acao}</td>
+            <td class="p-3 text-xs">${r.Responsavel_Geral || '-'}</td>
+            <td class="p-3 text-xs text-gray-500">${r.Observacoes_Som_Luz || '-'}</td>
+            <td class="p-3 text-right text-xs">
+              <button onclick="abrirModalRoteiro('${id}')" class="text-indigo-600 hover:text-indigo-800 mr-2"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="excluirItem('Cronograma_Roteiro', 'ID_Roteiro (PK)', '${id}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function abrirModalRoteiro(id = null) {
+      document.getElementById('input-roteiro-pk').value = id || '';
+      document.getElementById('titulo-modal-roteiro').innerText = id ? 'Editar Item do Roteiro' : 'Novo Item do Roteiro';
+
+      if (id) {
+        const item = (DB.Cronograma_Roteiro || []).find(r => String(r['ID_Roteiro (PK)']) === String(id));
+        if (item) {
+          document.getElementById('input-rot-inicio').value = item.DataHora_Inicio || '';
+          document.getElementById('input-rot-fim').value = item.DataHora_Fim || '';
+          document.getElementById('input-rot-fase').value = item.Fase_Evento || '';
+          document.getElementById('input-rot-acao').value = item.Atividade_Acao || '';
+          document.getElementById('input-rot-resp').value = item.Responsavel_Geral || '';
+          document.getElementById('input-rot-som').value = item.Observacoes_Som_Luz || '';
+        }
+      } else {
+        document.getElementById('input-rot-inicio').value = '';
+        document.getElementById('input-rot-fim').value = '';
+        document.getElementById('input-rot-fase').value = '';
+        document.getElementById('input-rot-acao').value = '';
+        document.getElementById('input-rot-resp').value = usuarioAtual;
+        document.getElementById('input-rot-som').value = '';
+      }
+      document.getElementById('modal-roteiro').classList.remove('hidden');
+    }
+
+    function salvarRoteiro() {
+      const pk = document.getElementById('input-roteiro-pk').value;
+      const acao = pk ? 'update' : 'insert';
+      const dados = {
+        'ID_Projeto (FK)': eventoAtivoId,
+        'DataHora_Inicio': document.getElementById('input-rot-inicio').value,
+        'DataHora_Fim': document.getElementById('input-rot-fim').value,
+        'Fase_Evento': document.getElementById('input-rot-fase').value,
+        'Atividade_Acao': document.getElementById('input-rot-acao').value,
+        'Responsavel_Geral': document.getElementById('input-rot-resp').value,
+        'Observacoes_Som_Luz': document.getElementById('input-rot-som').value
+      };
+      if (pk) dados['ID_Roteiro (PK)'] = pk;
+
+      dispararAPI(acao, 'Cronograma_Roteiro', dados);
+    }
+
+    // CRUD: CENOGRAFIA
+    function renderizarCenografia() {
+      const tb = document.getElementById('tabela-cenografia');
+      const lista = (DB.Itens_Cenografia_Infra || []).filter(c => String(c['ID_Projeto (FK)']) === String(eventoAtivoId));
+      tb.innerHTML = lista.map(c => {
+        const id = c['ID_Item (PK)'];
+        return `
+          <tr>
+            <td class="p-3 text-xs"><span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">${c.Categoria_Item}</span></td>
+            <td class="p-3 font-medium">${c.Nome_Item}</td>
+            <td class="p-3 font-bold">${c.Quantidade}</td>
+            <td class="p-3 text-xs">${c.Local_Posicionamento || '-'}</td>
+            <td class="p-3 text-xs font-semibold">${c.Status_Montagem || 'Pendente'}</td>
+            <td class="p-3 text-right text-xs">
+              <button onclick="abrirModalCenografia('${id}')" class="text-indigo-600 hover:text-indigo-800 mr-2"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="excluirItem('Itens_Cenografia_Infra', 'ID_Item (PK)', '${id}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function abrirModalCenografia(id = null) {
+      document.getElementById('input-ceno-pk').value = id || '';
+      document.getElementById('titulo-modal-cenografia').innerText = id ? 'Editar Item Cenográfico' : 'Novo Item Cenográfico';
+
+      if (id) {
+        const item = (DB.Itens_Cenografia_Infra || []).find(c => String(c['ID_Item (PK)']) === String(id));
+        if (item) {
+          document.getElementById('input-ceno-cat').value = item.Categoria_Item || '';
+          document.getElementById('input-ceno-nome').value = item.Nome_Item || '';
+          document.getElementById('input-ceno-qtd').value = item.Quantidade || 1;
+          document.getElementById('input-ceno-local').value = item.Local_Posicionamento || '';
+          document.getElementById('input-ceno-status').value = item.Status_Montagem || 'Pendente';
+        }
+      } else {
+        document.getElementById('input-ceno-cat').value = '';
+        document.getElementById('input-ceno-nome').value = '';
+        document.getElementById('input-ceno-qtd').value = 1;
+        document.getElementById('input-ceno-local').value = '';
+        document.getElementById('input-ceno-status').value = 'Pendente';
+      }
+      document.getElementById('modal-cenografia').classList.remove('hidden');
+    }
+
+    function salvarCenografia() {
+      const pk = document.getElementById('input-ceno-pk').value;
+      const acao = pk ? 'update' : 'insert';
+      const dados = {
+        'ID_Projeto (FK)': eventoAtivoId,
+        'Categoria_Item': document.getElementById('input-ceno-cat').value,
+        'Nome_Item': document.getElementById('input-ceno-nome').value,
+        'Quantidade': document.getElementById('input-ceno-qtd').value,
+        'Local_Posicionamento': document.getElementById('input-ceno-local').value,
+        'Status_Montagem': document.getElementById('input-ceno-status').value
+      };
+      if (pk) dados['ID_Item (PK)'] = pk;
+
+      dispararAPI(acao, 'Itens_Cenografia_Infra', dados);
+    }
+
+    // CRUD: ESCALAS
+    function renderizarEscalas() {
+      const tb = document.getElementById('tabela-escalas');
+      const lista = (DB.Escalas_Trabalhadores || []).filter(e => String(e['ID_Projeto (FK)']) === String(eventoAtivoId));
+      tb.innerHTML = lista.map(e => {
+        const id = e['ID_Escala (PK)'];
+        return `
+          <tr>
+            <td class="p-3 text-xs font-semibold">${e.Etapa_Atuacao}</td>
+            <td class="p-3 font-bold">${e.Nome_Trabalhador}</td>
+            <td class="p-3 text-xs">${e.Funcao_Papel}</td>
+            <td class="p-3 text-xs">${e.DataHora_Entrada || '-'} às ${e.DataHora_Saida || '-'}</td>
+            <td class="p-3 text-xs font-bold text-emerald-800">${e.Status_Presenca || 'Confirmado'}</td>
+            <td class="p-3 text-right text-xs">
+              <button onclick="abrirModalEscala('${id}')" class="text-indigo-600 hover:text-indigo-800 mr-2"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="excluirItem('Escalas_Trabalhadores', 'ID_Escala (PK)', '${id}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function abrirModalEscala(id = null) {
+      document.getElementById('input-escala-pk').value = id || '';
+      document.getElementById('titulo-modal-escala').innerText = id ? 'Editar Escala' : 'Nova Escala';
+
+      if (id) {
+        const item = (DB.Escalas_Trabalhadores || []).find(e => String(e['ID_Escala (PK)']) === String(id));
+        if (item) {
+          document.getElementById('input-escala-nome').value = item.Nome_Trabalhador || '';
+          document.getElementById('input-escala-funcao').value = item.Funcao_Papel || '';
+          document.getElementById('input-escala-etapa').value = item.Etapa_Atuacao || '';
+          document.getElementById('input-escala-entrada').value = item.DataHora_Entrada || '';
+          document.getElementById('input-escala-saida').value = item.DataHora_Saida || '';
+        }
+      } else {
+        document.getElementById('input-escala-nome').value = '';
+        document.getElementById('input-escala-funcao').value = '';
+        document.getElementById('input-escala-etapa').value = '';
+        document.getElementById('input-escala-entrada').value = '';
+        document.getElementById('input-escala-saida').value = '';
+      }
+      document.getElementById('modal-escala').classList.remove('hidden');
+    }
+
+    function salvarEscala() {
+      const pk = document.getElementById('input-escala-pk').value;
+      const acao = pk ? 'update' : 'insert';
+      const dados = {
+        'ID_Projeto (FK)': eventoAtivoId,
+        'Nome_Trabalhador': document.getElementById('input-escala-nome').value,
+        'Funcao_Papel': document.getElementById('input-escala-funcao').value,
+        'Etapa_Atuacao': document.getElementById('input-escala-etapa').value,
+        'DataHora_Entrada': document.getElementById('input-escala-entrada').value,
+        'DataHora_Saida': document.getElementById('input-escala-saida').value
+      };
+      if (pk) dados['ID_Escala (PK)'] = pk;
+
+      dispararAPI(acao, 'Escalas_Trabalhadores', dados);
+    }
+
+    // CRUD: FORNECEDORES
+    function renderizarFornecedores() {
+      const tb = document.getElementById('tabela-fornecedores');
+      const lista = (DB.Fornecedores_Equipe || []).filter(f => String(f['ID_Projeto (FK)']) === String(eventoAtivoId));
+      tb.innerHTML = lista.map(f => {
+        const id = f['ID_Fornecedor (PK)'];
+        return `
+          <tr>
+            <td class="p-3 text-xs font-bold text-indigo-900">${f.Categoria_Servico}</td>
+            <td class="p-3 font-medium">${f.Nome_Contato}</td>
+            <td class="p-3 text-xs">${f.Telefone || f.Email || '-'}</td>
+            <td class="p-3 text-xs font-semibold">${f.Status_Contrato || 'Em cotação'}</td>
+            <td class="p-3 font-bold text-emerald-700">R$ ${f.Valor_Fechado || '0,00'}</td>
+            <td class="p-3 text-right text-xs">
+              <button onclick="abrirModalFornecedor('${id}')" class="text-indigo-600 hover:text-indigo-800 mr-2"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="excluirItem('Fornecedores_Equipe', 'ID_Fornecedor (PK)', '${id}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function abrirModalFornecedor(id = null) {
+      document.getElementById('input-forn-pk').value = id || '';
+      document.getElementById('titulo-modal-fornecedor').innerText = id ? 'Editar Fornecedor' : 'Novo Fornecedor';
+
+      if (id) {
+        const item = (DB.Fornecedores_Equipe || []).find(f => String(f['ID_Fornecedor (PK)']) === String(id));
+        if (item) {
+          document.getElementById('input-forn-servico').value = item.Categoria_Servico || '';
+          document.getElementById('input-forn-nome').value = item.Nome_Contato || '';
+          document.getElementById('input-forn-contato').value = item.Telefone || item.Email || '';
+          document.getElementById('input-forn-valor').value = item.Valor_Fechado || '';
+          document.getElementById('input-forn-status').value = item.Status_Contrato || 'Em cotação';
+        }
+      } else {
+        document.getElementById('input-forn-servico').value = '';
+        document.getElementById('input-forn-nome').value = '';
+        document.getElementById('input-forn-contato').value = '';
+        document.getElementById('input-forn-valor').value = '';
+        document.getElementById('input-forn-status').value = 'Em cotação';
+      }
+      document.getElementById('modal-fornecedor').classList.remove('hidden');
+    }
+
+    function salvarFornecedor() {
+      const pk = document.getElementById('input-forn-pk').value;
+      const acao = pk ? 'update' : 'insert';
+      const dados = {
+        'ID_Projeto (FK)': eventoAtivoId,
+        'Categoria_Servico': document.getElementById('input-forn-servico').value,
+        'Nome_Contato': document.getElementById('input-forn-nome').value,
+        'Telefone': document.getElementById('input-forn-contato').value,
+        'Valor_Fechado': document.getElementById('input-forn-valor').value,
+        'Status_Contrato': document.getElementById('input-forn-status').value
+      };
+      if (pk) dados['ID_Fornecedor (PK)'] = pk;
+
+      dispararAPI(acao, 'Fornecedores_Equipe', dados);
+    }
+
+    // DRIVE
+    function renderizarDrive() {
+      const container = document.getElementById('lista-arquivos-drive');
+      const lista = (DB.Drive_Novidades_Log || []).filter(d => String(d['ID_Projeto (FK)']) === String(eventoAtivoId));
+      container.innerHTML = lista.map(d => `
+        <div class="p-3 border rounded-lg bg-gray-50 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-gray-800">${d.Nome_Arquivo}</p>
+            <p class="text-gray-400">Enviado por ${d.Autor_Alteracao || 'Equipe'}</p>
+          </div>
+          <a href="${d.Link_Arquivo || '#'}" target="_blank" class="text-indigo-600 font-bold hover:underline">Abrir</a>
+        </div>
+      `).join('');
+    }
+
+    // LINHA DO TEMPO
+    function renderizarLinhaTempo() {
+      const container = document.getElementById('conteudo-linha-tempo');
+      const projetos = DB.Projetos || [];
+      container.innerHTML = projetos.map(p => `
+        <div class="border-l-4 border-indigo-600 pl-4 py-1">
+          <p class="font-bold text-gray-800 text-sm">${p.Nome_Projeto}</p>
+          <p class="text-xs text-gray-500">Data do Evento: ${p.Data_Evento || 'A definir'} | Local: ${p.Local_Nome || 'A definir'}</p>
+        </div>
+      `).join('');
+    }
+
+    // EXCLUSÃO GENÉRICA
+    function excluirItem(aba, chavePK, idValor) {
+      if (confirm(`Confirma a exclusão deste item? Essa ação será atribuída a ${usuarioAtual}.`)) {
+        const dados = {};
+        dados[chavePK] = idValor;
+        dispararAPI('delete', aba, dados);
+      }
+    }
+
+    // ROTEAMENTO DE BOTÕES
+    function executarAcaoSubAba() {
+      if (subAbaAtual === 'tarefas') abrirModalTarefa();
+      if (subAbaAtual === 'roteiro') abrirModalRoteiro();
+      if (subAbaAtual === 'cenografia') abrirModalCenografia();
+      if (subAbaAtual === 'escalas') abrirModalEscala();
+      if (subAbaAtual === 'fornecedores') abrirModalFornecedor();
+    }
+
+    // NAVEGAÇÃO ENTRE PÁGINAS
+    function mudarPagina(pagina) {
+      document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('text-indigo-600', 'border-indigo-600'));
+      document.getElementById(`page-${pagina}`).classList.remove('hidden');
+      document.getElementById(`tab-${pagina}`).classList.add('text-indigo-600', 'border-indigo-600');
+    }
+
+    function fecharModais() {
+      document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden'));
+    }
+  </script>
+</body>
+</html>

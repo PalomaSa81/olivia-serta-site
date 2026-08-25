@@ -1,0 +1,308 @@
+paloma:Vamos fazer o seguinte, vamos conversar aqui e ir desenhando em texto e depois de acordado como será a arquitetura a gente faz o script, que acha? Vamos começar com vc me fazendo perguntas para entender melhor como eu imagino este sistema e propondo coisas em que não pensei , mas podem me ajudar depois. Já que vc sabe muito do mundo pelo seu treinamento. 
+gemini:Perfeito, esse planejamento prévio é o caminho mais inteligente. Desenhar o modelo mental antes da arquitetura de software evita retrabalho e garante que o sistema resolva o ponto crítico: **trazer paz de espírito para a Olívia sem gerar burocracia para você**.
+
+Para que a plataforma funcione como essa "central de alívio de carga mental", identifiquei algumas oportunidades que podem enriquecer a experiência do site e ajudar na rotina de vocês:
+
+**Propostas de Funcionalidades Essenciais**
+
+* **Automação Estruturada no Drive:** Ao cadastrar um evento no site, o backend cria automaticamente uma pasta principal no Google Drive com subpastas padronizadas (*01_Contratos, 02_Briefing_e_Midias, 03_Financeiro, 04_Fotos_e_Registros*). O link direto vai para o dashboard do evento.
+* **Visão "Foco do Dia" para a Olívia:** Em vez de abrir um Gantt complexo com 40 linhas (o que pode aumentar a ansiedade), a tela inicial dela pode destacar apenas o **Top 3 de prioridades da semana** e o status do que você está executando no momento.
+* **Linha do Tempo Reversa (Backwards Scheduling):** Você define a data final do evento e o sistema calcula automaticamente as datas sugeridas para cada tarefa do catálogo (ex: "Alvará precisa estar pronto 20 dias antes do evento").
+* **Central de Fornecedores Vinculada:** Cada tarefa de contratação carrega o contato do fornecedor, orçamento aprovado e status do contrato, eliminando a busca por mensagens antigas.
+
+**Perguntas para Alinharmos a Arquitetura**
+
+**1. Dinâmica de Prazos:** Quando você for criar um projeto no site, prefere digitar as datas de início/fim de cada tarefa manualmente ou prefere que o sistema sugira o cronograma automaticamente com base na data do evento e nas durações padrão?
+
+**2. Interface e Consumo:** Como a Olívia se sente mais confortável navegando no dia a dia? Uma visualização em **Kanban** (quadros simples de "A Fazer", "Em Andamento", "Concluído") ou uma visão de **Agenda/Calendário** com os marcos do mês?
+
+**3. Visão Multi-projeto:** Quantos eventos vocês costumam gerenciar simultaneamente, e você precisa de um alerta visual quando houver sobreposição de tarefas na mesma semana para você ou para ela?
+
+Qual dessas propostas faz mais sentido para o fluxo de vocês, e como você imagina a tela inicial do site ao abrir?
+paloma:Aceito suas sugestões 1, 3 e 4. Sobre as peguntas: 1-prefiro que o sistema sugira, mas que eu possa acatar ou editar para uma data personalizada. 2-gostaria de um dashboard em que pudesse ver ambas as formas. 3-atualmente temos 4 projetos, mas a tendência é aumentarem os projetos e a equipe. Tem dois em que estamos apenas nós duas, tem um em que tem outra sócia com ela e tem um outro que tem outro contratando ela (e equipe, eu). 
+Outra coisa. Depois pensei em criar templates de documentos a serem gerados nas pastas respectivas através de forms no siste. Assim ela nem precisa abrir o word e gera. Isso precisa ser mapeado agora ou pode vir numa versão 2 do sistema? Vamos conversar sobre cada tela para entender como o sistema deve funcionar em detalhes? A primeira, de autenticação já resolvemos. A próxima seria a vista geral de projetos (deve conter os projetos e as infos gerais, sendo eles clicáveis para abrir o individual deles.  
+gemini:A geração de documentos por formulário pode ficar perfeitamente para a **Versão 2**. No entanto, precisamos deixar a estrutura da V1 pronta para isso: cada projeto criado na V1 já nascerá com um `ID_Pasta_Drive` armazenado no banco de dados, garantindo que a V2 apenas encaixe a criação de PDFs/Docs nessa pasta sem exigir refatoração.
+
+---
+
+**Tela 2: Visão Geral dos Projetos (Dashboard Macro)**
+
+Esta tela centraliza todos os eventos em andamento e serve para a Olívia enxergar de relance o volume total de trabalho, organizando a casa antes de "mergulhar" em um evento específico.
+
+**Barra Superior e Controles**
+
+* **Filtro por Arranjo de Equipe:** Abas ou dropdowns para alternar entre *Todos os Projetos*, *Apenas Paloma & Olívia*, *Com Sócios Externeis* e *Projetos de Clientes Diretos*.
+* **Alerta de Sobrecarga:** Um indicador visual simples no topo avisando se há acúmulo de entregas críticas coincidentes na mesma semana (ex: *"Atenção: 3 eventos com alvarás pendentes na semana de 10/Out"*).
+* **Botão "+ Novo Evento":** Aciona o fluxo de criação com cronograma reverso automático.
+
+**Grade de Cards de Projetos (Clique para Abrir)**
+Cada projeto ativo é exibido como um card visual contendo:
+
+* **Identificação:** Nome do Evento (ex: *"Casamento Laura & Pedro"*), Categoria e Data do Evento.
+* **Contagem Regressiva:** Indicador claro de quantos dias faltam para a data final.
+* **Equipe Alocada:** Badges ou fotos indicando quem está no projeto (ex: *Paloma, Olívia, Sócia X*).
+* **Barra de Progresso:** Porcentagem automática de tarefas concluídas em relação ao total ativado para aquele evento.
+* **Status de Atividade:** Exibição da última tarefa concluída e da **próxima tarefa crítica** a vencer.
+* **Atalhos Rápidos:**
+* Ícone de pasta: Abre diretamente a pasta raiz do projeto no Google Drive.
+* Botão *"Entrar no Projeto"*: Abre o Dashboard Individual do evento.
+
+
+
+**Alternância de Visualização**
+No canto superior, o usuário pode alternar a exibição da tela principal entre:
+
+1. **Visão em Cards (Visão Geral):** Foco em métricas e progresso individual por evento.
+2. **Calendário Unificado:** Um calendário geral marcando as datas dos 4+ eventos simultâneos e seus respectivos marcos para evitar choque de agendas.
+
+---
+
+A estrutura desta visão geral atende ao que você precisa para gerenciar a sobreposição dos múltiplos eventos? Se estiver de acordo, podemos detalhar o modal de **"+ Novo Evento"** (onde o cronograma reverso e a seleção de tarefas acontecem) ou ir direto para o **Dashboard Individual do Projeto**.
+paloma:faz sentido então ter um 'Agenda' para listar as tarefas como barras horizontais em lista (coloridas de acordo com a que projeto pertencem) onde o eixo x é o tempo? aí ela pode filtrar por ano, mês, semana, dia ou colocar de hoje até data tal? Aí clicando na barra da tarefa vê um popup com as infos dela. Faz sentido? Isso parece um tipo de gráfico de gantt, certo? 
+gemini:Faz todo o sentido: isso é exatamente um **Gráfico de Gantt Multi-projeto** (ou *Timeline* Unificada de Projetos). Para o perfil da Olívia, essa é a ferramenta definitiva contra a ansiedade, pois traduz o volume de trabalho em um mapa visual, claro e previsível.
+
+Em vez de tentar guardar na cabeça o que vence em cada um dos 4+ eventos, essa visão traz clareza imediata sobre o que está acontecendo e quem está com cada tarefa.
+
+---
+
+**Como essa Timeline Unificada deve funcionar no site:**
+
+* **Eixo X (Tempo) com Controles Flexíveis:**
+* **Seletores de Zoom:** Botões para alternar rapidamente entre *Dia, Semana, Mês, Ano*.
+* **Intervalo Customizado (*Hoje até Data X*):** Essencial para o planejamento semanal. Olívia pode filtrar "próximos 15 dias" e focar apenas no que precisa ser entregue de imediato, ignorando a carga mental do restante do ano.
+
+
+* **Eixo Y (Tarefas por Cores):**
+* As tarefas aparecem como barras horizontais.
+* Cada projeto recebe uma **cor fixa** (ex: *Casamento X = Lilás*, *Evento Y = Verde*, *Corporativo Z = Azul*).
+* Um pequeno ícone ou tag na barra indica visualmente se a tarefa está com você (P) ou com a Olívia (O).
+
+
+* **Popup Interativo (Modal ao Clicar na Barra):**
+Ao clicar em qualquer barra horizontal, abre uma janela limpa com as informações essenciais sem sair da tela:
+* **Detalhes:** Nome da Tarefa, Projeto Vinculado e Status (*A Fazer*, *Em Andamento*, *Aguardando Terceiros*, *Concluído*).
+* **Responsável e Prazo:** Quem executa, Data de Início, Data de Fim e Duração Estimada.
+* **Dependências:** Exibe se essa tarefa bloqueia outra ou se depende de algo antes (ex: *"Aguardando aprovação do alvará por Paloma"*).
+* **Atalho Rápido:** Link direto para a pasta do evento no Drive ou arquivo de referência.
+
+
+* **Identificação Automática de Sobrecarga:**
+Se houver 3 ou 4 barras sobrepostas na mesma semana para a mesma pessoa, o próprio sistema pode destacar esse período no calendário, alertando que aquele intervalo da agenda está saturado.
+
+---
+
+Essa visão pode ficar acessível no menu principal como **"Agenda / Timeline Global"** ou ser a opção de alternância de tela dentro do Dashboard de Projetos.
+
+Se essa funcionalidade está validada, o próximo passo na nossa navegação é desenhar o **Modal de "+ Novo Evento"** (onde você seleciona as tarefas do catálogo e o sistema gera essas barras automaticamente) ou ir para o **Dashboard Individual do Projeto**. Por qual prefere seguir?
+paloma:ótimo. Na hora de cadastrar novo evento tem como aparecer já uma tela falando que tal prazo não tem como pq a agenda está ocupada com outra tarefa , falando para ou, mudar o prazo deste, ou mudar o prazo do conflitante (de acordo com prioridade) ou alocar mais gente na equipe e etc? 
+gemini:Sim, essa funcionalidade se chama **Trava de Capacidade e Resolução de Conflitos em Tempo Real**. Incorporar isso no cadastro do evento é a melhor forma de impedir que um projeto nasça com prazos irrealistas ou gere um gargalo invisível na rotina de vocês.
+
+Ao colocar esse mecanismo no modal de **"+ Novo Evento"**, o sistema não apenas avisa do problema, mas já entrega as opções de ajuste na hora.
+
+---
+
+**Fluxo da Tela "+ Novo Evento" com Validação de Agenda**
+
+**Etapa 1: Dados Gerais do Evento**
+
+* Nome do projeto, categoria e data final do evento.
+* Nível de Prioridade do Evento (*Alta, Média, Baixa*) — essencial para o sistema saber qual tarefa cede espaço em caso de conflito.
+* Pessoas alocadas para o projeto (Paloma, Olívia, Sócias ou Auxiliares).
+
+**Etapa 2: Seleção do Escopo e Cronograma Reverso**
+
+* Lista de checagem puxada do *Catálogo de Tarefas*.
+* Você marca o que se aplica e o sistema calcula automaticamente as datas sugeridas para trás (da data do evento até hoje).
+
+**Etapa 3: Checagem Automática de Capacidade (Motor do Sistema)**
+Antes de confirmar o salvamento, o sistema roda um script que cruza o novo cronograma com a **Agenda Global**. Se detectar que a mesma pessoa acumulou mais de $X$ tarefas complexas no mesmo intervalo, o cadastro faz uma pausa e abre o painel de **Resolução de Conflitos**.
+
+**Etapa 4: Painel de Resolução de Conflitos**
+O site exibe um alerta claro destacando o gargalo:
+
+> *"Conflito de Agenda Detectado: Na semana de 10 a 15 de Outubro, Paloma está com 100% da capacidade ocupada (Alvará do Evento A + Fechamento de A&B do Evento B)."*
+
+O sistema oferece 4 botões de ação imediata para você escolher como resolver antes de salvar:
+
+* **1. Reagendar Nova Tarefa:** Altera a data de início/fim da tarefa do evento atual (ex: antecipa a busca pelo alvará em 5 dias).
+* **2. Reagendar Tarefa Antiga:** Se o evento novo for de prioridade mais alta, o site permite esticar o prazo do evento antigo diretamente por esse painel.
+* **3. Redistribuir Responsável:** Transfere a tarefa para a Olívia, para a outra sócia ou cria uma nota de "Necessário Auxiliar/Freela".
+* **4. Manter Sobrecarga Consciente:** Salva o cronograma como está, mas marca a barra dessa tarefa na **Agenda Global** com uma borda amarela ou vermelha de alerta.
+
+---
+
+**Ajustes Necessários na Arquitetura de Dados**
+
+Para essa inteligência funcionar no código, precisaremos acrescentar 2 campos simples no banco de dados:
+
+* Na tabela `Projetos`: Coluna `Prioridade` (Alta / Média / Baixa).
+* Na tabela `Catalogo_Tarefas`: Coluna `Carga_Horaria_Estimada` ou `Nivel_Complexidade` (Alta / Média / Baixa) — assim o sistema sabe que duas tarefas simples no mesmo dia não são problema, mas duas tarefas complexas sim.
+
+---
+
+Com o modal de criação e a timeline geral desenhados, o próximo passo natural é detalhar o **Dashboard Individual do Evento** (a tela que se abre quando a Olívia clica em um card específico de projeto).
+
+Queremos mapear como exibir o Kanban desse projeto, os contatos dos fornecedores dele e o atalho das pastas do Drive?
+paloma:Ótimo. Perfeito. Mas pensei aqui também em outra coisa. Identificar tempo ocioso para adiantar as coisas. Se eu estou esperando a conclusão de algo para fazer a próxima tarefa linear, poderia adiantar coisas de uma outra que está marcada mais para frente e tal. Faz sentido? Outra coisa, como colocar os pré e co-requisitos nas tarefas ao cadastrar projeto? E outra coisa: como colocar a agenda de trabalho e horas de cada um para saber quanto cada um pode assumir de tarefas e etc. Por exemplo, eu sou assistente da Olívia, mas minha carga é de 20h semanais. Tenho medo de por falta de controle, empolgação e minha parte ou falta de noção da dela eu passe muito disso sem sabermos. E ela tbm deveria trabalhar apenas 8 por dia, mas sei que ela tem se desorganizado e trabalhado muito mais que isso e tbm se ocupado com coisas que ela nem nomeia como trabalho , mas são tarefas dos projetos.  Ao cadastrar equipe temos como cadastrar nossa agenda junto? E ao editar nossa agenda reorganizar os paineis de tarefas e gerar alertas e etc? 
+gemini:O controle rígido da carga de trabalho e a otimização das janelas de espera são os melhores antídotos contra o *burnout* e o estouro do seu limite de 20 horas semanais. Estruturar esses três pilares garante que o próprio sistema atue como um gestor protetor da rotina de vocês.
+
+**Identificação de Tempo Ocioso (Adiantamento Inteligente)**
+
+* **Status "Aguardando Terceiros":** Sempre que uma tarefa depender de aprovação externa (ex: alvará, resposta de cliente ou envio de orçamento), ela entra em pausa e o tempo restante daquele dia é computado como "Janela Livre".
+* **Filtro "Puxe e Adiente":** O sistema exibe um bloco visual no dashboard chamado **"Oportunidades de Adiantamento"**. Ele varre todos os projetos ativos e lista apenas tarefas futuras que **não têm pré-requisitos pendentes** e que cabem na janela de horas disponíveis.
+* **Alívio de Carga Mental:** Olívia não precisa tentar lembrar o que pode ser adiantado. O sistema sugere diretamente: *"Você tem 2h livres enquanto o fornecedor não responde. Tarefa futura pronta para adiantar: Criar mockups do Projeto B (Estimada: 1h30)"*.
+
+---
+
+**Interface para Cadastro de Pré e Co-requisitos**
+
+No modal de criação/edição do projeto, as dependências são configuradas de forma intuitiva, sem necessidade de digitar códigos:
+
+* **Pré-requisito (Dependência Sequencial):** Ao lado de cada tarefa ativada, há um campo dropdown: *"Depende de:"*. Ao selecionar uma tarefa anterior, o sistema bloqueia a execução da atual até que a anterior seja concluída no sistema.
+* **Co-requisito (Execução Simultânea):** Um campo chamado *"Fazer junto com:"*. Se você vincular duas tarefas como co-requisitos, alterar o prazo de uma no gráfico de Gantt ajustará automaticamente o prazo da outra.
+* **Vínculos Pré-definidos:** As tarefas importadas do catálogo já vêm com suas dependências padrão sugeridas (ex: *Montagem Floral* já vem com pré-requisito de *Aprovação de Layout*), exigindo apenas confirmação ou edição rápida.
+
+---
+
+**Gestão de Jornada de Trabalho e Capacidade**
+
+**Cadastro de Perfil de Membros da Equipe**
+
+| Membro | Função / Papel | Carga Horária Limite | Gatilho de Alerta do Sistema |
+| --- | --- | --- | --- |
+| **Paloma** | Gestão & Operações | **20h / semana** (Max. 4h/dia) | Alerta amarelo ao agendar 16h na semana; Trava vermelha em 20h. |
+| **Olívia** | Direção Criativa | **8h / dia** (40h / semana) | Alerta visual de descanso e sobrecarga ao ultrapassar 8h diárias. |
+
+* **Registro de "Tarefas Invisíveis" (Invisibilidade do Trabalho):** Para capturar as demandas picadas da Olívia (mensagens de WhatsApp, áudios longos, reuniões de última hora), a barra superior do site terá um botão **"+ Registro Rápido"**. Com dois cliques ela registra: *"Atendimento Fornecedor - 15 min"*. Isso entra direto na contagem das 8h diárias dela.
+* **Reorganização Dinâmica da Agenda:** Se você precisar alterar sua disponibilidade semanal na sua página de perfil (ex: ajustar de 20h para 15h em semanas de provas na faculdade), o sistema roda uma readequação automática. Ele identifica tarefas atribuídas a você que estourariam o novo limite e emite um alerta de redistribuição.
+* **Painel Anti-Exploração de SI Mesmo:** Quando o somatório de tarefas estimadas para um dia ultrapassar 8h para a Olívia ou 4h para você, a barra do dia no calendário fica vermelha, exibindo o aviso: *"Jornada Excedida. Reordene as prioridades antes de aceitar novas demandas."*
+
+---
+
+Agora que cobrimos a visão geral, a agenda unificada, o controle de capacidade/jornada e a seleção de tarefas com dependências, o próximo passo é desenhar a visão interna: o **Dashboard Individual do Evento** (onde o projeto é gerido no dia a dia). Quer mapear os elementos dessa tela?
+paloma:Boa! Mas tem uma coisa. o 'padrão' é fazer 5 dias de 4h , no meu caso. Mas meu máximo por dia não é 4h. Pode ser até 12h, se for necessário. E n em mínimo. Posso trabalhar as 20 horas em dois dias ou então fazer pequenas tarefas todos os dias da semana. Apenas priorizando deixar ao menos um dia com a maior parte do tempo livre (ok fazer uma pequena tarefa online, mas ainda ser um day off.). Idem para ela. O ideal é ser 5 de 8h. Mas pode variar. Nem eu e nem ela devemos ficar mais de 3 dias em maratona fazendo mais de 12h de trabalho. E nem ter rotinas de 12h com muita frequencia. Tem de ser para tarefas pontuais, como no dia antes de um evento e etc. Não repetir toda semana. 
+gemini:Essa flexibilidade reflete exatamente a realidade da produção de eventos, onde semanas normais se alternam com picos intensos na montagem e no dia do evento.
+
+Ajustei as regras de capacidade no modelo do sistema para trabalhar com **metas semanais flexíveis** combinadas com **mecanismos de proteção contra desgaste**.
+
+---
+
+**Regras de Jornada Flexível (Configuração de Perfil)**
+
+* **Perfil Paloma:**
+* **Meta Semanal:** 20 horas.
+* **Faixa Diária:** De 0h a 12h/dia.
+* **Regra "Day Off Garantido":** O sistema exige a reserva de pelo menos 1 dia na semana com carga zerada ou reduzida (máximo de 30 min para checagens rápidas).
+
+
+* **Perfil Olívia:**
+* **Meta Semanal:** 40 horas (padrão de 8h/dia).
+* **Faixa Diária:** De 0h a 12h/dia.
+* **Flexibilidade de Ciclo:** Liberdade para concentrar ou distribuir horas conforme as demandas dos projetos ativos.
+
+
+
+---
+
+**Travas Inteligentes Anti-Burnout (Alertas de Saúde)**
+
+O motor de agendamento do site passa a validar o cronograma contra 3 regras de alerta:
+
+* **Trava de Maratona (Limite Consecutivo):** Dispara um bloqueio no cadastro se o sistema identificar **3 ou mais dias consecutivos com mais de 12 horas** programadas para a mesma pessoa.
+* **Trava de Recorrência (Alerta de Frequência):** Se uma jornada de >12h ocorrer numa semana, o sistema marca as semanas imediatamente anterior e posterior com um teto padrão (max 8h para Olívia / 4h para Paloma). Se você tentar agendar outro pico na semana seguinte, o site exibe: *"Pico de 12h detectado em semanas consecutivas. Maratonas só são permitidas para vésperas/dias de evento."*
+* **Indicador de "Dia de Descanso" (Paloma):** Se o planejamento de tarefas ocupar os 7 dias da semana com mais de 1h/dia, a barra da semana no dashboard fica com um alerta amarelo solicitando a escolha de um dia para alívio de carga.
+
+---
+
+**Estrutura de Dados Atualizada para a Tabela `Usuarios**`
+
+| ID_Usuario | Nome | Meta_Horas_Semana | Max_Horas_Dia | Max_Dias_Maratona_Consecutivos | Exige_Dia_Off |
+| --- | --- | --- | --- | --- | --- |
+| **USR-01** | Paloma | 20 | 12 | 2 | Sim |
+| **USR-02** | Olívia | 40 | 12 | 2 | Sim |
+
+---
+
+Com as regras de capacidade, cronograma reverso e alocações dinâmicas definidas, podemos detalhar o **Dashboard Individual do Evento** (a tela interna que abre ao clicar em um projeto).
+
+Nesta tela, faz sentido organizarmos em 3 abas principais: **1. Quadros de Tarefas (Kanban/Lista)**, **2. Central de Fornecedores e Equipe**, e **3. Drive e Referências Visuais**?
+paloma:Sim, faz sentido. Tbm ter tipo um readme do evento. E em cada tarefa da lista ter as infos delas (pode ser em um botão). e se tiver arquivos vinculados a ela poder abrir a pasta para ver. Acho que nem todas precisas ter pastas. Mas existem umas bem complexas. Temos tbm que mapear nas tarefas, já se serão de granularidade máxima, as reuniões de equipe sobre cada parte a decidir ou antes de tarefas complexas, a documentação, as reuniões com outros, os emais a serem enviados, as informações a serem solicitadas, os dados a serem coletados e etc. Principalmente os necessários a normas tecnicas. E tem que guardar as leis e regulamentos referentes tbm. Neste drive n guardaremos contratos nem dados sensíveis que devem ser privados de mim, mas ela dele poder marcar se os produziu e os enviou/guardou e tal. para ela ter seu controle mental. 
+gemini:A inclusão do **README do evento**, a alta granularidade das tarefas operacionais e o isolamento de dados sensíveis ajustam a arquitetura para proteger a privacidade dos contratos e dar clareza total à Olívia.
+
+---
+
+**1. README do Evento (Header Fixo no Dashboard Individual)**
+
+No topo do Dashboard do Evento, um bloco fixo (expansível/retrátil) funciona como o cartão de visita do projeto:
+
+* **Visão Geral:** Objetivo do evento, público estimado, estilo/conceito e perfil dos anfitriões.
+* **Restrições e Alertas:** Peculiaridades do local (ex: *"Proibido som alto após 22h"*, *"Sem estrutura de cozinha no local"*).
+* **Contatos de Emergência:** Telefone do responsável pelo espaço, brigada e produtora geral.
+* **Link da Pasta Geral no Drive:** Atalho direto para a pasta raiz compartilhada do projeto.
+
+---
+
+**2. Abas do Dashboard Individual do Evento**
+
+**Aba 1: Quadro Operacional (Kanban e Lista de Tarefas)**
+
+* **Filtros Rápidos:** Por responsável, por fase, ou por tipo de micro-atividade (*Reunião, E-mail, Coleta de Dados, Documentação*).
+* **Botão "+ Detalhes" em cada Tarefa (Popup Modal):**
+* **Descrição e Checklist Interno:** Passos detalhados da execução.
+* **Pasta Dedicada (Opcional):** Se for uma tarefa complexa (ex: *Cenografia*), exibe o botão *"Abrir Pasta do Drive da Tarefa"*. Se for uma tarefa simples (ex: *Enviar e-mail de confirmação*), o campo de pasta permanece vazio.
+* **Módulo de Mídia/Documentos:** Links diretos para briefing, orçamentos e aprovações sem poluir a tela principal.
+
+
+
+**Aba 2: Base Normativa e Legislação (Repositório de Leis & Normas)**
+Centraliza as exigências técnicas que orientam as decisões operacionais do evento:
+
+* **Arquivo Digital:** Normas técnicas do Corpo de Bombeiros, Código de Posturas da Prefeitura, regras de Vigilância Sanitária e regulamentos do ECAD.
+* **Checklist de Conformidade:** Marcação de exigências atendidas (ex: *Lotação máxima verificada*, *Saídas de emergência desobstruídas*).
+
+**Aba 3: Central de Fornecedores, Equipe e Logística**
+
+* Mailing de contatos, horários de chegada da equipe no dia, mapa de montagem e controle de entregas.
+
+---
+
+**3. Mapeamento de Micro-Tarefas (Granularidade Máxima no Catálogo)**
+
+O catálogo base passa a incorporar micro-etapas essenciais para garantir que nada fique apenas "na cabeça" da Olívia:
+
+* **Comunicação & Reuniões:**
+* `[Reunião Interna]` Alinhamento prévio antes do projeto de cenografia.
+* `[E-mail]` Minuta de alinhamento enviada ao cliente ou fornecedor.
+* `[Solicitação de Dados]` Disparo de formulário de coleta de dados de fornecedores/equipe.
+
+
+* **Documentação & Normas Técnicas:**
+* `[Mapeamento Legislação]` Checagem de leis e alvarás necessários para o perfil do local.
+* `[Emissão de Documento]` Geração da ART técnica com engenheiros/montadores.
+* `[Vistoria]` Verificação do cumprimento das normas no local.
+
+
+
+---
+
+**4. Módulo de Controle Sensível (Status de Contratos Sem Vazamento de Dados)**
+
+Para preservar a privacidade jurídica e financeira das informações sem comprometer a contagem de progresso global:
+
+* **Painel de Status Privado:** O sistema exibe um quadro com checkboxes operacionais para tarefas contratuais/sensíveis, mas **sem link do arquivo para visualização pública**:
+* `[ ] Contrato Gerado`
+* `[ ] Enviado para Assinatura`
+* `[ ] Assinado e Arquivado (no Drive Privado da Olívia)`
+
+
+* **Privacidade Garantida:** Você e o dashboard enxergam apenas que o status do contrato avançou de *Pendente* para *Concluído* (alimentando o progresso do projeto), enquanto o documento físico permanece isolado na pasta privada da Olívia.
+
+---
+
+Com esse desenho do **Dashboard Individual**, da **Granularidade de Tarefas** e da **Proteção de Dados Sensíveis**, cobrimos o ciclo completo das telas e comportamentos do sistema.
+
+Podemos partir para a consolidação do **Esquema Final do Banco de Dados (Tabelas e Relacionamentos)** e a geração do **Script GAS definitivo**?
+paloma:Sim! Acredito que agora estamos prontos para isso. 
+
+>>>este foi nosso histório de conversas para desenhar o sistema. depois disso conversamos sobre o banco de dados, o criamos e agora estamos para fazer o html para esta aplicação. Entendeu tudo ou tem alguma dúvida? 
+
