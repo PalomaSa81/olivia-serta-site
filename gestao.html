@@ -9,6 +9,23 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
 
+  <!-- TELA DE LOGIN (MVP) — senha única fixa, só para demonstrar que existe controle
+       de acesso. Na v2 isso vira validação de e-mail no backend (GAS), como planejado. -->
+  <div id="tela-login" class="fixed inset-0 bg-indigo-950 flex items-center justify-center z-[100]">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-xs text-center space-y-4">
+      <i class="fa-solid fa-calendar-star text-4xl text-indigo-600"></i>
+      <div>
+        <h1 class="text-lg font-bold text-gray-800">Hub de Gestão de Eventos</h1>
+        <p class="text-xs text-gray-500">Digite a senha de acesso</p>
+      </div>
+      <input type="password" id="input-senha-acesso" placeholder="Senha" maxlength="12"
+             class="w-full border rounded-lg p-2.5 text-center text-sm tracking-widest outline-none focus:ring-2 focus:ring-indigo-500"
+             onkeydown="if(event.key==='Enter') validarSenha()">
+      <button onclick="validarSenha()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-lg text-sm transition">Entrar</button>
+      <p id="erro-senha" class="text-xs text-rose-600 hidden">Senha incorreta. Tente novamente.</p>
+    </div>
+  </div>
+
   <!-- CABEÇALHO COM IDENTIFICAÇÃO AUTOMÁTICA DO USUÁRIO -->
   <header class="bg-indigo-900 text-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center flex-wrap gap-3">
@@ -59,7 +76,12 @@
     <!-- 1. VISÃO GERAL -->
     <section id="page-visao-geral" class="space-y-6">
       <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm space-y-4">
-        <h3 class="font-bold text-gray-800 text-base">Status e Progresso dos Eventos</h3>
+        <div class="flex justify-between items-center flex-wrap gap-2">
+          <h3 class="font-bold text-gray-800 text-base">Status e Progresso dos Eventos</h3>
+          <button onclick="abrirModalNovoProjeto()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-calendar-plus"></i> + Novo Projeto
+          </button>
+        </div>
         <div id="lista-progresso-projetos" class="space-y-4 pt-2">
           <p class="text-xs text-gray-400 italic">Carregando eventos...</p>
         </div>
@@ -200,10 +222,18 @@
       </div>
     </section>
 
-    <!-- 3. LINHA DO TEMPO -->
+    <!-- 3. LINHA DO TEMPO (GANTT MULTI-PROJETO) -->
     <section id="page-linha-tempo" class="hidden space-y-6">
-      <h2 class="text-xl font-bold text-gray-800">Linha do Tempo dos Eventos</h2>
-      <div id="conteudo-linha-tempo" class="bg-white p-6 rounded-xl border shadow-sm space-y-3"></div>
+      <div class="bg-white p-4 rounded-xl border shadow-sm flex flex-wrap justify-between items-center gap-3">
+        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+          <i class="fa-solid fa-timeline text-indigo-600"></i> Linha do Tempo dos Eventos
+        </h2>
+        <div id="legenda-projetos-gantt" class="flex flex-wrap gap-3 text-xs text-gray-600"></div>
+      </div>
+      <div class="bg-white p-4 rounded-xl border shadow-sm overflow-x-auto">
+        <div id="gantt-header" class="relative h-5 text-[10px] font-bold text-gray-500 border-b mb-2" style="min-width:900px;"></div>
+        <div id="gantt-corpo" style="min-width:900px;"></div>
+      </div>
     </section>
 
   </main>
@@ -400,7 +430,92 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT PRINCIPAL INTEGRADO AO MÓDULO HTTP DA PARTE 2 -->
+  <!-- MODAL: NOVO PROJETO (cadastro + catálogo SEBRAE + cronograma reverso) -->
+  <div id="modal-novo-projeto" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center hidden z-50 p-4">
+    <div class="bg-white w-full max-w-2xl rounded-xl shadow-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+      <h3 class="text-base font-bold text-indigo-900 border-b pb-2 flex items-center gap-2">
+        <i class="fa-solid fa-calendar-plus"></i> Novo Projeto
+      </h3>
+
+      <div class="grid grid-cols-2 gap-3 text-xs">
+        <div class="col-span-2">
+          <label class="block font-bold text-gray-600 mb-1">NOME DO EVENTO</label>
+          <input id="np-nome" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">CATEGORIA</label>
+          <input id="np-categoria" type="text" placeholder="Casamento, Corporativo..." class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">PRIORIDADE</label>
+          <select id="np-prioridade" class="w-full border rounded p-2 text-sm">
+            <option>Média</option><option>Alta</option><option>Baixa</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">DATA DO EVENTO</label>
+          <input id="np-data-evento" type="date" class="w-full border rounded p-2 text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-600 mb-1">COR DO PROJETO</label>
+          <input id="np-cor" type="color" value="#4f46e5" class="w-full border rounded p-1 h-9">
+        </div>
+        <div class="col-span-2">
+          <label class="block font-bold text-gray-600 mb-1">LOCAL (opcional)</label>
+          <input id="np-local" type="text" class="w-full border rounded p-2 text-sm">
+        </div>
+      </div>
+
+      <div class="border-t pt-3">
+        <p class="text-xs font-bold text-gray-600 mb-2">TAREFAS SUGERIDAS (baseadas no guia SEBRAE) — desmarque o que não se aplica</p>
+        <div id="np-catalogo" class="space-y-3 max-h-64 overflow-y-auto border rounded-lg p-3 bg-gray-50 text-xs"></div>
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <button onclick="gerarPreviaCronograma()" class="text-xs font-bold text-indigo-600 hover:underline flex items-center gap-1.5">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Cronograma Reverso
+        </button>
+        <span id="np-aviso-data" class="text-[10px] text-rose-500"></span>
+      </div>
+
+      <div id="np-previa" class="hidden border-t pt-3 space-y-2">
+        <p class="text-xs font-bold text-gray-600">PRÉVIA DO CRONOGRAMA (dá pra ajustar as datas antes de salvar)</p>
+        <div class="overflow-x-auto max-h-48 overflow-y-auto border rounded-lg">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-gray-100 text-[10px] font-bold text-gray-500 sticky top-0">
+              <tr><th class="p-2">Tarefa</th><th class="p-2">Fase</th><th class="p-2">Início</th><th class="p-2">Fim</th></tr>
+            </thead>
+            <tbody id="np-tabela-previa" class="divide-y"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-3 border-t">
+        <button onclick="fecharModais()" class="px-3 py-1.5 border rounded text-xs">Cancelar</button>
+        <button onclick="salvarNovoProjeto()" class="px-4 py-1.5 bg-indigo-600 text-white rounded text-xs font-semibold">Salvar Projeto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DETALHE DA TAREFA NO GANTT -->
+  <div id="modal-detalhe-gantt" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center hidden z-50">
+    <div class="bg-white w-full max-w-sm rounded-xl shadow-2xl p-6 space-y-3">
+      <h3 class="text-base font-bold text-indigo-900 border-b pb-2" id="gantt-detalhe-nome">Tarefa</h3>
+      <div class="text-xs space-y-1.5 text-gray-700">
+        <p><span class="font-bold">Projeto:</span> <span id="gantt-detalhe-projeto"></span></p>
+        <p><span class="font-bold">Fase:</span> <span id="gantt-detalhe-fase"></span></p>
+        <p><span class="font-bold">Responsável:</span> <span id="gantt-detalhe-resp"></span></p>
+        <p><span class="font-bold">Período:</span> <span id="gantt-detalhe-periodo"></span></p>
+        <p><span class="font-bold">Status:</span> <span id="gantt-detalhe-status"></span></p>
+      </div>
+      <div class="flex justify-end gap-2 pt-3 border-t">
+        <button onclick="fecharModais()" class="px-3 py-1.5 border rounded text-xs">Fechar</button>
+        <button id="gantt-detalhe-editar" class="px-4 py-1.5 bg-indigo-600 text-white rounded text-xs font-semibold">Editar Tarefa</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT PRINCIPAL INTEGRADO AO GOOGLE APPS SCRIPT -->
   <script>
     // URL da Web App para requisições do frontend
     const API_URL = "https://script.google.com/macros/s/AKfycbxek9MoXWBYacL0pAiurL4pH-pwPlbvryBHDObKzkovZEstJlV-M3_pXURdSAduO1mGOQ/exec";
@@ -410,15 +525,32 @@
     let subAbaAtual = 'tarefas';
 
     // RECONHECIMENTO AUTOMÁTICO DO USUÁRIO LOGADO NO GOOGLE
+    // O scriptlet do Apps Script injeta o e-mail ativo da sessão
     const userEmailScriptlet = "<?= Session.getActiveUser().getEmail() ?>";
     let usuarioEmail = (userEmailScriptlet && !userEmailScriptlet.includes("<?= ")) 
       ? userEmailScriptlet 
-      : "paloma@exemplo.com"; 
+      : "paloma@exemplo.com"; // Fallback para desenvolvimento local
 
     let usuarioAtual = "Paloma";
 
+    // LOGIN SIMPLES (MVP) — troque por autenticação real de e-mail via GAS na v2
+    const SENHA_ACESSO = "123456";
+
+    function validarSenha() {
+      const valor = document.getElementById('input-senha-acesso').value;
+      if (valor === SENHA_ACESSO) {
+        sessionStorage.setItem('acessoLiberado', '1');
+        document.getElementById('tela-login').classList.add('hidden');
+      } else {
+        document.getElementById('erro-senha').classList.remove('hidden');
+      }
+    }
+
     // CARREGAMENTO INICIAL
     window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('acessoLiberado') === '1') {
+        document.getElementById('tela-login').classList.add('hidden');
+      }
       identificarUsuario();
       carregarDadosDoBanco();
     });
@@ -430,103 +562,140 @@
       } else if (emailLower.includes("paloma")) {
         usuarioAtual = "Paloma";
       } else {
-        usuarioAtual = usuarioEmail;
+        usuarioAtual = usuarioEmail; // Caso seja outro usuário cadastrado
       }
       document.getElementById('user-display').innerText = `${usuarioAtual} (${usuarioEmail})`;
     }
 
-    // --- MÓDULO DE COMUNICAÇÃO HTTP (PARTE 2) ---
-
-    // 1. LER DADOS (GET)
-    async function buscarDados() {
-      try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error("Erro ao buscar dados da API:", error);
-        return null;
-      }
-    }
-
-    // 2. ENVIAR COMANDOS DE CRUD (POST)
-    async function executarAcaoAPI(action, dataPayload, sheetName = '') {
-      try {
-        const payload = {
-          action: action,
-          sheet: sheetName,
-          usuario: usuarioAtual,
-          email: usuarioEmail,
-          timestamp: new Date().toISOString(),
-          data: dataPayload
-        };
-
-        const response = await fetch(API_URL, {
-          method: "POST",
-          // text/plain evita requisições pre-flight CORS no Apps Script
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        });
-        return await response.json();
-      } catch (error) {
-        console.error(`Erro ao executar a ação ${action}:`, error);
-        return { status: "error", message: error.message };
-      }
-    }
-
-    // RECARREGAR DASHBOARD
     async function carregarDadosDoBanco() {
-      const result = await buscarDados();
-      if (result && result.status === 'success') {
-        DB = result.data;
-        renderizarListaProjetos();
-        popularSeletorEventos();
-        renderizarLinhaTempo();
-      } else if (result && result.data) {
-        DB = result.data;
-        renderizarListaProjetos();
-        popularSeletorEventos();
-        renderizarLinhaTempo();
+      try {
+        const response = await fetch(`${API_URL}?action=getAll`);
+        const result = await response.json();
+
+        if (result.status === 'success') {
+          DB = result.data;
+          renderizarListaProjetos();
+          popularSeletorEventos();
+          renderizarLinhaTempo();
+        }
+      } catch (erro) {
+        console.error("Erro ao carregar dados do GAS:", erro);
       }
     }
 
-    // ALINHADO AO MÓDULO PARTE 2
+    // ENVIO DE ALTERAÇÕES COM LOG DE USUÁRIO E TIMESTAMP
     async function dispararAPI(acao, aba, dados) {
       fecharModais();
-      const resposta = await executarAcaoAPI(acao, dados, aba);
-      if (resposta && (resposta.status === 'success' || resposta.status === 'ok')) {
-        alert(`Alteração realizada com sucesso por ${usuarioAtual}!`);
-      } else {
-        alert(`Operação enviada por ${usuarioAtual}. Recarregando dados...`);
+      const payload = {
+        action: acao,
+        sheet: aba,
+        usuario: usuarioAtual,
+        email: usuarioEmail,
+        timestamp: new Date().toISOString(),
+        data: dados
+      };
+
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        alert(`Alteração enviada por ${usuarioAtual}!`);
+        setTimeout(carregarDadosDoBanco, 1000);
+      } catch (erro) {
+        alert("Erro ao enviar alteração para o servidor.");
       }
-      await carregarDadosDoBanco();
     }
 
     // RENDERS E REGRAS DE NEGÓCIO DA INTERFACE
+
+    // Quantos dias faltam (ou já passaram) até a data do evento
+    function diasRestantes(dataEvento) {
+      if (!dataEvento) return null;
+      const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+      const data = new Date(dataEvento + 'T00:00:00');
+      return Math.round((data - hoje) / 86400000);
+    }
+
     function renderizarListaProjetos() {
       const projetos = DB.Projetos || [];
+      const tarefas = DB.Tarefas_Ativas || [];
       const container = document.getElementById('lista-progresso-projetos');
-      container.innerHTML = '';
 
       if (projetos.length === 0) {
-        container.innerHTML = '<p class="text-xs text-gray-400 italic">Nenhum evento cadastrado no momento.</p>';
+        container.innerHTML = '<p class="text-xs text-gray-400 italic">Nenhum evento cadastrado no momento. Clique em "+ Novo Projeto" para começar.</p>';
         return;
       }
 
-      projetos.forEach(p => {
+      container.innerHTML = projetos.map(p => {
+        const id = p['ID_Projeto (PK)'];
         const cor = p.Cor_Tema || '#4f46e5';
-        container.innerHTML += `
-          <div>
-            <div class="flex justify-between text-xs font-semibold mb-1">
-              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full" style="background:${cor}"></span> ${p.Nome_Projeto}</span>
-              <span class="font-bold">${p.Status_Geral || 'Em Andamento'}</span>
+        const tarefasProjeto = tarefas.filter(t => String(t['ID_Projeto (FK)']) === String(id));
+        const total = tarefasProjeto.length;
+        const concluidas = tarefasProjeto.filter(t => t.Status === 'Concluído').length;
+        const progresso = total > 0 ? Math.round((concluidas / total) * 100) : 0;
+
+        const restantes = diasRestantes(p.Data_Evento);
+        let contagem = 'Data a definir';
+        if (restantes !== null) {
+          if (restantes > 0) contagem = `Faltam ${restantes} dia${restantes === 1 ? '' : 's'}`;
+          else if (restantes === 0) contagem = 'É hoje!';
+          else contagem = `Encerrado há ${Math.abs(restantes)} dia${Math.abs(restantes) === 1 ? '' : 's'}`;
+        }
+
+        const proxima = tarefasProjeto
+          .filter(t => t.Status !== 'Concluído')
+          .sort((a, b) => new Date(a.Data_Inicio || '2999-01-01') - new Date(b.Data_Inicio || '2999-01-01'))[0];
+
+        return `
+          <div class="border rounded-xl p-4 hover:shadow-md transition" style="border-left: 4px solid ${cor};">
+            <div class="flex justify-between items-start gap-3 flex-wrap">
+              <div>
+                <p class="font-bold text-gray-800">${p.Nome_Projeto}</p>
+                <p class="text-xs text-gray-500">${p.Categoria || 'Evento'} · Prioridade ${p.Prioridade || 'Média'}</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs font-bold" style="color:${cor}">${contagem}</p>
+                <p class="text-[10px] text-gray-400">${p.Data_Evento || ''}</p>
+              </div>
             </div>
-            <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-              <div class="h-full rounded-full" style="width: 75%; background:${cor}"></div>
+
+            <div class="mt-3">
+              <div class="flex justify-between text-[10px] text-gray-500 mb-1">
+                <span>Progresso das tarefas</span><span>${concluidas}/${total} (${progresso}%)</span>
+              </div>
+              <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                <div class="h-full rounded-full" style="width:${progresso}%; background:${cor}"></div>
+              </div>
+            </div>
+
+            <p class="text-xs text-gray-600 mt-2 flex items-center gap-1.5">
+              <i class="fa-solid fa-arrow-right text-gray-400"></i>
+              ${proxima ? `Próxima: ${proxima.Nome_Tarefa}` : 'Nenhuma tarefa pendente 🎉'}
+            </p>
+
+            <div class="flex gap-3 mt-3 border-t pt-2">
+              <button onclick="abrirProjetoNoDossie('${id}')" class="text-xs font-bold text-indigo-600 hover:underline flex items-center gap-1.5">
+                <i class="fa-solid fa-folder-open"></i> Abrir Projeto
+              </button>
+              ${p.Link_Drive_Raiz ? `
+                <a href="${p.Link_Drive_Raiz}" target="_blank" class="text-xs font-bold text-gray-500 hover:underline flex items-center gap-1.5">
+                  <i class="fa-brands fa-google-drive"></i> Pasta
+                </a>` : ''}
             </div>
           </div>
         `;
-      });
+      }).join('');
+    }
+
+    function abrirProjetoNoDossie(id) {
+      eventoAtivoId = id;
+      mudarPagina('dossie-evento');
+      document.getElementById('seletor-evento').value = id;
+      selecionarEventoAtivo();
+      mudarSubAba('tarefas');
     }
 
     function popularSeletorEventos() {
@@ -640,7 +809,7 @@
       const tb = document.getElementById('tabela-roteiro');
       const lista = (DB.Cronograma_Roteiro || []).filter(r => String(r['ID_Projeto (FK)']) === String(eventoAtivoId));
       tb.innerHTML = lista.map(r => {
-        const id = r['ID_Roteiro (PK)'];
+        const id = r['ID_Item_Roteiro (PK)'];
         return `
           <tr>
             <td class="p-3 font-bold text-indigo-900 text-xs">${r.DataHora_Inicio} - ${r.DataHora_Fim}</td>
@@ -650,7 +819,7 @@
             <td class="p-3 text-xs text-gray-500">${r.Observacoes_Som_Luz || '-'}</td>
             <td class="p-3 text-right text-xs">
               <button onclick="abrirModalRoteiro('${id}')" class="text-indigo-600 hover:text-indigo-800 mr-2"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="excluirItem('Cronograma_Roteiro', 'ID_Roteiro (PK)', '${id}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+              <button onclick="excluirItem('Cronograma_Roteiro', 'ID_Item_Roteiro (PK)', '${id}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>
         `;
@@ -662,7 +831,7 @@
       document.getElementById('titulo-modal-roteiro').innerText = id ? 'Editar Item do Roteiro' : 'Novo Item do Roteiro';
 
       if (id) {
-        const item = (DB.Cronograma_Roteiro || []).find(r => String(r['ID_Roteiro (PK)']) === String(id));
+        const item = (DB.Cronograma_Roteiro || []).find(r => String(r['ID_Item_Roteiro (PK)']) === String(id));
         if (item) {
           document.getElementById('input-rot-inicio').value = item.DataHora_Inicio || '';
           document.getElementById('input-rot-fim').value = item.DataHora_Fim || '';
@@ -694,7 +863,7 @@
         'Responsavel_Geral': document.getElementById('input-rot-resp').value,
         'Observacoes_Som_Luz': document.getElementById('input-rot-som').value
       };
-      if (pk) dados['ID_Roteiro (PK)'] = pk;
+      if (pk) dados['ID_Item_Roteiro (PK)'] = pk;
 
       dispararAPI(acao, 'Cronograma_Roteiro', dados);
     }
@@ -882,6 +1051,244 @@
       dispararAPI(acao, 'Fornecedores_Equipe', dados);
     }
 
+    // ==========================================================
+    // NOVO PROJETO: CATÁLOGO PADRÃO (baseado nos guias do SEBRAE anexados) +
+    // CRONOGRAMA REVERSO
+    // ==========================================================
+    //
+    // Esta lista serve de ponto de partida. Ela é somada com o que já existir na
+    // aba "Catalogo_Tarefas" da planilha (sem duplicar pelo nome), então dá pra
+    // editar/completar o catálogo direto na planilha, como o sistema já previa.
+    //
+    // Etapa segue as fases do projeto que você definiu: Conversa Inicial, Proposta,
+    // Planejamento, Execução, Realização, Pós-evento, Arquivamento.
+    const CATALOGO_PADRAO_SEBRAE = [
+      { Etapa: 'Conversa Inicial', Nome_Tarefa: 'Reunião de briefing com cliente/contratante', Tempo_Estimado_Dias: 1, Descricao_Detalhada: 'Entender objetivo, público estimado e conceito do evento.' },
+      { Etapa: 'Conversa Inicial', Nome_Tarefa: 'Levantar expectativas e orçamento disponível', Tempo_Estimado_Dias: 1, Descricao_Detalhada: 'Alinhar budget disponível x planejado.' },
+
+      { Etapa: 'Proposta', Nome_Tarefa: 'Elaborar proposta comercial e escopo', Tempo_Estimado_Dias: 2, Descricao_Detalhada: 'Detalhar o que está incluso no serviço.' },
+      { Etapa: 'Proposta', Nome_Tarefa: 'Apresentar proposta e negociar valores', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Proposta', Nome_Tarefa: 'Assinatura do contrato principal', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Visita técnica ao local do evento', Tempo_Estimado_Dias: 1, Descricao_Detalhada: 'Verificar estrutura, acessibilidade, energia e internet.' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Solicitar planta baixa do local', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Mapear legislação e alvarás necessários', Tempo_Estimado_Dias: 3, Descricao_Detalhada: 'Bombeiros, Prefeitura, Vigilância Sanitária, ECAD.' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Contratar seguro de responsabilidade civil', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Definir roteiro/script do cerimonial (run of show)', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Selecionar e contratar palestrantes/atrações', Tempo_Estimado_Dias: 5, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Alinhar rider técnico e de camarim', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Definir conceito de decoração e cenografia', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Cotar e contratar fornecedor de decoração', Tempo_Estimado_Dias: 3, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Cotar e contratar sonorização e projeção', Tempo_Estimado_Dias: 3, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Definir cardápio de alimentos e bebidas', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Cotar e contratar buffet/catering', Tempo_Estimado_Dias: 3, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Montar equipe de trabalho (coordenação, recepção, brigada, apoio)', Tempo_Estimado_Dias: 3, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Contratar mestre de cerimônias', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Definir plano de comunicação e divulgação', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Produzir materiais de comunicação visual', Tempo_Estimado_Dias: 3, Descricao_Detalhada: 'Banners, sinalização, adesivos.' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Planejar cobertura de foto e filmagem', Tempo_Estimado_Dias: 2, Descricao_Detalhada: 'Ver manual de cobertura audiovisual.' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Organizar lista de convidados/autoridades e protocolo', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Planejamento', Nome_Tarefa: 'Providenciar brindes (se houver)', Tempo_Estimado_Dias: 3, Descricao_Detalhada: '' },
+
+      { Etapa: 'Execução', Nome_Tarefa: 'Confirmar presença de fornecedores e equipe', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Execução', Nome_Tarefa: 'Montagem de infraestrutura e cenografia no local', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Execução', Nome_Tarefa: 'Testes de som, luz e projeção', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Execução', Nome_Tarefa: 'Preparar estrutura de credenciamento e recepção', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Execução', Nome_Tarefa: 'Briefing final com equipe e fornecedores', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+
+      { Etapa: 'Realização', Nome_Tarefa: 'Cobertura fotográfica e de vídeo do evento', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Realização', Nome_Tarefa: 'Acompanhamento do roteiro/cerimonial no dia', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Realização', Nome_Tarefa: 'Gestão de imprevistos e suporte à equipe', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+
+      { Etapa: 'Pós-evento', Nome_Tarefa: 'Desmontagem e devolução do local', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Pós-evento', Nome_Tarefa: 'Enviar materiais brutos de foto/vídeo', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Pós-evento', Nome_Tarefa: 'Editar e entregar conteúdo final', Tempo_Estimado_Dias: 5, Descricao_Detalhada: '' },
+      { Etapa: 'Pós-evento', Nome_Tarefa: 'Pagamento final de fornecedores', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+      { Etapa: 'Pós-evento', Nome_Tarefa: 'Enviar agradecimento/pesquisa de satisfação ao cliente', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' },
+
+      { Etapa: 'Arquivamento', Nome_Tarefa: 'Arquivar contratos e documentos fiscais', Tempo_Estimado_Dias: 1, Descricao_Detalhada: '' },
+      { Etapa: 'Arquivamento', Nome_Tarefa: 'Gerar relatório final do evento (custo x orçado, aprendizados)', Tempo_Estimado_Dias: 2, Descricao_Detalhada: '' }
+    ];
+
+    // Etapas que acontecem DEPOIS do evento — essas são agendadas para a frente
+    // (a partir da data do evento), o resto é agendado para trás (cronograma reverso).
+    const ETAPAS_POS_EVENTO = ['Pós-evento', 'Arquivamento'];
+
+    function obterCatalogoDisponivel() {
+      const doSheet = (DB.Catalogo_Tarefas || []).map(t => ({
+        Nome_Tarefa: t.Nome_Tarefa,
+        Etapa: t.Etapa || 'Planejamento',
+        Descricao_Detalhada: t.Descricao_Detalhada || '',
+        Tempo_Estimado_Dias: t.Tempo_Estimado_Dias || 1
+      }));
+      const nomesExistentes = new Set(doSheet.map(t => t.Nome_Tarefa));
+      const padraoSemDuplicar = CATALOGO_PADRAO_SEBRAE.filter(t => !nomesExistentes.has(t.Nome_Tarefa));
+      return [...doSheet, ...padraoSemDuplicar];
+    }
+
+    function abrirModalNovoProjeto() {
+      document.getElementById('np-nome').value = '';
+      document.getElementById('np-categoria').value = '';
+      document.getElementById('np-prioridade').value = 'Média';
+      document.getElementById('np-data-evento').value = '';
+      document.getElementById('np-cor').value = '#4f46e5';
+      document.getElementById('np-local').value = '';
+      document.getElementById('np-aviso-data').innerText = '';
+      document.getElementById('np-previa').classList.add('hidden');
+      document.getElementById('np-tabela-previa').innerHTML = '';
+      previaCronograma = [];
+      renderizarCatalogoNovoProjeto();
+      document.getElementById('modal-novo-projeto').classList.remove('hidden');
+    }
+
+    function renderizarCatalogoNovoProjeto() {
+      const catalogo = obterCatalogoDisponivel();
+      const porEtapa = {};
+      catalogo.forEach(t => {
+        if (!porEtapa[t.Etapa]) porEtapa[t.Etapa] = [];
+        porEtapa[t.Etapa].push(t);
+      });
+
+      const container = document.getElementById('np-catalogo');
+      container.innerHTML = Object.keys(porEtapa).map(etapa => `
+        <div>
+          <p class="font-bold text-indigo-900 mb-1">${etapa}</p>
+          ${porEtapa[etapa].map(t => `
+            <label class="flex items-start gap-2 py-1 cursor-pointer">
+              <input type="checkbox" class="np-tarefa-check mt-0.5" checked
+                     data-nome="${t.Nome_Tarefa}" data-etapa="${t.Etapa}"
+                     data-dias="${t.Tempo_Estimado_Dias}" data-desc="${(t.Descricao_Detalhada || '').replace(/"/g, '&quot;')}">
+              <span>${t.Nome_Tarefa} <span class="text-gray-400">(${t.Tempo_Estimado_Dias}d)</span></span>
+            </label>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    // Cronograma reverso: tarefas de pré-evento terminam contando pra trás a partir
+    // da data do evento (a última tarefa termina no dia do evento). Tarefas de
+    // pós-evento contam pra frente, começando no dia seguinte ao evento.
+    function calcularCronogramaReverso(tarefas, dataEventoStr) {
+      const dataEvento = new Date(dataEventoStr + 'T00:00:00');
+      const preEvento = tarefas.filter(t => !ETAPAS_POS_EVENTO.includes(t.Etapa));
+      const posEvento = tarefas.filter(t => ETAPAS_POS_EVENTO.includes(t.Etapa));
+
+      const resultado = [];
+      let cursorFim = new Date(dataEvento);
+      for (let i = preEvento.length - 1; i >= 0; i--) {
+        const t = preEvento[i];
+        const dias = Number(t.Tempo_Estimado_Dias) || 1;
+        const fim = new Date(cursorFim);
+        const inicio = new Date(fim);
+        inicio.setDate(inicio.getDate() - (dias - 1));
+        resultado.unshift({ ...t, Data_Inicio: formatarDataISO(inicio), Data_Fim: formatarDataISO(fim) });
+        cursorFim = new Date(inicio);
+        cursorFim.setDate(cursorFim.getDate() - 1);
+      }
+
+      let cursorInicio = new Date(dataEvento);
+      cursorInicio.setDate(cursorInicio.getDate() + 1);
+      posEvento.forEach(t => {
+        const dias = Number(t.Tempo_Estimado_Dias) || 1;
+        const inicio = new Date(cursorInicio);
+        const fim = new Date(inicio);
+        fim.setDate(fim.getDate() + (dias - 1));
+        resultado.push({ ...t, Data_Inicio: formatarDataISO(inicio), Data_Fim: formatarDataISO(fim) });
+        cursorInicio = new Date(fim);
+        cursorInicio.setDate(cursorInicio.getDate() + 1);
+      });
+
+      return resultado;
+    }
+
+    function formatarDataISO(data) {
+      return data.toISOString().split('T')[0];
+    }
+
+    let previaCronograma = [];
+
+    function gerarPreviaCronograma() {
+      const dataEvento = document.getElementById('np-data-evento').value;
+      const aviso = document.getElementById('np-aviso-data');
+      if (!dataEvento) {
+        aviso.innerText = 'Informe a data do evento antes de gerar o cronograma.';
+        return;
+      }
+      aviso.innerText = '';
+
+      const marcadas = Array.from(document.querySelectorAll('.np-tarefa-check:checked')).map(chk => ({
+        Nome_Tarefa: chk.dataset.nome,
+        Etapa: chk.dataset.etapa,
+        Tempo_Estimado_Dias: Number(chk.dataset.dias) || 1,
+        Descricao_Detalhada: chk.dataset.desc
+      }));
+
+      previaCronograma = calcularCronogramaReverso(marcadas, dataEvento);
+
+      const tbody = document.getElementById('np-tabela-previa');
+      tbody.innerHTML = previaCronograma.map((t, i) => `
+        <tr>
+          <td class="p-2 font-medium">${t.Nome_Tarefa}</td>
+          <td class="p-2 text-gray-500">${t.Etapa}</td>
+          <td class="p-2"><input type="date" value="${t.Data_Inicio}" onchange="previaCronograma[${i}].Data_Inicio=this.value" class="border rounded p-1 text-xs"></td>
+          <td class="p-2"><input type="date" value="${t.Data_Fim}" onchange="previaCronograma[${i}].Data_Fim=this.value" class="border rounded p-1 text-xs"></td>
+        </tr>
+      `).join('');
+      document.getElementById('np-previa').classList.remove('hidden');
+    }
+
+    async function salvarNovoProjeto() {
+      const nome = document.getElementById('np-nome').value.trim();
+      const dataEvento = document.getElementById('np-data-evento').value;
+      if (!nome || !dataEvento) {
+        alert('Preencha ao menos o nome do evento e a data do evento.');
+        return;
+      }
+      if (previaCronograma.length === 0) {
+        gerarPreviaCronograma();
+      }
+
+      const projeto = {
+        Nome_Projeto: nome,
+        Categoria: document.getElementById('np-categoria').value,
+        Prioridade: document.getElementById('np-prioridade').value,
+        Data_Evento: dataEvento,
+        Cor_Tema: document.getElementById('np-cor').value,
+        Local_Nome: document.getElementById('np-local').value,
+        Status_Geral: 'Em Andamento',
+        Criado_Por: usuarioAtual
+      };
+
+      const tarefas = previaCronograma.map(t => ({
+        Nome_Tarefa: t.Nome_Tarefa,
+        Fase: t.Etapa,
+        Data_Inicio: t.Data_Inicio,
+        Data_Fim: t.Data_Fim,
+        'Responsavel (FK)': usuarioAtual,
+        Status: 'Pendente'
+      }));
+
+      fecharModais();
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'CRIAR_PROJETO_COM_TAREFAS',
+            usuario: usuarioAtual,
+            email: usuarioEmail,
+            timestamp: new Date().toISOString(),
+            data: { projeto, tarefas }
+          })
+        });
+        alert(`Projeto "${nome}" criado com ${tarefas.length} tarefas no cronograma!`);
+        setTimeout(carregarDadosDoBanco, 1000);
+      } catch (erro) {
+        alert('Erro ao criar projeto: ' + erro);
+      }
+    }
+
     // DRIVE
     function renderizarDrive() {
       const container = document.getElementById('lista-arquivos-drive');
@@ -897,16 +1304,101 @@
       `).join('');
     }
 
-    // LINHA DO TEMPO
+    // LINHA DO TEMPO (GANTT MULTI-PROJETO)
+    // Versão simples, feita em HTML/CSS puro (sem biblioteca externa): cada projeto
+    // vira uma linha com uma barra por tarefa, posicionada proporcionalmente ao
+    // período total (do menor Data_Inicio ao maior Data_Fim entre todas as tarefas).
     function renderizarLinhaTempo() {
-      const container = document.getElementById('conteudo-linha-tempo');
+      const tarefas = (DB.Tarefas_Ativas || []).filter(t => t.Data_Inicio && t.Data_Fim);
       const projetos = DB.Projetos || [];
-      container.innerHTML = projetos.map(p => `
-        <div class="border-l-4 border-indigo-600 pl-4 py-1">
-          <p class="font-bold text-gray-800 text-sm">${p.Nome_Projeto}</p>
-          <p class="text-xs text-gray-500">Data do Evento: ${p.Data_Evento || 'A definir'} | Local: ${p.Local_Nome || 'A definir'}</p>
-        </div>
+      const header = document.getElementById('gantt-header');
+      const corpo = document.getElementById('gantt-corpo');
+      const legenda = document.getElementById('legenda-projetos-gantt');
+
+      legenda.innerHTML = projetos.map(p => `
+        <span class="flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full inline-block" style="background:${p.Cor_Tema || '#4f46e5'}"></span>${p.Nome_Projeto}
+        </span>
       `).join('');
+
+      if (tarefas.length === 0) {
+        corpo.innerHTML = '<p class="text-xs text-gray-400 italic py-6">Cadastre um projeto com cronograma (aba "+ Novo Projeto") para ver a linha do tempo aqui.</p>';
+        header.innerHTML = '';
+        return;
+      }
+
+      const todasDatas = tarefas.flatMap(t => [new Date(t.Data_Inicio), new Date(t.Data_Fim)]);
+      const dataMin = new Date(Math.min(...todasDatas));
+      const dataMax = new Date(Math.max(...todasDatas));
+      dataMin.setDate(dataMin.getDate() - 2);
+      dataMax.setDate(dataMax.getDate() + 2);
+      const totalDias = Math.max(1, Math.round((dataMax - dataMin) / 86400000));
+
+      // Cabeçalho com marcos de semana em semana (mostrando o mês quando muda)
+      let marcadores = '';
+      let cursor = new Date(dataMin);
+      let mesAnterior = null;
+      while (cursor <= dataMax) {
+        const offset = Math.round((cursor - dataMin) / 86400000) / totalDias * 100;
+        const label = cursor.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+        marcadores += `<div class="absolute border-l border-gray-200 pl-1" style="left:${offset}%; top:0;">${label}</div>`;
+        cursor.setDate(cursor.getDate() + 7);
+      }
+      header.innerHTML = marcadores;
+
+      corpo.innerHTML = projetos.map(p => {
+        const idProjeto = p['ID_Projeto (PK)'];
+        const tarefasProjeto = tarefas.filter(t => String(t['ID_Projeto (FK)']) === String(idProjeto));
+        if (tarefasProjeto.length === 0) return '';
+        const cor = p.Cor_Tema || '#4f46e5';
+
+        const linhas = tarefasProjeto.map(t => {
+          const inicio = new Date(t.Data_Inicio);
+          const fim = new Date(t.Data_Fim);
+          const offset = Math.max(0, (inicio - dataMin) / 86400000) / totalDias * 100;
+          const largura = Math.max(1.2, ((fim - inicio) / 86400000 + 1) / totalDias * 100);
+          const concluida = t.Status === 'Concluído';
+          const tarefaEscapada = encodeURIComponent(JSON.stringify(t));
+          return `
+            <div class="relative h-6">
+              <div onclick="abrirPopupTarefaGantt('${tarefaEscapada}', '${idProjeto}')"
+                   class="absolute h-5 rounded cursor-pointer flex items-center px-1.5 text-[10px] text-white font-semibold overflow-hidden whitespace-nowrap hover:opacity-90 ${concluida ? 'opacity-50' : ''}"
+                   style="left:${offset}%; width:${largura}%; background:${cor};" title="${t.Nome_Tarefa}">
+                ${t.Nome_Tarefa}
+              </div>
+            </div>`;
+        }).join('');
+
+        return `
+          <div class="border-b pb-2 mb-2">
+            <p class="text-xs font-bold mb-1" style="color:${cor}">${p.Nome_Projeto}</p>
+            ${linhas}
+          </div>`;
+      }).join('');
+    }
+
+    function abrirPopupTarefaGantt(tarefaCodificada, idProjeto) {
+      const t = JSON.parse(decodeURIComponent(tarefaCodificada));
+      const projeto = (DB.Projetos || []).find(p => String(p['ID_Projeto (PK)']) === String(idProjeto));
+
+      document.getElementById('gantt-detalhe-nome').innerText = t.Nome_Tarefa;
+      document.getElementById('gantt-detalhe-projeto').innerText = projeto ? projeto.Nome_Projeto : '-';
+      document.getElementById('gantt-detalhe-fase').innerText = t.Fase || '-';
+      document.getElementById('gantt-detalhe-resp').innerText = t['Responsavel (FK)'] || '-';
+      document.getElementById('gantt-detalhe-periodo').innerText = `${t.Data_Inicio} até ${t.Data_Fim}`;
+      document.getElementById('gantt-detalhe-status').innerText = t.Status || 'Pendente';
+
+      document.getElementById('gantt-detalhe-editar').onclick = () => {
+        fecharModais();
+        eventoAtivoId = idProjeto;
+        mudarPagina('dossie-evento');
+        document.getElementById('seletor-evento').value = idProjeto;
+        selecionarEventoAtivo();
+        mudarSubAba('tarefas');
+        abrirModalTarefa(t['ID_Tarefa (PK)']);
+      };
+
+      document.getElementById('modal-detalhe-gantt').classList.remove('hidden');
     }
 
     // EXCLUSÃO GENÉRICA

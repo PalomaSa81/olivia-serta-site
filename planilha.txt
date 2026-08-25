@@ -1,0 +1,44 @@
+=== ESTRUTURA COMPLETA DA PLANILHA: DB_Sistema_Gestao_Eventos ===
+
+ABA: "Projetos"
+Campos (17): [ "ID_Projeto (PK)", "Nome_Projeto", "Categoria", "Data_Evento", "Prioridade", "Status_Geral", "Link_Drive_Raiz", "README_Conteudo", "Data_Criacao", "Criado_Por", "Cor_Tema", "Local_Nome", "Local_Endereco", "Local_Capacidade", "Data_Fim_Evento", "Horario_Inicio", "Horario_Fim" ]
+--------------------------------------------------
+ABA: "Catalogo_Tarefas"
+Campos (6): [ "ID_Tarefa", "Categoria", "Etapa", "Nome_Tarefa", "Descricao_Detalhada", "Tempo_Estimado_Dias" ]
+--------------------------------------------------
+ABA: "Cronograma_Roteiro"
+Campos (8): [ "ID_Item_Roteiro (PK)", "ID_Projeto (FK)", "Fase_Evento", "DataHora_Inicio", "DataHora_Fim", "Atividade_Acao", "Responsavel_Geral", "Observacoes_Som_Luz" ]
+--------------------------------------------------
+ABA: "Itens_Cenografia_Infra"
+Campos (9): [ "ID_Item (PK)", "ID_Projeto (FK)", "Categoria_Item", "Nome_Item", "Quantidade", "Local_Posicionamento", "ID_Fornecedor (FK)", "Status_Montagem", "Link_Layout_Planta" ]
+--------------------------------------------------
+ABA: "Escalas_Trabalhadores"
+Campos (9): [ "ID_Escala (PK)", "ID_Projeto (FK)", "Etapa_Atuacao", "Nome_Trabalhador", "Funcao_Papel", "DataHora_Entrada", "DataHora_Saida", "Status_Presenca", "Observacoes" ]
+--------------------------------------------------
+ABA: "Status_Trabalho_Assistente"
+Campos (8): [ "ID_Status (PK)", "ID_Usuario (FK)", "Turno_Hoje", "Em_Execucao_Agora", "Proxima_Atividade", "Proxima_Reuniao_DataHora", "Proxima_Reuniao_Pauta", "Ultima_Atualizacao" ]
+--------------------------------------------------
+ABA: "Notas_Referencias"
+Campos (7): [ "ID_Nota (PK)", "ID_Projeto (FK)", "Titulo", "Tipo_Conteudo", "Texto_Nota", "Link_Externo_Inspira", "Data_Criacao" ]
+--------------------------------------------------
+ABA: "Drive_Novidades_Log"
+Campos (7): [ "ID_Log (PK)", "ID_Projeto (FK)", "Nome_Arquivo", "Autor_Alteracao", "Data_Hora", "Link_Arquivo", "Visto_Por_Olivia" ]
+--------------------------------------------------
+ABA: "Tarefas_Ativas"
+Campos (15): [ "ID_Tarefa (PK)", "ID_Projeto (FK)", "Fase", "Nome_Tarefa", "Tipo_Atividade", "Responsavel (FK)", "Status", "Data_Inicio", "Data_Fim", "Duracao_Dias", "Pre_Requisito (FK)", "Co_Requisito (FK)", "Complexidade", "Link_Pasta_Drive", "Status_Contrato_Sensivel" ]
+--------------------------------------------------
+ABA: "Usuarios"
+Campos (8): [ "ID_Usuario (PK)", "Nome", "Email", "Role", "Meta_Horas_Semanal", "Max_Horas_Dia", "Exige_Dia_Off", "Status_Ativo" ]
+--------------------------------------------------
+ABA: "Fornecedores_Equipe"
+Campos (10): [ "ID_Contato (PK)", "ID_Projeto (FK)", "Categoria_Servico", "Nome_Contato", "Telefone", "Email", "Status_Contrato", "Valor_Orcado", "Valor_Fechado", "Observacoes" ]
+--------------------------------------------------
+ABA: "Legislacao_Normas"
+Campos (7): [ "ID_Norma (PK)", "ID_Projeto (FK)", "Orgao_Regulador", "Titulo_Norma", "Resumo_Exigencias", "Status_Conformidade", "Link_Documento" ]
+--------------------------------------------------
+ABA: "Registro_Horas_Invisiveis"
+Campos (6): [ "ID_Registro (PK)", "ID_Usuario (FK)", "ID_Projeto (FK)", "Descricao_Atividade", "Minutos_Gastos", "Data_Registro" ]
+--------------------------------------------------
+ABA: "Logs_Sessao"
+Campos (6): [ "ID_Sessao (PK)", "ID_Usuario (FK)", "Token_Sessao", "Data_Hora_Login", "Acao_Realizada", "IP_Origem" ]
+--------------------------------------------------
