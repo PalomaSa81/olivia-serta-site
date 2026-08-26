@@ -518,18 +518,16 @@
   <!-- JAVASCRIPT PRINCIPAL INTEGRADO AO GOOGLE APPS SCRIPT -->
   <script>
     // URL da Web App para requisições do frontend
-    const API_URL = "https://script.google.com/macros/s/AKfycbxek9MoXWBYacL0pAiurL4pH-pwPlbvryBHDObKzkovZEstJlV-M3_pXURdSAduO1mGOQ/exec";
-
+    
     let DB = {};
     let eventoAtivoId = null;
     let subAbaAtual = 'tarefas';
 
     // RECONHECIMENTO AUTOMÁTICO DO USUÁRIO LOGADO NO GOOGLE
-    // O scriptlet do Apps Script injeta o e-mail ativo da sessão
-    const userEmailScriptlet = "<?= Session.getActiveUser().getEmail() ?>";
-    let usuarioEmail = (userEmailScriptlet && !userEmailScriptlet.includes("<?= ")) 
-      ? userEmailScriptlet 
-      : "paloma@exemplo.com"; // Fallback para desenvolvimento local
+    // O scriptlet do Apps Script injeta o e-mail ativo da sessão.
+    // O fallback fica dentro do proprio scriptlet (roda no servidor),
+    // assim nunca sobra a abertura do marcador solta no JS do cliente.
+    let usuarioEmail = "<?= Session.getActiveUser().getEmail() || 'paloma@exemplo.com' ?>";
 
     let usuarioAtual = "Paloma";
 
@@ -567,46 +565,31 @@
       document.getElementById('user-display').innerText = `${usuarioAtual} (${usuarioEmail})`;
     }
 
-    async function carregarDadosDoBanco() {
-      try {
-        const response = await fetch(`${API_URL}?action=getAll`);
-        const result = await response.json();
-
-        if (result.status === 'success') {
-          DB = result.data;
+    function carregarDadosDoBanco() {
+      google.script.run
+        .withSuccessHandler((dados) => {
+          DB = dados;
           renderizarListaProjetos();
           popularSeletorEventos();
           renderizarLinhaTempo();
-        }
-      } catch (erro) {
-        console.error("Erro ao carregar dados do GAS:", erro);
-      }
+      })
+        .withFailureHandler((erro) => console.error("Erro ao carregar dados do GAS:", erro))
+        .getDadosPlanilha();
     }
 
-    // ENVIO DE ALTERAÇÕES COM LOG DE USUÁRIO E TIMESTAMP
-    async function dispararAPI(acao, aba, dados) {
+    function dispararAPI(acao, aba, dados) {
       fecharModais();
-      const payload = {
-        action: acao,
-        sheet: aba,
-        usuario: usuarioAtual,
-        email: usuarioEmail,
-        timestamp: new Date().toISOString(),
-        data: dados
-      };
+  
+      const runner = google.script.run
+        .withSuccessHandler(() => {
+          alert(`Alteração enviada por ${usuarioAtual}!`);
+          carregarDadosDoBanco();
+        })
+        .withFailureHandler((erro) => alert("Erro ao enviar alteração para o servidor: " + erro));
 
-      try {
-        await fetch(API_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        alert(`Alteração enviada por ${usuarioAtual}!`);
-        setTimeout(carregarDadosDoBanco, 1000);
-      } catch (erro) {
-        alert("Erro ao enviar alteração para o servidor.");
-      }
+    if (acao === 'insert') runner.inserirLinha(aba, dados);
+    else if (acao === 'update') runner.atualizarLinha(aba, dados);
+    else if (acao === 'delete') runner.excluirLinha(aba, dados);
     }
 
     // RENDERS E REGRAS DE NEGÓCIO DA INTERFACE
@@ -1237,58 +1220,48 @@
       document.getElementById('np-previa').classList.remove('hidden');
     }
 
-    async function salvarNovoProjeto() {
-      const nome = document.getElementById('np-nome').value.trim();
-      const dataEvento = document.getElementById('np-data-evento').value;
-      if (!nome || !dataEvento) {
-        alert('Preencha ao menos o nome do evento e a data do evento.');
-        return;
-      }
-      if (previaCronograma.length === 0) {
-        gerarPreviaCronograma();
-      }
-
-      const projeto = {
-        Nome_Projeto: nome,
-        Categoria: document.getElementById('np-categoria').value,
-        Prioridade: document.getElementById('np-prioridade').value,
-        Data_Evento: dataEvento,
-        Cor_Tema: document.getElementById('np-cor').value,
-        Local_Nome: document.getElementById('np-local').value,
-        Status_Geral: 'Em Andamento',
-        Criado_Por: usuarioAtual
-      };
-
-      const tarefas = previaCronograma.map(t => ({
-        Nome_Tarefa: t.Nome_Tarefa,
-        Fase: t.Etapa,
-        Data_Inicio: t.Data_Inicio,
-        Data_Fim: t.Data_Fim,
-        'Responsavel (FK)': usuarioAtual,
-        Status: 'Pendente'
-      }));
-
-      fecharModais();
-      try {
-        await fetch(API_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'CRIAR_PROJETO_COM_TAREFAS',
-            usuario: usuarioAtual,
-            email: usuarioEmail,
-            timestamp: new Date().toISOString(),
-            data: { projeto, tarefas }
-          })
-        });
-        alert(`Projeto "${nome}" criado com ${tarefas.length} tarefas no cronograma!`);
-        setTimeout(carregarDadosDoBanco, 1000);
-      } catch (erro) {
-        alert('Erro ao criar projeto: ' + erro);
-      }
-    }
-
+    function salvarNovoProjeto() {
+  		const nome = document.getElementById('np-nome').value.trim();
+  		const dataEvento = document.getElementById('np-data-evento').value;
+  		if (!nome || !dataEvento) {
+    		alert('Preencha ao menos o nome do evento e a data do evento.');
+    		return;
+  		}
+  		if (previaCronograma.length === 0) {
+    		gerarPreviaCronograma();
+  		}
+		
+  		const projeto = {
+    		Nome_Projeto: nome,
+    		Categoria: document.getElementById('np-categoria').value,
+    		Prioridade: document.getElementById('np-prioridade').value,
+    		Data_Evento: dataEvento,
+    		Cor_Tema: document.getElementById('np-cor').value,
+    		Local_Nome: document.getElementById('np-local').value,
+    		Status_Geral: 'Em Andamento',
+    		Criado_Por: usuarioAtual
+  		};
+		
+  		const tarefas = previaCronograma.map(t => ({
+    		Nome_Tarefa: t.Nome_Tarefa,
+    		Fase: t.Etapa,
+    		Data_Inicio: t.Data_Inicio,
+    		Data_Fim: t.Data_Fim,
+    		'Responsavel (FK)': usuarioAtual,
+    		Status: 'Pendente'
+  		}));
+		
+  		fecharModais();
+		
+  		google.script.run
+    		.withSuccessHandler((res) => {
+      		alert(`Projeto "${nome}" criado com ${tarefas.length} tarefas no cronograma!`);
+      		carregarDadosDoBanco();
+    		})
+    		.withFailureHandler((erro) => alert('Erro ao criar projeto: ' + erro))
+    		.criarProjetoComTarefas({ projeto, tarefas });
+		}
+		
     // DRIVE
     function renderizarDrive() {
       const container = document.getElementById('lista-arquivos-drive');

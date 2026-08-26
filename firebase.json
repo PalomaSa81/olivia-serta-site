@@ -6,6 +6,18 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/gestao",
+        "destination": "https://script.google.com/macros/s/AKfycbxek9MoXWBYacL0pAiurL4pH-pwPlbvryBHDObKzkovZEstJlV-M3_pXURdSAduO1mGOQ/exec",
+        "type": 301
+      },
+      {
+        "source": "/gestao.html",
+        "destination": "https://script.google.com/macros/s/AKfycbxek9MoXWBYacL0pAiurL4pH-pwPlbvryBHDObKzkovZEstJlV-M3_pXURdSAduO1mGOQ/exec",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
