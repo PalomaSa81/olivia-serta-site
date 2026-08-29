@@ -1,0 +1,425 @@
+ID_Tarefa,Nome_Tarefa,Evento,Etapa,Tempo_Estimado_Dias
+TSK-FEI-001,"Criação de Key Visual, identidade da feira, e guias de marca para expositores",Feira Comercial,Planejamento,20
+TSK-FEI-002,Desenvolvimento de Planta Baixa humanizada e Manual do Expositor,Feira Comercial,Planejamento,15
+TSK-FEI-003,"Criação e aprovação de peças de sinalização (Pórtico de entrada, tótens de setores e mapas)",Feira Comercial,Comunicação,10
+TSK-FEI-004,"Produção de Crachás, Credenciais, Cordões e Ingressos/Passaportes de Acesso",Feira Comercial,Comunicação,7
+TSK-FEI-005,"Design do painel backdrop para imprensa, fotos de expositores e espaço de influenciadores",Feira Comercial,Comunicação,7
+TSK-FEI-006,"Aprovação de projetos de arquitetura cênica, nivelamento de piso e estandes padronizados/construídos",Feira Comercial,Planejamento,15
+TSK-FEI-007,"Montagem de Infraestrutura Temporária (Tendas, pavimentos, fechamentos e containers)",Feira Comercial,Montagem,4
+TSK-FEI-008,"Instalação de rede elétrica temporária, quadros de distribuição e geradores de energia",Feira Comercial,Montagem,3
+TSK-FEI-009,Execução de projeto de iluminação funcional de estandes e iluminação cênica de passagens,Feira Comercial,Montagem,2
+TSK-FEI-010,"Ambientação vegetal de alamedas, praça de alimentação e Lounges VIPs/Descanso",Feira Comercial,Montagem,2
+TSK-FEI-011,"Emissão de ART (Atestado de Responsabilidade Técnica) de estruturas, montagem e elétrica",Feira Comercial,Legalidades,10
+TSK-FEI-012,Submissão e aprovação do Projeto de Segurança e Vistoria do Corpo de Bombeiros,Feira Comercial,Legalidades,15
+TSK-FEI-013,Solicitação de Alvará de Funcionamento e Autorizações da Vigilância Sanitária (Praça de Alimentação),Feira Comercial,Legalidades,15
+TSK-FEI-014,"Gestão de Resíduos: Instalação de caçambas, lixeiras e contratação de limpeza contínua",Feira Comercial,Operação,5
+TSK-FEI-015,"Contratação de UTIs móveis/Ambulâncias, equipe médica, brigadistas e UTI de prontidão",Feira Comercial,Operação,7
+TSK-FEI-016,Organização do Coquetel VIP de Abertura / Preview exclusivo para imprensa e convidados,Feira Comercial,Cerimonial,5
+TSK-FEI-017,Gestão do sistema de credenciamento (hardware/software de leitura de QR Code em catracas),Feira Comercial,Operação,7
+TSK-FOR-001,"Criação do conceito visual da turma, convite luxo e sistema de escolha de assentos",Baile de Formatura,Comunicação,15
+TSK-FOR-002,"Projeto cenográfico do Túnel de Entrada, Portal de Fotos e Palco Principal",Baile de Formatura,Planejamento,12
+TSK-FOR-003,Elaboração do Roteiro de Cerimonial da Colação Festiva/Valsa e Brinde dos Formandos,Baile de Formatura,Cerimonial,7
+TSK-FOR-004,Alinhamento com Mestre de Cerimônias (Nominatas de formandos e ordem de entrada),Baile de Formatura,Cerimonial,3
+TSK-FOR-005,Instalação de painéis de LED para transmissão de retrospectiva e apoio visual de DJs/Bandas,Baile de Formatura,Montagem,2
+TSK-FOR-006,"Instalação de efeitos especiais de palco (Chuva de papel picado, fogos frios/Sparklers e fumaça)",Baile de Formatura,Montagem,1
+TSK-FOR-007,"Organização e distribuição de becas, canudos e adereços de pista de dança",Baile de Formatura,Operação,2
+TSK-DEB-001,"Criação da identidade visual temática, convites interativos e filtro de redes sociais",Festa de Debutante,Comunicação,10
+TSK-DEB-002,"Desenho do projeto cenográfico (Pista de dança plotada, lounges jovens e iluminação neon/LED)",Festa de Debutante,Planejamento,10
+TSK-DEB-003,"Ensaios e alinhamento do Roteiro de Cerimonial (Troca de sapato, anel, valsa e homenagens)",Festa de Debutante,Cerimonial,5
+TSK-DEB-004,"Coordenar recepção de convidados, controle de pulseiras de acesso VIP e camarim da debutante",Festa de Debutante,Execução,1
+TSK-COR-001,"Criação de identidade visual da campanha interna, e-mail marketing e peças digitais",Festa Corporativa,Comunicação,7
+TSK-COR-002,"Projeto de ambientação da marca (Backdrops para fotos, cenografia do palco e sinalização)",Festa Corporativa,Planejamento,8
+TSK-COR-003,"Roteirização do Cerimonial de Premiação de funcionários (Apresentação, troféus e discursos)",Festa Corporativa,Cerimonial,4
+TSK-COR-004,Montagem de aparador de premiações e alinhamento com Mestre de Cerimônias e Som,Festa Corporativa,Cerimonial,1
+TSK-COR-005,"Contratação de atrações interativas (Cabines de foto 360, caricaturistas e atrações musicais)",Festa Corporativa,Produção,7
+TSK-LAN-001,Desenvolvimento do conceito visual do lançamento e peças digitais para convite exclusivo,Lançamento de Produto,Comunicação,10
+TSK-LAN-002,"Cenografia de revelação de produto (Mecânica de desvelamento, tótens interativos e iluminação de destaque)",Lançamento de Produto,Planejamento,10
+TSK-LAN-003,Roteirização do momento do discurso do CEO/Executivos e apresentação do produto aos VIPs,Lançamento de Produto,Cerimonial,3
+TSK-LAN-004,Montagem de Ilha Audiovisual (Ecrãs/LEDs com vídeos institucionais e som ambiente ajustado),Lançamento de Produto,Montagem,1
+TSK-LAN-005,"Gestão do receptivo VIP, entrega de Press Kits / Brindes corporativos e lista de presença",Lançamento de Produto,Execução,1
+TSK-CAS-TRAD-001,"Mapeamento do perfil dos noivos, alinhamento de expectativas e definição do orçamento teto (Budget Global)",Casamento Clássico,Planejamento,5
+TSK-CAS-TRAD-002,"Pesquisa de mercado, seleção e visita técnica aos locais potenciais para cerimônia e recepção",Casamento Clássico,Planejamento,10
+TSK-CAS-TRAD-003,"Elaboração de edital/briefing de concorrência para fornecedores-chave (Decoração, Buffet, Foto/Vídeo)",Casamento Clássico,Planejamento,7
+TSK-CAS-TRAD-004,"Solicitação, análise comparativa de orçamentos e apresentação de propostas de fornecedores aos noivos",Casamento Clássico,Planejamento,12
+TSK-CAS-TRAD-005,"Negociação, validação jurídica das cláusulas e assinatura de contratos de todos os prestadores",Casamento Clássico,Planejamento,10
+TSK-CAS-TRAD-006,"Levantamento arquitetônico do espaço (medição de pé-direito, acessos, pontos de energia e água)",Casamento Clássico,Planejamento,3
+TSK-CAS-TRAD-007,"Desenvolvimento da Planta Baixa técnica com setorização (mesas, buffet, pista, palco, lounges, apoio)",Casamento Clássico,Planejamento,10
+TSK-CAS-TRAD-008,"Criação do projeto de Layout 3D, moodboards de texturas e paleta de cores da decoração",Casamento Clássico,Planejamento,14
+TSK-CAS-TRAD-009,Dimensionamento de carga elétrica (kW) e contratação/posicionamento de geradores de energia de backup,Casamento Clássico,Planejamento,5
+TSK-CAS-TRAD-010,Dimensionamento e contratação de climatização/aquecimento para áreas cobertas e abertas,Casamento Clássico,Planejamento,5
+TSK-CAS-TRAD-011,"Curadoria e seleção de mobiliário (mesas, cadeiras de jantar, bistrôs, sofás, puffs e banquetas)",Casamento Clássico,Produção,8
+TSK-CAS-TRAD-012,"Desenvolvimento do projeto de iluminação cênica (ribaltas, luz de foco floral, varais e iluminação de pista)",Casamento Clássico,Produção,10
+TSK-CAS-TRAD-013,"Projeto de cenografia e engenharia cênica (fechamentos em tecido, pisos elevados, naves e estruturas de cobertura)",Casamento Clássico,Produção,12
+TSK-CAS-TRAD-014,"Projeto arte-floral: definição das espécies de época, arranjos de mesa, arcos de cerimônia e buquê",Casamento Clássico,Produção,10
+TSK-CAS-TRAD-015,"Design e curadoria da mesa de doces e bolo (peças de suporte, bandejas de prata/cerâmica, forminhas e cenografia suspensa)",Casamento Clássico,Produção,8
+TSK-CAS-TRAD-016,"Degustação do menu do buffet, definição de serviço (empratado/americano/volante) e alinhamento de restrições alimentares",Casamento Clássico,Produção,15
+TSK-CAS-TRAD-017,"Curadoria do Bar de Drinks: seleção do menu de coquetelaria, estimativa de insumos e bebidas alcoólicas",Casamento Clássico,Produção,7
+TSK-CAS-TRAD-018,"Criação da identidade visual completa (monograma, paleta, tipografia e elementos gráficos)",Casamento Clássico,Comunicação,14
+TSK-CAS-TRAD-019,"Design, aprovação e envio do Save The Date impresso e/ou digital",Casamento Clássico,Comunicação,5
+TSK-CAS-TRAD-020,"Diagramação, produção gráfica e caligrafia do Convite Oficial e envelopes",Casamento Clássico,Comunicação,15
+TSK-CAS-TRAD-021,"Desenvolvimento da papelaria do dia (Menús, cartões de reservado, livros de votos, leques e mimos de lavabo)",Casamento Clássico,Comunicação,7
+TSK-CAS-TRAD-022,Criação do mapa visual de assentos (Seating Chart / Marcadores de Mesa) e sinalização indicativa do local,Casamento Clássico,Comunicação,5
+TSK-CAS-TRAD-023,"Curadoria e contratação de atrações artísticas (Orquestra/Canto para cerimônia, DJ, Bandas e performances virtuosas)",Casamento Clássico,Produção,15
+TSK-CAS-TRAD-024,"Alinhamento de Rider Técnico de áudio, iluminação de palco e mapa de palco com os músicos e DJs",Casamento Clássico,Produção,7
+TSK-CAS-TRAD-025,Solicitação e pagamento de taxas de legalidades: Direitos autorais ECAD e Seguro de Responsabilidade Civil,Casamento Clássico,Legalidades,7
+TSK-CAS-TRAD-026,Gestão de confirmação de presença (RSVP Ativo e Passivo) e consolidação da lista final de convidados,Casamento Clássico,Operação,15
+TSK-CAS-TRAD-027,"Elaboração da Nominata do Cortejo (ordem detalhada de avós, pais, padrinhos, damas e pajens)",Casamento Clássico,Cerimonial,5
+TSK-CAS-TRAD-028,"Criação do Roteiro Protocolar Minuto a Minuto (Receptivo, entrada, trocas de música, votos, alianças, cumprimentos e saída)",Casamento Clássico,Cerimonial,7
+TSK-CAS-TRAD-029,"Elaboração do Roteiro da Festa (Entrada dos noivos, brinde, corte do bolo, primeira dança, abertura da pista e buquê)",Casamento Clássico,Cerimonial,5
+TSK-CAS-TRAD-030,Realização do ensaio geral do cortejo religioso/ecumênico com os noivos e padrinhos,Casamento Clássico,Cerimonial,1
+TSK-CAS-TRAD-031,"Acompanhamento do cronograma de montagem cenográfica, estrutura elétrica, iluminação e som (D-2 ao D-0)",Casamento Clássico,Montagem,3
+TSK-CAS-TRAD-032,"Recepção, conferência de acervo e posicionamento de móveis, flores, louças e toalhas conforme a planta baixa",Casamento Clássico,Montagem,1
+TSK-CAS-TRAD-033,"Passagem de som da cerimônia e banda, alinhamento de microfones do celebrante e testes de iluminação",Casamento Clássico,Montagem,1
+TSK-CAS-TRAD-034,Gestão do camarim e acompanhamento do cronograma de beleza/vestimento dos noivos (Dia da Noiva/Noivo),Casamento Clássico,Execução,1
+TSK-CAS-TRAD-035,"Recepção e organização do alinhamento do cortejo de padrinhos, pais e noivos na concentração",Casamento Clássico,Execução,1
+TSK-CAS-TRAD-036,"Execução do cerimonial de entrada, condução de rituais, troca de alianças e assinatura de actas",Casamento Clássico,Execução,1
+TSK-CAS-TRAD-037,"Coordenação da sessão de fotos organizadas (noivos com pais, padrinhos e família)",Casamento Clássico,Execução,1
+TSK-CAS-TRAD-038,"Gestão da recepção da festa: coordenação do buffet, bar, entradas triunfais, brinde, valsa e abertura da pista",Casamento Clássico,Execução,1
+TSK-CAS-TRAD-039,"Supervisão contínua da limpeza de banheiros, recolhimento de louças, reposição de insumos e segurança",Casamento Clássico,Execução,1
+TSK-CAS-TRAD-040,"Coordenação da desmontagem, inventário de avarias/quebras, devolução de móveis/acervos e fechamento do local",Casamento Clássico,Desmontagem,2
+TSK-CAS-DEST-001,Visita técnica de prospecção técnica ao destino (Praia/Campo/Serra) para análise de acessos e logística de carga,Destination Wedding,Planejamento,12
+TSK-CAS-DEST-002,"Pesquisa, orçamentação e contratação de fornecedores regionais vs. frete de fornecedores da capital",Destination Wedding,Planejamento,15
+TSK-CAS-DEST-003,"Curadoria de hospedagem, bloqueio de tarifários operacionais e parcerias com hotéis/pousadas locais",Destination Wedding,Planejamento,10
+TSK-CAS-DEST-004,"Planejamento e coordenação de logística de traslado (transfers, vans, barcos ou carrinhos de golfe) para convidados",Destination Wedding,Planejamento,8
+TSK-CAS-DEST-005,Engenharia e aprovação de estrutura de cobertura temporária (tendas transparentes/tensionadas) contra intempéries,Destination Wedding,Planejamento,10
+TSK-CAS-DEST-006,Planejamento e cotação de Plano B rigoroso (Plano de Chuva/Vento) com cenografia adaptável instantânea,Destination Wedding,Planejamento,7
+TSK-CAS-DEST-007,"Criação de site de casamento interativo com guias de viagem, dicas locais, dress code e confirmação de presença",Destination Wedding,Comunicação,10
+TSK-CAS-DEST-008,Design e montagem de Kits de Boas-Vindas (Welcome Kits / Mimos) com produtos locais para entrega nos quartos,Destination Wedding,Comunicação,7
+TSK-CAS-DEST-009,"Planejamento, orçamentação e execução do evento de recepção de boas-vindas (Welcome Drink / Pizza Party / Sunset)",Destination Wedding,Produção,10
+TSK-CAS-DEST-010,"Adequação cenográfica e floral para resistir às condições climáticas de praia/campo (umidade, calor, vento)",Destination Wedding,Produção,8
+TSK-CAS-DEST-011,"Gerenciamento de licenças ambientais, autorizações de uso de praia/espaço público e postura municipal",Destination Wedding,Legalidades,15
+TSK-CAS-DEST-012,Acompanhamento e coordenação das atividades de vários dias (Welcome Drink + Casamento + Ressaca/Brunch),Destination Wedding,Execução,3
+TSK-CAS-MINI-001,"Pesquisa e curadoria de locais intimistas de alto padrão (Restaurantes gastronômicos, bistrôs, mansões private)",Mini Wedding,Planejamento,8
+TSK-CAS-MINI-002,"Elaboração de projeto de cenografia afetiva, integração de acervo pessoal do casal e arranjos minunciosos",Mini Wedding,Planejamento,7
+TSK-CAS-MINI-003,Desenvolvimento de Menu Degustação Harmonizado exclusivo com chef de cozinha e sommelier,Mini Wedding,Produção,10
+TSK-CAS-MINI-004,Curadoria de papelaria personalizada à mão (cartões de boas-vindas individuais e menus nomeados por convidado),Mini Wedding,Comunicação,5
+TSK-CAS-MINI-005,"Projeto de Iluminação aconchegante (velas, cordões de luz quentes e pontos indiretos para clima intimista)",Mini Wedding,Produção,5
+TSK-CAS-MINI-006,"Curadoria de música acústica de alta sensibilidade (quarteto de cordas moderno, jazz trio ou voz e violão)",Mini Wedding,Produção,7
+TSK-CAS-MINI-007,"Coordenação de cerimônia fluida, sem protocolos rígidos, focada em discursos e homenagens dos convidados",Mini Wedding,Cerimonial,3
+TSK-CAS-CIVI-001,"Agendamento, organização de documentos e acompanhamento do processo no Cartório de Registro Civil",Casamento Civil,Legalidades,15
+TSK-CAS-CIVI-002,"Pesquisa e reserva de espaço para recepção pós-cartório (Lounge, terraço ou área privativa de restaurante)",Casamento Civil,Planejamento,5
+TSK-CAS-CIVI-003,"Desenvolvimento de conceito de decoração leve e urbana (arranjos de impacto, sinalização elegante e lounge de fotos)",Casamento Civil,Planejamento,5
+TSK-CAS-CIVI-004,"Contratação de serviço de buffet de Finger Foods refinados, coquetelaria autoral e espumantes",Casamento Civil,Produção,7
+TSK-CAS-CIVI-005,"Coordenação do cronograma do dia do civil (Horário de chegada no cartório, assinaturas, fotos e deslocamento para recepção)",Casamento Civil,Cerimonial,2
+TSK-FEI-CULT-001,"Mapeamento e seleção de editais públicos de incentivo à cultura (Lei Rouanet, Paulo Gustavo, Aldir Blanc, Leis Estaduais/Municipais)",Feira Cultural,Planejamento,30
+TSK-FEI-CULT-002,"Elaboração do projeto cultural, planilha orçamentária detalhada e cronograma físico-financeiro para submissão",Feira Cultural,Planejamento,20
+TSK-FEI-CULT-003,"Gestão de captação de recursos, relacionamento com patrocinadores corporativos e acompanhamento de contas vinculadas",Feira Cultural,Planejamento,45
+TSK-FEI-CULT-004,"Curadoria, edital de seleção de expositores de economia criativa, artesãos, gastronomia e artistas regionais",Feira Cultural,Planejamento,15
+TSK-FEI-CULT-005,Contratação de assessoria de prestação de contas especializada em leis de incentivo e auditoria independente,Feira Cultural,Planejamento,10
+TSK-FEI-ENG-001,Estudo de Impacto de Vizinhança (EIV) e Estudo de Impacto de Trânsito (EIT) com órgãos de trânsito locais,Feira de Grande Porte,Legalidades,20
+TSK-FEI-ENG-002,Elaboração de Projeto Técnico de Prevenção a Incêndio e Pânico (PTPIP) assinado por engenheiro habilitado,Feira de Grande Porte,Legalidades,25
+TSK-FEI-ENG-003,Submissão do projeto ao Corpo de Bombeiros Militar para obtenção do Licenciamento/Alvará Temporário,Feira de Grande Porte,Legalidades,30
+TSK-FEI-ENG-004,"Apresentação de Projeto de Acessibilidade (PCD) com rotas acessíveis, rampas, piso tátil e banheiros adaptados",Feira de Grande Porte,Legalidades,15
+TSK-FEI-ENG-005,"Emissão de ART/RRT (Anotação de Responsabilidade Técnica) para Estruturas Metálicas, Tendas, Arquibancadas e Tablados",Feira de Grande Porte,Legalidades,10
+TSK-FEI-ENG-006,"Emissão de ART/RRT para Instalações Elétricas Temporárias, Aterramento e Geradores de Energia",Feira de Grande Porte,Legalidades,10
+TSK-FEI-ENG-007,"Emissão de ART para Montagem de Palcos, Pistas de Dança e Módulos de Estandes Construídos",Feira de Grande Porte,Legalidades,10
+TSK-FEI-ENG-008,Solicitação de Alvará de Autorização Transitória na Prefeitura Municipal e Secretaria de Urbanismo,Feira de Grande Porte,Legalidades,20
+TSK-FEI-ENG-009,"Licenciamento junto à Vigilância Sanitária (VISA) para manipulação de alimentos, bebidas e praça de alimentação",Feira de Grande Porte,Legalidades,15
+TSK-FEI-ENG-010,Pagamento e regularização de taxas de execução musical pública junto ao ECAD,Feira de Grande Porte,Legalidades,7
+TSK-FEI-ENG-011,"Solicitação de apoio logístico da Polícia Militar, Guarda Municipal e Agentes de Trânsito",Feira de Grande Porte,Legalidades,15
+TSK-FEI-BIG-001,"Levantamento topográfico e demarcação da planta baixa no terreno (espaço para estandes, ruas de circulação e praça)",Feira de Grande Porte,Planejamento,10
+TSK-FEI-BIG-002,Contratação e montagem de Tendas de Grande Porte (Galpões estruturados de alumínio/tendas tensionadas) e Tablados nivelados,Feira de Grande Porte,Montagem,7
+TSK-FEI-BIG-003,"Construção de piso elevado, passarelas de compensado naval e rampas de acesso para terrenos irregulares",Feira de Grande Porte,Montagem,5
+TSK-FEI-BIG-004,"Montagem da infraestrutura de Estandes (octanorm, divisórias, testeiras, iluminação individual e tomadas)",Feira de Grande Porte,Montagem,4
+TSK-FEI-BIG-005,"Dimensionamento de Carga Elétrica Total, instalação de quadros de distribuição, subestações e cabeamento blindado",Feira de Grande Porte,Montagem,5
+TSK-FEI-BIG-006,Instalação de Grupo Gerador de Energia Principal e Gerador de Backup (Start Automático / Rampado),Feira de Grande Porte,Montagem,3
+TSK-FEI-BIG-007,Implantação de rede temporária de água potável e rede de esgotamento/pias hidráulicas para a praça de alimentação,Feira de Grande Porte,Montagem,4
+TSK-FEI-BIG-008,"Dimensionamento e locação de Banheiros Químicos (Standard, Luxo e PCD) e Módulos Sanitários Hidráulicos Container",Feira de Grande Porte,Montagem,3
+TSK-FEI-BIG-009,"Demarcação e sinalização fotoluminescente de Rotas de Fuga, Saídas de Emergência, Extintores e Iluminação de Balizamento",Feira de Grande Porte,Montagem,3
+TSK-FEI-BIG-010,"Instalação de fechamentos perimetrais (gradis, tapumes, FEG e portões de emergência antipânico)",Feira de Grande Porte,Montagem,4
+TSK-FEI-BIG-011,"Montagem de pórticos de entrada, bilheterias, catracas eletrônicas e leitores de QR Code/credenciamento",Feira de Grande Porte,Montagem,3
+TSK-FEI-BIG-012,"Montagem de Palco Principal, cobertura de show, camarins climatizados e Rider de Áudio/Luz de grande porte",Feira de Grande Porte,Montagem,4
+TSK-FEI-BIG-013,Instalação de Iluminação de Área Externa (Torres de Iluminação a diesel e projetores de LED perimetrais),Feira de Grande Porte,Montagem,2
+TSK-FEI-BIG-014,"Contratação de Posto Médico Temporário, equipe de médicos/enfermeiros e UTI Móvel de Prontidão (com suporte avançado)",Feira de Grande Porte,Operação,10
+TSK-FEI-BIG-015,Dimensionamento e contratação de Brigada de Incêndio credenciada e equipe privada de Segurança Patrimonial,Feira de Grande Porte,Operação,10
+TSK-FEI-BIG-016,Acompanhamento da Vistoria Final do Corpo de Bombeiros e órgãos públicos para emissão do Habite-se/Atestado de Vistoria (AVCB),Feira de Grande Porte,Legalidades,1
+TSK-FEI-BIG-017,"Gestão de Fluxo de Pessoas: controle de lotação em tempo real, direcionamento de filas e atendimento PCD",Feira de Grande Porte,Execução,3
+TSK-FEI-BIG-018,"Gestão de Resíduos Sólidos: posicionamento de pontos de coleta seletiva, varrição contínua e transporte de caçambas",Feira de Grande Porte,Operação,3
+TSK-FEI-BIG-019,"Manutenção contínua de sanitários: higienização, reposição de insumos (papel/sabão) e esgotamento de fossas por caminhão limpa-fossa",Feira de Grande Porte,Operação,3
+TSK-FEI-BIG-020,Supervisão de carga e descarga de expositores (Horários permitidos de abastecimento e estacionamento técnico),Feira de Grande Porte,Operação,3
+TSK-FEI-BIG-021,"Operação do Sistema de Som Perimetral para avisos comunitários, achados e perdidos e alertas de emergência",Feira de Grande Porte,Execução,3
+TSK-FEI-BIG-022,"Desmontagem de estruturas pesadas, devolução de equipamentos e triagem de materiais recicláveis",Feira de Grande Porte,Desmontagem,4
+TSK-FEI-BIG-023,"Limpeza fina de entrega do espaço público/terreno, recomposição de danos ao solo e vistoria de devolução com a prefeitura",Feira de Grande Porte,Desmontagem,2
+TSK-FEI-CULT-006,"Consolidação de clipagem de mídia, relatório de impacto socioeconômico e número de visitantes",Feira Cultural,Planejamento,10
+TSK-FEI-CULT-007,"Auditoria financeira, organização de notas fiscais, comprovantes de pagamento e prestação de contas final do edital/lei de incentivo",Feira Cultural,Legalidades,30
+TSK-FIN-001,"Montagem da Planilha Financeira Mãe: estimativa de receitas, teto de gastos (Budget), margem de contingência (10-15%) e fluxo de caixa",Todos os Eventos,Planejamento,5
+TSK-FIN-002,Elaboração de Matriz Cotação/RFP (Request for Proposal) padronizada para envio simultâneo a fornecedores de cada categoria,Todos os Eventos,Planejamento,5
+TSK-FIN-003,"Pesquisa de mercado, benchmarking de preços e levantamento de mínimo 3 orçamentos comparativos por item do evento",Todos os Eventos,Planejamento,10
+TSK-FIN-004,Análise de viabilidade financeira e cálculo de Ponto de Equilíbrio (Break-Even Point) para eventos com venda de ingressos/espaço,Todos os Eventos,Planejamento,7
+TSK-FIN-005,Abertura de conta bancária dedicada/centro de custo exclusivo do evento para isolamento de movimentações financeiras,Todos os Eventos,Planejamento,3
+TSK-FIN-006,"Definição do regime fiscal do evento e enquadramento tributário (Emissão de NF-e, retenções na fonte de ISS, IRRF, PIS/COFINS/CSLL)",Todos os Eventos,Legalidades,7
+TSK-FIN-007,Emissão e envio do Cronograma de Pagamentos (Faturamento/Boletos/PIX) para o contratante e/ou patrocinadores,Todos os Eventos,Planejamento,3
+TSK-FIN-008,"Gestão de Contas a Pagar: liquidação de parcelas de fornecedores, cachês de atrações e reembolsos conforme contrato",Todos os Eventos,Operação,30
+TSK-FIN-009,"Gestão de Contas a Receber: controle de inadimplência de cotas de patrocínio, parcelas de noivos ou vendas de estandes",Todos os Eventos,Operação,30
+TSK-FIN-010,Acompanhamento semanal de desvio de orçamento (Budget vs. Actual) e renegociação de itens excedentes,Todos os Eventos,Planejamento,15
+TSK-FIN-011,"Auditoria de notas fiscais de fornecedores, validação de impostos retidos e conciliação bancária contínua",Todos os Eventos,Legalidades,15
+TSK-FIN-012,"Fechamento do Relatório Financeiro Final, DRE do evento, apuração de lucro/prejuízo e conciliação de fundo fixo/caixinha",Todos os Eventos,Legalidades,10
+TSK-SEG-001,"Mapeamento de Riscos do Evento (Matriz de Risco: acidentes, intempéries, cancelamento de atrações, danos ao patrimônio)",Todos os Eventos,Planejamento,5
+TSK-SEG-002,"Cotação de Seguro de Responsabilidade Civil Operacional (RC Eventos) cobrindo público, staff, terceiros e danos a imóveis locados",Todos os Eventos,Legalidades,5
+TSK-SEG-003,"Cotação e contratação de Seguro de Acidentes Pessoais (APP) para equipe de staff, montadores, brigadistas e voluntários",Todos os Eventos,Legalidades,5
+TSK-SEG-004,Apresentação de proposta de Seguro de Cancelamento/Adiamento de Evento (cobertura para NO-SHOW de atração principal ou intempéries graves) ao contratante,Todos os Eventos,Planejamento,5
+TSK-SEG-005,"Cotação e contratação de Seguro para Equipamentos Locados (Sons, LEDs, geradores, câmeras e estruturas de alto valor)",Todos os Eventos,Legalidades,5
+TSK-SEG-007,"Emissão das Apólices de Seguro, conferência de franquias e envio dos comprovantes aos órgãos públicos e gestores do espaço",Todos os Eventos,Legalidades,3
+TSK-SEG-008,Instrução da equipe de coordenação sobre o protocolo de acionamento do seguro em caso de sinistro durante o evento,Todos os Eventos,Operação,1
+TSK-MKT-001,"Desenvolvimento da Estratégia de Branding do Evento: posicionamento, tom de voz, manifesto e identidade verbal",Feira / Grandes Eventos,Planejamento,10
+TSK-MKT-002,"Criação do Enxoval de Peças Gráficas e Anúncios Digitais (Key Visual, banners digitais, templates e mídia OOH)",Feira / Grandes Eventos,Comunicação,12
+TSK-MKT-003,Desenvolvimento e publicação do Landing Page/Site Oficial do Evento com otimização para SEO e Pixel de Rastreamento,Feira / Grandes Eventos,Comunicação,10
+TSK-MKT-004,"Configuração da Plataforma de Ticketing/Inscrição (setup de lotes, tipos de ingressos, cupons e pixel de conversão)",Feira / Grandes Eventos,Operação,5
+TSK-MKT-005,Planejamento e Gestão do Mídia Kit / Proposta Comercial para atração de Patrocinadores e Apoiadores de Mídia,Feira / Grandes Eventos,Planejamento,10
+TSK-MKT-006,"Contratação e Briefing da Assessoria de Imprensa (RP) para elaboração de releases, pautas e coletivas de imprensa",Feira / Grandes Eventos,Comunicação,15
+TSK-MKT-007,"Mapeamento, seleção e contratação de Influenciadores Digitais e Embaixadores de Marca do evento",Feira / Grandes Eventos,Comunicação,12
+TSK-MKT-008,"Envio de Press Kits exclusivos / Seeding de convites para imprensa, influenciadores e VIPs",Feira / Grandes Eventos,Comunicação,7
+TSK-MKT-009,"Estruturação e execução da Campanha de Anúncios Pagos (Meta Ads, Google Ads, TikTok Ads e LinkedIn Ads) - Fase Teaser",Feira / Grandes Eventos,Comunicação,15
+TSK-MKT-010,Gestão e otimização diária das Campanhas de Tráfego Pago - Fase de Lotes / Conversão / Retargeting de Ingressos,Feira / Grandes Eventos,Comunicação,30
+TSK-MKT-011,"Produção contínua de Conteúdo para Redes Sociais (Vídeos institucionais, bastidores, revelação de atrações e dicas para visitantes)",Feira / Grandes Eventos,Comunicação,30
+TSK-MKT-012,"Automação de Marketing e E-mail Marketing: réguas de nutrição, lembretes de lote, confirmação de inscrição e contagem regressiva",Feira / Grandes Eventos,Comunicação,20
+TSK-MKT-013,"Estratégia de Marketing de Mídia Exterior / OOH (Out of Home): outdoors, painéis de LED de rua, rádio local e panfletagem estratégica",Feira / Grandes Eventos,Comunicação,15
+TSK-MKT-014,"Negociação de Parcerias de Mídia Mútua (Permutas com rádios, jornais, blogs especializados e canais locais)",Feira / Grandes Eventos,Comunicação,10
+TSK-MKT-015,Planejamento de Endomarketing e Comunicação Interna (para eventos corporativos/confraternizações) para engajamento dos colaboradores,Festa Corporativa,Comunicação,10
+TSK-MKT-016,"Criação da Identidade Visual do Espaço / Live Marketing (cenografia fotográfica, Instagrammable spots, tótens de foto e ativações de marca)",Feira / Grandes Eventos,Planejamento,10
+TSK-MKT-017,"Coordenação da Equipe de Social Media / Captação de Conteúdo em Tempo Real no dia do evento (Stories, Reels, fotos e live streaming)",Feira / Grandes Eventos,Execução,3
+TSK-MKT-018,"Credenciamento, recepção e acompanhamento de Jornalistas, Equipes de TV, Criadores de Conteúdo e Influenciadores na Press Room",Feira / Grandes Eventos,Execução,3
+TSK-MKT-019,Disparo de Release de Cobertura e envio de fotos/vídeos de divulgação para os veículos de comunicação durante e pós-evento,Feira / Grandes Eventos,Execução,2
+TSK-MKT-020,"Envio de Pesquisa de Satisfação (NPS - Net Promoter Score) para participantes, expositores e patrocinadores",Feira / Grandes Eventos,Operação,5
+TSK-MKT-021,"Consolidação do Relatório Final de Performance de Marketing (ROI de Mídia, métricas de conversão, alcance orgânico e clipagem de imprensa)",Feira / Grandes Eventos,Planejamento,10
+TSK-CHK-001,Testes de Carga Elétrica e Simulados de Queda de Energia (Teste de chaveamento automático e tempo de resposta do gerador),Todos os Eventos,Montagem,1
+TSK-CHK-002,"Vistoria Prévia de Rotas de Fuga, Acessibilidade PCD, Sinalização Fotoluminescente e Teste de Extintores de Incêndio",Todos os Eventos,Montagem,1
+TSK-CHK-003,"Checagem de Sinal de Telefonia e Internet / Configuração de Link Dedicado e Redes Wi-Fi de Backup para Caixas, Credenciamento e Produção",Todos os Eventos,Montagem,1
+TSK-CHK-004,"Inspeção Estrutural de Segurança em Tendas, Palcos, Fechamentos e Tablados (Checagem de estaiamento, travas e contrapesos contra ventos)",Todos os Eventos,Montagem,1
+TSK-CHK-005,Teste de Estresse no Sistema de Credenciamento / Bilheteria (Validação de leitura offline de QR Code e contingência em papel),Todos os Eventos,Montagem,1
+TSK-CHK-006,Passagem de Som Integral e Teste Anti-Microfonia (Validação de microfones sem fio de reserva/com fio para discursos e cerimônia),Todos os Eventos,Montagem,1
+TSK-CHK-007,"Checagem de Pontos Hidráulicos, Pressão de Água, Nível de Caixas d'Água e Teste de Vazamento em Banheiros / Containers",Todos os Eventos,Montagem,1
+TSK-CHK-008,"Vistoria Térmica e de Climatização (Teste prévio de ar-condicionado, ventiladores industriais e climatizadores em áreas fechadas/tendas)",Todos os Eventos,Montagem,1
+TSK-CHK-009,"Conferência de Acervo de Reposição e Contingência (Lâmpadas de reserva, fusíveis, extensões, fitas silver tape, cabos XLR/HDMI e adaptadores)",Todos os Eventos,Montagem,1
+TSK-CHK-010,"Auditoria de Segurança de Alimentos e Bebidas (Validação de refrigeração de carnes/laticínios, temperatura de ilhas e validade de insumos)",Todos os Eventos,Operação,1
+TSK-CHK-011,"Conferência e Briefing da Equipe de Brigada e Primeiros Socorros (Reconhecimento de rotas de ambulância, pranchas e insumos médicos)",Todos os Eventos,Operação,1
+TSK-CHK-012,"Teste de Frequências e Canais de Rádios Comunicadores (HT) da Produção, Segurança, Valet, Limpeza e Cerimonial",Todos os Eventos,Montagem,1
+TSK-CHK-014,"Validação do Plano B de Chuva / Vento / Sol Forte (Acionamento de fechamentos laterais de tendas, distribuição de guarda-chuvas e lonamentos)",Todos os Eventos,Montagem,1
+TSK-CHK-015,"Alinhamento do Protocolo de Gestão de Crise e Comunicação (Definição de porta-voz oficial, contatos diretos de emergência e rota de evacuação)",Todos os Eventos,Planejamento,3
+TSK-CHK-016,Checagem do Cronograma de Abastecimento e Logística de Garçons / Staff (Garantia de água e alimentação adequada para equipes de apoio),Todos os Eventos,Operação,1
+TSK-CHK-017,"Vistoria do Estacionamento, Sinalização de Trânsito Interno, Iluminação de Acesso e Capacidade de Vagas de Contingência",Todos os Eventos,Montagem,1
+TSK-CHK-018,"Conferência Final do Plano de Limpeza e Reposição Contínua (Checagem de escala de plantão em banheiros, sacos de lixo de reserva e caçambas)",Todos os Eventos,Operação,1
+TSK-RH-001,"Mapeamento e dimensionamento do Organograma de Pessoal (Coordenadores, Produtores de Campo, Recepcionista, Brigada, Segurança, Limpeza, Valet e Support Staff)",Todos os Eventos,Planejamento,5
+TSK-RH-002,"Pesquisa, orçamentação e seleção de Agências de Staffing / Mão de Obra Temporária especializada para eventos",Todos os Eventos,Planejamento,8
+TSK-RH-003,"Triagem, entrevistas e checagem de antecedentes/referências profissionais das lideranças de equipe",Todos os Eventos,Planejamento,7
+TSK-RH-004,"Elaboração de Contratos Temporários de Prestação de Serviços, Termos de Imagem e Coleta de Documentação Trabalhista/EPIs",Todos os Eventos,Legalidades,10
+TSK-RH-005,"Redação do Manual Operacional do Staff (Guia de Conduta, Dress Code, Protocolos de Atendimento, Pontualidade e Uso de Celular)",Todos os Eventos,Planejamento,5
+TSK-RH-006,"Criação do Caderno de Roteiro Integrado / Run Sheet (Documento mestre com minutagem, responsáveis e contatos diretos)",Todos os Eventos,Planejamento,5
+TSK-RH-007,"Elaboração do Guia de FAQs e Resposta de Dúvidas Frequentes do Público (Localização de banheiros, achados e perdidos, credenciamento, acessibilidade)",Todos os Eventos,Planejamento,3
+TSK-RH-008,"Elaboração da Cartilha de Protocolo de Crise e Primeiros Socorros para a Equipe de Solo (Ações em caso de mal-estar, brigas, incêndio ou perda de criança)",Todos os Eventos,Planejamento,3
+TSK-RH-009,Agendamento e realização do Treinamento Geral Online/Presencial com toda a equipe de apoio (Passagem do Roteiro e atribuições),Todos os Eventos,Produção,2
+TSK-RH-010,Realização de Visita Técnica Guiada (Dry Run / Reconhecimento de Terreno) com Coordenadores de Setor no local do evento,Todos os Eventos,Produção,1
+TSK-COM-001,"Disparo de E-mail 01 - Boas-Vindas e Confirmação de Equipe (Envio de detalhes de contrato, horários de escala e link do formulário de dados)",Todos os Eventos,Comunicação,1
+TSK-COM-002,"Disparo de E-mail 02 - Alinhamento Técnico e Entrega de Manuais (Envio do Caderno do Staff, Manual de Conduta e Guia de Uniforme)",Todos os Eventos,Comunicação,1
+TSK-COM-003,"Disparo de E-mail 03 - Convocação e Logística do Dia D (Envio de instruções de transporte, ponto de encontro, credenciamento e alimentação)",Todos os Eventos,Comunicação,1
+TSK-COM-004,Disparo de E-mail 04 - Agradecimento Pós-Evento e Pesquisa de Avaliação Interna da Equipe (Feedback operacional e canal de pagamento),Todos os Eventos,Operação,1
+TSK-COM-005,"Disparo de E-mail aos Fornecedores 01 - Solicitação de Documentação Técnica, ARTs, Lista de Montadores e Placas de Veículos para Acesso",Todos os Eventos,Comunicação,3
+TSK-COM-006,"Disparo de E-mail aos Fornecedores 02 - Regras de Montagem, Janelas de Carga/Descarga, Código de Postura e Manual do Espaço",Todos os Eventos,Comunicação,2
+TSK-COM-007,"Disparo de E-mail aos Fornecedores 03 - Cronograma Definitivo de Montagem, Mapa de Passagem de Som e Contatos da Produção de Campo",Todos os Eventos,Comunicação,1
+TSK-COM-008,"Ciclo de Telefonemas de Checagem D-7 (Alinhamento verbal com fornecedores críticos: Gerador, Buffet, Som, Cenografia e Flores)",Todos os Eventos,Comunicação,2
+TSK-COM-009,"Ciclo de Telefonemas de Reagendamento/Confirmação D-1 (Validação de horários de saída de galpões, placas de caminhões e motoristas)",Todos os Eventos,Comunicação,1
+TSK-COM-010,"Criação de Grupos Operacionais de Transmissão/WhatsApp setorizados (Coordenação Geral, Logística, Cerimonial, Segurança e Mídia)",Todos os Eventos,Comunicação,1
+TSK-RH-011,"Execução do Receptivo e Credenciamento do Staff no dia (Entrega de crachás, rádios HTs, ponto de apoio e uniformes)",Todos os Eventos,Execução,1
+TSK-RH-012,"Realização do Briefing Presencial de Abertura / Meeting Matinal (Checagem visual, motivação, alinhamento de relógios e avisos de última hora)",Todos os Eventos,Execução,1
+TSK-RH-013,"Protocolo de Checagem de Bem-Estar e Prontidão (Wellness Check): verificação de hidratação, alimentação, estado físico/emocional e descanso da equipe",Todos os Eventos,Execução,1
+TSK-RH-014,Vistoria de Posição de Trabalho (Checagem se cada membro da equipe está em seu posto 30 min antes da abertura de portas),Todos os Eventos,Execução,1
+TSK-RH-015,Gestão do Refeitório do Staff / Espaço de Descanço (Garantia de turnos de refeição sem desfalcar postos críticos de atendimento),Todos os Eventos,Execução,1
+TSK-RH-016,"Realização de Debriefing Rápido Pós-Evento / Fechamento de Turno (Agradecimento presencial, recolhimento de HTs/crachás e liberação)",Todos os Eventos,Desmontagem,1
+TSK-CRI-001,"Plano de Ação: Emergência Médica Grave ou Falecimento (Isolamento discreto, acionamento imediato da UTI Móvel/SAMU, contenção de mídias e aviso reservado à família/contratante)",Todos os Eventos,Operação,1
+TSK-CRI-002,"Plano de Ação: Mal-estar Leve / Embriaguez Excessiva / Surto de Ansiedade (Condução ao Posto Médico/Espaço Restrito, hidratação, apoio de acompanhante e acionamento do responsável)",Todos os Eventos,Operação,1
+TSK-CRI-003,"Plano de Ação: Falta / W.O. de Fornecedor Crítico no Dia (Ativação de lista de stand-by local para Buffet, DJ, Músico, Mestre de Cerimônias e Fotógrafo)",Todos os Eventos,Planejamento,3
+TSK-CRI-004,Plano de Ação: Desfalque de Staff / Equipe de Apoio (Acionamento da reserva técnica de 10-15% de profissionais da agência de staffing em regime de sobreaviso),Todos os Eventos,Planejamento,3
+TSK-CRI-005,"Plano de Ação: Apagão / Falha do Gerador Principal (Acionamento do Gerador de Backup/Rampado, manutenção de iluminação de emergência e contenção de pânico)",Todos os Eventos,Operação,1
+TSK-CRI-006,"Plano de Ação: Tempestade, Inundação, Alagamento ou Vento Forte (Fechamento de cortinas de tendas, desligamento de quadros elétricos expostos, drenagem rápida e evacuação preventiva)",Todos os Eventos,Operação,1
+TSK-CRI-007,"Plano de Ação: Incêndio ou Fumaça (Acionamento da Brigada, isolamento da área, parada de som/luz e execução de evacuação guiada por rotas de fuga)",Todos os Eventos,Operação,1
+TSK-CRI-008,Plano de Ação: Quebra de Equipamento Audiovisual / Painel de LED (Substituição por equipamentos de spare/reserva técnica e chaveamento para sinal de contingência),Todos os Eventos,Operação,1
+TSK-CRI-009,Plano de Ação: Queda do Sistema de Credenciamento / Wi-Fi (Ativação imediata da bilheteria/credenciamento offline e contingência por listas impressas),Todos os Eventos,Operação,1
+TSK-CRI-010,"Plano de Ação: Desabastecimento de Comida, Bebida ou Gelo (Acionamento de fornecedores com entregas expressas de plantão e remanejamento de ilhas)",Todos os Eventos,Operação,1
+TSK-CRI-011,"Plano de Ação: Altercação / Briga / Extravio / Furto (Atuação discreta da Segurança Patrimonial, condução dos envolvidos ao ponto cego/sala reservada e acionamento da Polícia Militar)",Todos os Eventos,Operação,1
+TSK-CRI-012,Plano de Ação: Vazamento Hidráulico / Falta de Água nos Banheiros (Acionamento de caminhão-pipa de plantão e interdição temporária com redirecionamento de fluxo),Todos os Eventos,Operação,1
+TSK-CRI-013,"Plano de Ação: Atraso Crítico dos Noivos, Anfitriões ou Atração Principal (Execução do Roteiro Flexível/B, inversão de momentos de festa/jantar e alinhamento com a cozinha)",Todos os Eventos,Cerimonial,1
+TSK-CRI-014,"Protocolo de Relações Públicas e Porta-Voz de Crise (Centralização de declarações, orientação para a equipe não dar entrevistas ou filmar, e nota oficial de imprensa)",Todos os Eventos,Comunicação,3
+TSK-LOG-001,"Estudo de Malha Viária e Mobilidade: mapeamento de rotas de acesso, pontos de gargalo/trânsito, obras na pista e horários de pico",Todos os Eventos,Planejamento,5
+TSK-LOG-002,"Mapeamento da Rede de Apoio Local (D-0): levantamento de telefones e endereços de farmácias 24h, depósitos de gelo, ferragens/material de construção, gráficas rápidas e supermercados",Todos os Eventos,Planejamento,3
+TSK-LOG-003,"Cadastro de Frota e Motoristas de Apoio/Frete Rápido em Stand-by (Vans, utilitários e motoboys para busca expressa de insumos durante a montagem/evento)",Todos os Eventos,Planejamento,3
+TSK-LOG-004,"Mapeamento de Cooperativas de Táxi local, pontos de APP e contatos de motoristas executivos para emergência de deslocamento de VIPs e convidados",Todos os Eventos,Planejamento,3
+TSK-LOG-005,"Planejamento do Fluxo de Carga e Descarga (Janelas de horário, agendamento de chegada de caminhões, altura máxima de portões e capacidade de piso/balança)",Todos os Eventos,Planejamento,5
+TSK-LOG-006,"Elaboração do Plano de Estacionamento (Dimensionamento de vagas, bolsões de contingência, área para ônibus/vans e contratação de serviço de Valet/Manobristas)",Todos os Eventos,Planejamento,5
+TSK-LOG-007,"Emissão de Credenciais de Veículos (Adesivos/Tags de Acesso para Caminhões de Carga, Veículos de Produção, Fornecedores e Imprensa)",Todos os Eventos,Comunicação,3
+TSK-LOG-008,"Solicitação de Batedores, Agentes de Trânsito Municipais ou Polícia Rodoviária para controle de fluxo na entrada/saída do espaço",Todos os Eventos,Legalidades,10
+TSK-LOG-009,Contratação e Coordenação de Traslados de Equipe/Staff (Vans de transporte de ida e volta do staff em horários alternativos/madrugada),Todos os Eventos,Operação,7
+TSK-LOG-010,"Contratação e Gestão de Shuttles / Transfers de Convidados (Ônibus/Micro-ônibus ligando hotéis parceiros, aeroportos ou bolsões de estacionamento ao evento)",Todos os Eventos,Operação,7
+TSK-LOG-011,"Instalação de Sinalização Viária Temporária (Placas indicativas de acesso, tótens de entrada de estacionamento, cones e balizadores de trânsito)",Todos os Eventos,Montagem,1
+TSK-LOG-012,"Gestão do Pátio de Carga no Dia (Coordenação do fluxo de caminhões de som/luz/cenografia, retenção em Bolsão Externo e liberação por ordem de montagem)",Todos os Eventos,Montagem,2
+TSK-LOG-013,"Distribuição dos Guias de Acesso e Como Chegar aos Convidados e Equipe (Coordenadas Waze/Google Maps, rotas alternativas e avisos sobre pedágios/pista)",Todos os Eventos,Comunicação,3
+TSK-LOG-014,"Gestão de Devolução de Equipamentos Locados (Coordenação de rotas de frota pós-evento para devolução de geradores, móveis e audiovisual sem custos de diária extra)",Todos os Eventos,Desmontagem,2
+TSK-ESG-001,"Elaboração do Plano de Gestão de Resíduos Sólidos (PGRS), compostagem e parceria com cooperativas de reciclagem",Todos os Eventos,Planejamento,10
+TSK-ESG-002,Definição do protocolo de doação segura de excedentes do buffet em conformidade com normas sanitárias e ONGs parceiras,Todos os Eventos,Planejamento,5
+TSK-ESG-003,Instalação e sinalização de Sala de Descompressão / Quiet Room para pessoas neurodivergentes ou com sobrecarga sensorial,Feira / Grandes Eventos,Montagem,2
+TSK-ESG-004,"Mapeamento e sinalização de pratos para restrições alimentares (Zero Glúten, Vegano, Zero Lactose e Alergênicos)",Todos os Eventos,Produção,5
+TSK-TEC-001,"Adequação de formulários e credenciamento à LGPD (Política de privacidade, consentimento de uso de dados e imagem)",Todos os Eventos,Legalidades,5
+TSK-TEC-002,Setup de banco de dados local com sincronização assíncrona para garantir funcionamento do credenciamento offline,Feira / Grandes Eventos,Montagem,1
+TSK-POS-001,Realização da Reunião de Debriefing 360° com coordenadores de setor e registro da Matriz de Lições Aprendidas,Todos os Eventos,Desmontagem,2
+TSK-POS-002,Vistoria final de entrega do imóvel/espaço com emissão do Termo de Quitação e Devolução de Caução/Garantia,Todos os Eventos,Desmontagem,3
+TSK-POS-003,"Consolidação e envio do Relatório de Clipping, Métricas digitais e Valoração de Mídia Espontânea aos patrocinadores",Feira / Grandes Eventos,Comunicação,10
+TSK-VIP-001,"Atendimento e recepção dedicada a VIPs, Autoridades, Palestrantes e Anfitriões (Gestão de camarins e transfer exclusivo)",Todos os Eventos,Execução,1
+TSK-AV-001,"Elaboração do Briefing Audiovisual e Shot List (Lista de fotos/cenas obrigatórias, estilo estético, paleta de cor e referências visuais)",Todos os Eventos,Planejamento,5
+TSK-AV-002,"Seleção, orçamentação e contratação das equipes de Fotografia, Videomaker/Filmmaker, Operador de Drone e Edição",Todos os Eventos,Planejamento,10
+TSK-AV-003,Homologação e Regularização de Operação de Drone junto à ANAC/DECEA e obtenção de autorizações de voo no espaço do evento,Todos os Eventos,Legalidades,10
+TSK-AV-004,"Elaboração do Plano de Captação Multi-Câmera (Definição de posicionamento de câmeras fixas, robóticas, móveis e ilhas de áudio direto do P.A.)",Todos os Eventos,Planejamento,5
+TSK-AV-005,"Alinhamento do Rider Técnico de Audiovisual (Sincronização de timecode, tipos de lentes, iluminação complementar de fotografia e microfonação de lapela para áudio limpo)",Todos os Eventos,Produção,3
+TSK-AV-006,"Visita Técnica da equipe de captação ao local para estudo de luz natural, pontos céticos de iluminação e posicionamento de ilha de edição local",Todos os Eventos,Produção,1
+TSK-AV-007,"Execução da Captação Foto/Vídeo Pré-Evento (Ensaio Pré-Wedding, depoimentos prévios de palestrantes, institucional de montagem e bastidores)",Todos os Eventos,Produção,3
+TSK-AV-008,"Montagem da Estação de Descarregamento / Backup no Local (Setup de hard drives corporativos, leitores de cartão de alta velocidade e software de verificação checksum)",Todos os Eventos,Montagem,1
+TSK-AV-009,"Operação da Equipe de Campo no Dia D (Captação de Making Of, recepção, cerimônia/palestras, corte de câmeras e momentos chaves)",Todos os Eventos,Execução,1
+TSK-AV-010,Produção e Edição Expressa de 'Same Day Edit' ou 'Teaser do Dia' para projeção durante a festa/encerramento ou postagem imediata,Todos os Eventos,Execução,1
+TSK-AV-011,"Protocolo de Backup Triplo e Armazenamento Seguro (Redundância em SSD local, HD externo secundário e subida para nuvem/NAS de proteção)",Todos os Eventos,Operação,2
+TSK-AV-012,"Triagem, curadoria e tratamento de cor primário/secundário do acervo fotográfico (Color Grading e edição de pele)",Todos os Eventos,Desmontagem,15
+TSK-AV-013,"Edição de Vídeo / Decupagem e Montagem (Corte de vídeo oficial, vídeo teaser para redes sociais, Reels curtos e vídeo na íntegra de palestras/cerimônia)",Todos os Eventos,Desmontagem,20
+TSK-AV-014,"Tratamento de Áudio e Mixagem / Masterização (Limpeza de ruídos de fundo, equalização de discursos e licenciamento de trilha sonora/música legalizada)",Todos os Eventos,Desmontagem,10
+TSK-AV-015,Aprovação das prévias de fotos e corte do vídeo com os noivos/contratantes e aplicação de ajustes solicitados,Todos os Eventos,Desmontagem,7
+TSK-AV-016,"Entrega Final do Acervo Audiovisual (Galeria digital com senha para convidados, pen drive/box personalizado, envio de arquivos RAW e diagramação de Álbum/Encadernação)",Todos os Eventos,Desmontagem,15
+TSK-CAS-001,"Criação da Identidade Visual, paleta de cores e monograma dos noivos",Casamento Clássico,Planejamento,14
+TSK-CAS-002,Desenho e diagramação do Save The Date e Convite Oficial (físico/digital),Casamento Clássico,Comunicação,10
+TSK-CAS-003,"Design de papelaria do dia (Menús de mesa, Cartões de mesa, Livro de Votos e Kits de Toalete)",Casamento Clássico,Comunicação,7
+TSK-CAS-004,Produção de mapa visual de assentos (Seating Chart) e sinalizações indicativas,Casamento Clássico,Comunicação,5
+TSK-CAS-005,Visita técnica ao local para elaboração da Planta Baixa e Layout 3D da cerimônia e festa,Casamento Clássico,Planejamento,10
+TSK-CAS-006,"Definição do projeto floral (espécies, arranjos de mesa, passarela e buquê)",Casamento Clássico,Produção,15
+TSK-CAS-007,"Curadoria e locação de mobiliários, toalhas de mesa, sousplats, louças e taças",Casamento Clássico,Produção,12
+TSK-CAS-008,"Projeto de iluminação cênica (ribaltas, varais de luz, iluminação de contraposição e focos florais)",Casamento Clássico,Produção,8
+TSK-CAS-009,"Montagem de estruturas cenográficas (nave, altar, túnel de luzes e fechamentos em tecido)",Casamento Clássico,Montagem,2
+TSK-CAS-010,"Montagem da mesa principal de doces, bolo e ambientação vegetal suspensa",Casamento Clássico,Montagem,1
+TSK-CAS-011,"Elaboração do Cronograma Minuto a Minuto do evento (receptivo, entrada, cortejo e festa)",Casamento Clássico,Planejamento,10
+TSK-CAS-012,"Alinhamento de entradas da cerimônia (Padrinhos, Pais, Noivos e Daminhas/Pajens)",Casamento Clássico,Cerimonial,3
+TSK-CAS-013,Ensaio geral de cortejo no local da cerimônia com padrinhos e noivos,Casamento Clássico,Cerimonial,1
+TSK-CAS-014,"Coordenação de camarim e receptivo VIP dos noivos, pais e padrinhos no dia",Casamento Clássico,Execução,1
+TSK-CAS-015,"Recepção e organização de fila de cumprimentos, brinde do casal e corte do bolo",Casamento Clássico,Execução,1
+TSK-CAS-016,Pagamento de taxas de legalidade e direitos autorais de execução musical (ECAD),Casamento Clássico,Legalidades,7
+TSK-CAS-017,Contratação de Seguro de Responsabilidade Civil para convidados e estrutura,Casamento Clássico,Legalidades,10
+TSK-CAS-018,"Degustação, aprovação e definição final do menu de buffet, finger foods e bar de drinks",Casamento Clássico,Produção,20
+TSK-CAS-019,Briefing e alinhamento do Rider Técnico com a equipe de sonorização e DJ/Banda,Casamento Clássico,Produção,5
+TSK-CAS-020,"Contratação de equipe de receptivo, garçons, brigadistas, segurança e manobristas",Casamento Clássico,Operação,10
+TSK-SEG-006,Oferecimento/Contratação de Seguro para Não Comparecimento dos Noivos/Anfitriões (por doença/força maior) em eventos sociais,Casamento Clássico,Planejamento,3
+TSK-CHK-013,"Conferência do Kit de Emergência do Anfitrião / Camarim (Costura rápida, remédios de caixa de primeiros socorros, pilhas, lenços e maquiagem)",Casamento Clássico,Execução,1
+TSK-CAS-PRE-001,"Definição do formato, orçamento e alinhamento do conceito da Despedida de Solteiro(a) / Chá Bar com padrinhos e noivos",Casamento Clássico,Planejamento,15
+TSK-CAS-PRE-002,"Reservas de hospedagem, passagens, transporte privativo ou espaço exclusivo para a Despedida de Solteiro(a)",Casamento Clássico,Planejamento,10
+TSK-CAS-PRE-003,"Elaboração da identidade visual temática, kits de boas-vindas, abadás/camisetas e mimos personalizados para a despedida",Casamento Clássico,Comunicação,7
+TSK-CAS-PRE-004,Gestão de arrecadação financeira e divisão de custos da despedida entre padrinhos/mães/amigos participantes,Casamento Clássico,Planejamento,10
+TSK-CAS-PRE-005,"Contratação de serviços de apoio para a despedida (DJ, barman, fotógrafo local, transfers e reservas em restaurantes/clubs)",Casamento Clássico,Produção,7
+TSK-CAS-PRE-006,Elaboração do roteiro detalhado e cronograma de atividades da Despedida de Solteiro(a),Casamento Clássico,Planejamento,3
+TSK-CAS-DAY-001,"Seleção e reserva do local para o Dia da Noiva e Dia do Noivo (Suíte de hotel, camarim da festa, residência ou salão exclusivo)",Casamento Clássico,Planejamento,15
+TSK-CAS-DAY-002,"Elaboração da minutagem rígorosa do Dia da Noiva/Noivo (Janelas de horário para cabelo/maquiagem da noiva, mães e madrinhas)",Casamento Clássico,Planejamento,5
+TSK-CAS-DAY-003,"Contratação do serviço de catering leve para a suíte (Brunch, petiscos, frutas, água, sucos e espumante/drinks sem excesso)",Casamento Clássico,Produção,5
+TSK-CAS-DAY-004,"Gestão de robes personalizados, cabides decorados e vestuário especial para o Making Of da noiva e noivo",Casamento Clássico,Produção,5
+TSK-CAS-DAY-005,"Coordenação de entrega e checagem no local do Making Of (Vestido de noiva, traje do noivo, véu, sapatos, alianças e buquê)",Casamento Clássico,Execução,1
+TSK-CAS-DAY-006,Acompanhamento de pontualidade da equipe de beleza e alinhamento com a equipe de fotografia/filmagem para o Making Of,Casamento Clássico,Execução,1
+TSK-CAS-DAY-007,"Supervisão do vestir da noiva/noivo, colocação do véu e momentos de revelação (First Look com pais/madrinhas)",Casamento Clássico,Execução,1
+TSK-CAS-DAY-008,Coordenação de transporte executivo/carro dos noivos para deslocamento pontual do Making Of até o local da cerimônia,Casamento Clássico,Execução,1
+TSK-CAS-001,"Criação da Identidade Visual, paleta de cores e monograma dos noivos",Destination Wedding,Planejamento,14
+TSK-CAS-002,Desenho e diagramação do Save The Date e Convite Oficial (físico/digital),Destination Wedding,Comunicação,10
+TSK-CAS-003,"Design de papelaria do dia (Menús de mesa, Cartões de mesa, Livro de Votos e Kits de Toalete)",Destination Wedding,Comunicação,7
+TSK-CAS-004,Produção de mapa visual de assentos (Seating Chart) e sinalizações indicativas,Destination Wedding,Comunicação,5
+TSK-CAS-005,Visita técnica ao local para elaboração da Planta Baixa e Layout 3D da cerimônia e festa,Destination Wedding,Planejamento,10
+TSK-CAS-006,"Definição do projeto floral (espécies, arranjos de mesa, passarela e buquê)",Destination Wedding,Produção,15
+TSK-CAS-007,"Curadoria e locação de mobiliários, toalhas de mesa, sousplats, louças e taças",Destination Wedding,Produção,12
+TSK-CAS-008,"Projeto de iluminação cênica (ribaltas, varais de luz, iluminação de contraposição e focos florais)",Destination Wedding,Produção,8
+TSK-CAS-009,"Montagem de estruturas cenográficas (nave, altar, túnel de luzes e fechamentos em tecido)",Destination Wedding,Montagem,2
+TSK-CAS-010,"Montagem da mesa principal de doces, bolo e ambientação vegetal suspensa",Destination Wedding,Montagem,1
+TSK-CAS-011,"Elaboração do Cronograma Minuto a Minuto do evento (receptivo, entrada, cortejo e festa)",Destination Wedding,Planejamento,10
+TSK-CAS-012,"Alinhamento de entradas da cerimônia (Padrinhos, Pais, Noivos e Daminhas/Pajens)",Destination Wedding,Cerimonial,3
+TSK-CAS-013,Ensaio geral de cortejo no local da cerimônia com padrinhos e noivos,Destination Wedding,Cerimonial,1
+TSK-CAS-014,"Coordenação de camarim e receptivo VIP dos noivos, pais e padrinhos no dia",Destination Wedding,Execução,1
+TSK-CAS-015,"Recepção e organização de fila de cumprimentos, brinde do casal e corte do bolo",Destination Wedding,Execução,1
+TSK-CAS-016,Pagamento de taxas de legalidade e direitos autorais de execução musical (ECAD),Destination Wedding,Legalidades,7
+TSK-CAS-017,Contratação de Seguro de Responsabilidade Civil para convidados e estrutura,Destination Wedding,Legalidades,10
+TSK-CAS-018,"Degustação, aprovação e definição final do menu de buffet, finger foods e bar de drinks",Destination Wedding,Produção,20
+TSK-CAS-019,Briefing e alinhamento do Rider Técnico com a equipe de sonorização e DJ/Banda,Destination Wedding,Produção,5
+TSK-CAS-020,"Contratação de equipe de receptivo, garçons, brigadistas, segurança e manobristas",Destination Wedding,Operação,10
+TSK-SEG-006,Oferecimento/Contratação de Seguro para Não Comparecimento dos Noivos/Anfitriões (por doença/força maior) em eventos sociais,Destination Wedding,Planejamento,3
+TSK-CHK-013,"Conferência do Kit de Emergência do Anfitrião / Camarim (Costura rápida, remédios de caixa de primeiros socorros, pilhas, lenços e maquiagem)",Destination Wedding,Execução,1
+TSK-CAS-PRE-001,"Definição do formato, orçamento e alinhamento do conceito da Despedida de Solteiro(a) / Chá Bar com padrinhos e noivos",Destination Wedding,Planejamento,15
+TSK-CAS-PRE-002,"Reservas de hospedagem, passagens, transporte privativo ou espaço exclusivo para a Despedida de Solteiro(a)",Destination Wedding,Planejamento,10
+TSK-CAS-PRE-003,"Elaboração da identidade visual temática, kits de boas-vindas, abadás/camisetas e mimos personalizados para a despedida",Destination Wedding,Comunicação,7
+TSK-CAS-PRE-004,Gestão de arrecadação financeira e divisão de custos da despedida entre padrinhos/mães/amigos participantes,Destination Wedding,Planejamento,10
+TSK-CAS-PRE-005,"Contratação de serviços de apoio para a despedida (DJ, barman, fotógrafo local, transfers e reservas em restaurantes/clubs)",Destination Wedding,Produção,7
+TSK-CAS-PRE-006,Elaboração do roteiro detalhado e cronograma de atividades da Despedida de Solteiro(a),Destination Wedding,Planejamento,3
+TSK-CAS-DAY-001,"Seleção e reserva do local para o Dia da Noiva e Dia do Noivo (Suíte de hotel, camarim da festa, residência ou salão exclusivo)",Destination Wedding,Planejamento,15
+TSK-CAS-DAY-002,"Elaboração da minutagem rígorosa do Dia da Noiva/Noivo (Janelas de horário para cabelo/maquiagem da noiva, mães e madrinhas)",Destination Wedding,Planejamento,5
+TSK-CAS-DAY-003,"Contratação do serviço de catering leve para a suíte (Brunch, petiscos, frutas, água, sucos e espumante/drinks sem excesso)",Destination Wedding,Produção,5
+TSK-CAS-DAY-004,"Gestão de robes personalizados, cabides decorados e vestuário especial para o Making Of da noiva e noivo",Destination Wedding,Produção,5
+TSK-CAS-DAY-005,"Coordenação de entrega e checagem no local do Making Of (Vestido de noiva, traje do noivo, véu, sapatos, alianças e buquê)",Destination Wedding,Execução,1
+TSK-CAS-DAY-006,Acompanhamento de pontualidade da equipe de beleza e alinhamento com a equipe de fotografia/filmagem para o Making Of,Destination Wedding,Execução,1
+TSK-CAS-DAY-007,"Supervisão do vestir da noiva/noivo, colocação do véu e momentos de revelação (First Look com pais/madrinhas)",Destination Wedding,Execução,1
+TSK-CAS-DAY-008,Coordenação de transporte executivo/carro dos noivos para deslocamento pontual do Making Of até o local da cerimônia,Destination Wedding,Execução,1
+TSK-CAS-001,"Criação da Identidade Visual, paleta de cores e monograma dos noivos",Mini Wedding,Planejamento,14
+TSK-CAS-002,Desenho e diagramação do Save The Date e Convite Oficial (físico/digital),Mini Wedding,Comunicação,10
+TSK-CAS-003,"Design de papelaria do dia (Menús de mesa, Cartões de mesa, Livro de Votos e Kits de Toalete)",Mini Wedding,Comunicação,7
+TSK-CAS-004,Produção de mapa visual de assentos (Seating Chart) e sinalizações indicativas,Mini Wedding,Comunicação,5
+TSK-CAS-005,Visita técnica ao local para elaboração da Planta Baixa e Layout 3D da cerimônia e festa,Mini Wedding,Planejamento,10
+TSK-CAS-006,"Definição do projeto floral (espécies, arranjos de mesa, passarela e buquê)",Mini Wedding,Produção,15
+TSK-CAS-007,"Curadoria e locação de mobiliários, toalhas de mesa, sousplats, louças e taças",Mini Wedding,Produção,12
+TSK-CAS-008,"Projeto de iluminação cênica (ribaltas, varais de luz, iluminação de contraposição e focos florais)",Mini Wedding,Produção,8
+TSK-CAS-009,"Montagem de estruturas cenográficas (nave, altar, túnel de luzes e fechamentos em tecido)",Mini Wedding,Montagem,2
+TSK-CAS-010,"Montagem da mesa principal de doces, bolo e ambientação vegetal suspensa",Mini Wedding,Montagem,1
+TSK-CAS-011,"Elaboração do Cronograma Minuto a Minuto do evento (receptivo, entrada, cortejo e festa)",Mini Wedding,Planejamento,10
+TSK-CAS-012,"Alinhamento de entradas da cerimônia (Padrinhos, Pais, Noivos e Daminhas/Pajens)",Mini Wedding,Cerimonial,3
+TSK-CAS-013,Ensaio geral de cortejo no local da cerimônia com padrinhos e noivos,Mini Wedding,Cerimonial,1
+TSK-CAS-014,"Coordenação de camarim e receptivo VIP dos noivos, pais e padrinhos no dia",Mini Wedding,Execução,1
+TSK-CAS-015,"Recepção e organização de fila de cumprimentos, brinde do casal e corte do bolo",Mini Wedding,Execução,1
+TSK-CAS-016,Pagamento de taxas de legalidade e direitos autorais de execução musical (ECAD),Mini Wedding,Legalidades,7
+TSK-CAS-017,Contratação de Seguro de Responsabilidade Civil para convidados e estrutura,Mini Wedding,Legalidades,10
+TSK-CAS-018,"Degustação, aprovação e definição final do menu de buffet, finger foods e bar de drinks",Mini Wedding,Produção,20
+TSK-CAS-019,Briefing e alinhamento do Rider Técnico com a equipe de sonorização e DJ/Banda,Mini Wedding,Produção,5
+TSK-CAS-020,"Contratação de equipe de receptivo, garçons, brigadistas, segurança e manobristas",Mini Wedding,Operação,10
+TSK-SEG-006,Oferecimento/Contratação de Seguro para Não Comparecimento dos Noivos/Anfitriões (por doença/força maior) em eventos sociais,Mini Wedding,Planejamento,3
+TSK-CHK-013,"Conferência do Kit de Emergência do Anfitrião / Camarim (Costura rápida, remédios de caixa de primeiros socorros, pilhas, lenços e maquiagem)",Mini Wedding,Execução,1
+TSK-CAS-PRE-001,"Definição do formato, orçamento e alinhamento do conceito da Despedida de Solteiro(a) / Chá Bar com padrinhos e noivos",Mini Wedding,Planejamento,15
+TSK-CAS-PRE-002,"Reservas de hospedagem, passagens, transporte privativo ou espaço exclusivo para a Despedida de Solteiro(a)",Mini Wedding,Planejamento,10
+TSK-CAS-PRE-003,"Elaboração da identidade visual temática, kits de boas-vindas, abadás/camisetas e mimos personalizados para a despedida",Mini Wedding,Comunicação,7
+TSK-CAS-PRE-004,Gestão de arrecadação financeira e divisão de custos da despedida entre padrinhos/mães/amigos participantes,Mini Wedding,Planejamento,10
+TSK-CAS-PRE-005,"Contratação de serviços de apoio para a despedida (DJ, barman, fotógrafo local, transfers e reservas em restaurantes/clubs)",Mini Wedding,Produção,7
+TSK-CAS-PRE-006,Elaboração do roteiro detalhado e cronograma de atividades da Despedida de Solteiro(a),Mini Wedding,Planejamento,3
+TSK-CAS-DAY-001,"Seleção e reserva do local para o Dia da Noiva e Dia do Noivo (Suíte de hotel, camarim da festa, residência ou salão exclusivo)",Mini Wedding,Planejamento,15
+TSK-CAS-DAY-002,"Elaboração da minutagem rígorosa do Dia da Noiva/Noivo (Janelas de horário para cabelo/maquiagem da noiva, mães e madrinhas)",Mini Wedding,Planejamento,5
+TSK-CAS-DAY-003,"Contratação do serviço de catering leve para a suíte (Brunch, petiscos, frutas, água, sucos e espumante/drinks sem excesso)",Mini Wedding,Produção,5
+TSK-CAS-DAY-004,"Gestão de robes personalizados, cabides decorados e vestuário especial para o Making Of da noiva e noivo",Mini Wedding,Produção,5
+TSK-CAS-DAY-005,"Coordenação de entrega e checagem no local do Making Of (Vestido de noiva, traje do noivo, véu, sapatos, alianças e buquê)",Mini Wedding,Execução,1
+TSK-CAS-DAY-006,Acompanhamento de pontualidade da equipe de beleza e alinhamento com a equipe de fotografia/filmagem para o Making Of,Mini Wedding,Execução,1
+TSK-CAS-DAY-007,"Supervisão do vestir da noiva/noivo, colocação do véu e momentos de revelação (First Look com pais/madrinhas)",Mini Wedding,Execução,1
+TSK-CAS-DAY-008,Coordenação de transporte executivo/carro dos noivos para deslocamento pontual do Making Of até o local da cerimônia,Mini Wedding,Execução,1
+TSK-CAS-001,"Criação da Identidade Visual, paleta de cores e monograma dos noivos",Casamento Civil,Planejamento,14
+TSK-CAS-002,Desenho e diagramação do Save The Date e Convite Oficial (físico/digital),Casamento Civil,Comunicação,10
+TSK-CAS-003,"Design de papelaria do dia (Menús de mesa, Cartões de mesa, Livro de Votos e Kits de Toalete)",Casamento Civil,Comunicação,7
+TSK-CAS-004,Produção de mapa visual de assentos (Seating Chart) e sinalizações indicativas,Casamento Civil,Comunicação,5
+TSK-CAS-005,Visita técnica ao local para elaboração da Planta Baixa e Layout 3D da cerimônia e festa,Casamento Civil,Planejamento,10
+TSK-CAS-006,"Definição do projeto floral (espécies, arranjos de mesa, passarela e buquê)",Casamento Civil,Produção,15
+TSK-CAS-007,"Curadoria e locação de mobiliários, toalhas de mesa, sousplats, louças e taças",Casamento Civil,Produção,12
+TSK-CAS-008,"Projeto de iluminação cênica (ribaltas, varais de luz, iluminação de contraposição e focos florais)",Casamento Civil,Produção,8
+TSK-CAS-009,"Montagem de estruturas cenográficas (nave, altar, túnel de luzes e fechamentos em tecido)",Casamento Civil,Montagem,2
+TSK-CAS-010,"Montagem da mesa principal de doces, bolo e ambientação vegetal suspensa",Casamento Civil,Montagem,1
+TSK-CAS-011,"Elaboração do Cronograma Minuto a Minuto do evento (receptivo, entrada, cortejo e festa)",Casamento Civil,Planejamento,10
+TSK-CAS-012,"Alinhamento de entradas da cerimônia (Padrinhos, Pais, Noivos e Daminhas/Pajens)",Casamento Civil,Cerimonial,3
+TSK-CAS-013,Ensaio geral de cortejo no local da cerimônia com padrinhos e noivos,Casamento Civil,Cerimonial,1
+TSK-CAS-014,"Coordenação de camarim e receptivo VIP dos noivos, pais e padrinhos no dia",Casamento Civil,Execução,1
+TSK-CAS-015,"Recepção e organização de fila de cumprimentos, brinde do casal e corte do bolo",Casamento Civil,Execução,1
+TSK-CAS-016,Pagamento de taxas de legalidade e direitos autorais de execução musical (ECAD),Casamento Civil,Legalidades,7
+TSK-CAS-017,Contratação de Seguro de Responsabilidade Civil para convidados e estrutura,Casamento Civil,Legalidades,10
+TSK-CAS-018,"Degustação, aprovação e definição final do menu de buffet, finger foods e bar de drinks",Casamento Civil,Produção,20
+TSK-CAS-019,Briefing e alinhamento do Rider Técnico com a equipe de sonorização e DJ/Banda,Casamento Civil,Produção,5
+TSK-CAS-020,"Contratação de equipe de receptivo, garçons, brigadistas, segurança e manobristas",Casamento Civil,Operação,10
+TSK-SEG-006,Oferecimento/Contratação de Seguro para Não Comparecimento dos Noivos/Anfitriões (por doença/força maior) em eventos sociais,Casamento Civil,Planejamento,3
+TSK-CHK-013,"Conferência do Kit de Emergência do Anfitrião / Camarim (Costura rápida, remédios de caixa de primeiros socorros, pilhas, lenços e maquiagem)",Casamento Civil,Execução,1
+TSK-CAS-PRE-001,"Definição do formato, orçamento e alinhamento do conceito da Despedida de Solteiro(a) / Chá Bar com padrinhos e noivos",Casamento Civil,Planejamento,15
+TSK-CAS-PRE-002,"Reservas de hospedagem, passagens, transporte privativo ou espaço exclusivo para a Despedida de Solteiro(a)",Casamento Civil,Planejamento,10
+TSK-CAS-PRE-003,"Elaboração da identidade visual temática, kits de boas-vindas, abadás/camisetas e mimos personalizados para a despedida",Casamento Civil,Comunicação,7
+TSK-CAS-PRE-004,Gestão de arrecadação financeira e divisão de custos da despedida entre padrinhos/mães/amigos participantes,Casamento Civil,Planejamento,10
+TSK-CAS-PRE-005,"Contratação de serviços de apoio para a despedida (DJ, barman, fotógrafo local, transfers e reservas em restaurantes/clubs)",Casamento Civil,Produção,7
+TSK-CAS-PRE-006,Elaboração do roteiro detalhado e cronograma de atividades da Despedida de Solteiro(a),Casamento Civil,Planejamento,3
+TSK-CAS-DAY-001,"Seleção e reserva do local para o Dia da Noiva e Dia do Noivo (Suíte de hotel, camarim da festa, residência ou salão exclusivo)",Casamento Civil,Planejamento,15
+TSK-CAS-DAY-002,"Elaboração da minutagem rígorosa do Dia da Noiva/Noivo (Janelas de horário para cabelo/maquiagem da noiva, mães e madrinhas)",Casamento Civil,Planejamento,5
+TSK-CAS-DAY-003,"Contratação do serviço de catering leve para a suíte (Brunch, petiscos, frutas, água, sucos e espumante/drinks sem excesso)",Casamento Civil,Produção,5
+TSK-CAS-DAY-004,"Gestão de robes personalizados, cabides decorados e vestuário especial para o Making Of da noiva e noivo",Casamento Civil,Produção,5
+TSK-CAS-DAY-005,"Coordenação de entrega e checagem no local do Making Of (Vestido de noiva, traje do noivo, véu, sapatos, alianças e buquê)",Casamento Civil,Execução,1
+TSK-CAS-DAY-006,Acompanhamento de pontualidade da equipe de beleza e alinhamento com a equipe de fotografia/filmagem para o Making Of,Casamento Civil,Execução,1
+TSK-CAS-DAY-007,"Supervisão do vestir da noiva/noivo, colocação do véu e momentos de revelação (First Look com pais/madrinhas)",Casamento Civil,Execução,1
+TSK-CAS-DAY-008,Coordenação de transporte executivo/carro dos noivos para deslocamento pontual do Making Of até o local da cerimônia,Casamento Civil,Execução,1

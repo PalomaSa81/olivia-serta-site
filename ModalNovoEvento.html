@@ -1,0 +1,345 @@
+<!-- =========================================================
+     MODAL DE CRIAÇÃO DE EVENTO (FILTRO POR TIPO DE EVENTO)
+     ========================================================= -->
+<div id="modal-novo-projeto" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden m-4">
+    
+    <!-- CABEÇALHO -->
+    <div class="p-4 border-b flex justify-between items-center bg-indigo-900 text-white">
+      <div>
+        <h3 class="font-bold text-lg">Criar Novo Evento</h3>
+        <p class="text-xs text-indigo-200" id="wizard-step-indicator">Etapa 1 de 2: Seleção de Evento e Parâmetros</p>
+      </div>
+      <button onclick="fecharModalNovoProjeto()" class="text-white/80 hover:text-white font-bold text-2xl">&times;</button>
+    </div>
+
+    <!-- CORPO DO ASSISTENTE -->
+    <div class="p-6 overflow-y-auto flex-1 text-sm space-y-6">
+      
+      <!-- =========================================================
+           ETAPA 1: DADOS BÁSICOS E SELEÇÃO DO EVENTO BASE
+           ========================================================= -->
+      <div id="wizard-step-1" class="space-y-6">
+        
+        <!-- Seleção do Tipo de Evento Base -->
+        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200 space-y-2">
+          <label class="block font-bold text-indigo-900">Selecione o Tipo do Evento *</label>
+          <p class="text-xs text-indigo-700 mb-2">O checklist e o cronograma reverso serão carregados de acordo com o modelo selecionado na planilha.</p>
+          <select id="np-tipo-evento" class="w-full border rounded-lg p-2.5 bg-white border-indigo-300 font-medium text-gray-800">
+            <option value="" disabled selected>-- Escolha o tipo de evento --</option>
+            <option value="Casamento">Casamento</option>
+            <option value="Formatura">Formatura</option>
+            <option value="Assembleia DAHJ">Assembleia DAHJ</option>
+            <option value="Seminário Acadêmico">Seminário Acadêmico</option>
+            <option value="Cine-debate">Cine-debate</option>
+            <!-- Adicione outros tipos de evento conforme cadastrados na planilha -->
+          </select>
+        </div>
+
+        <!-- Dados Básicos -->
+        <div class="bg-gray-50 p-4 rounded-lg border space-y-4">
+          <h4 class="font-bold text-indigo-900 border-b pb-1">Informações Principais</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">Nome do Evento *</label>
+              <input type="text" id="np-nome" class="w-full border rounded-lg p-2 border-gray-300" placeholder="Ex: Assembleia Geral Estudantil / Casamento Maria e João">
+            </div>
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">Data do Evento *</label>
+              <input type="date" id="np-data-evento" class="w-full border rounded-lg p-2 border-gray-300">
+            </div>
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">Local / Espaço</label>
+              <input type="text" id="np-local" class="w-full border rounded-lg p-2 border-gray-300" placeholder="Ex: Auditório Bloco F / Salão de Festas">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">Prioridade</label>
+                <select id="np-prioridade" class="w-full border rounded-lg p-2 border-gray-300">
+                  <option value="Baixa">Baixa</option>
+                  <option value="Média" selected>Média</option>
+                  <option value="Alta">Alta</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">Cor do Tema</label>
+                <input type="color" id="np-cor" value="#4f46e5" class="w-full h-10 border rounded-lg p-1 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- =========================================================
+           ETAPA 2: PRÉ-VISUALIZAÇÃO DO CRONOGRAMA FILTRADO
+           ========================================================= -->
+      <div id="wizard-step-2" class="hidden space-y-4">
+        <div class="flex justify-between items-center bg-indigo-50 p-3 rounded-lg border border-indigo-200">
+          <div>
+            <h4 class="font-bold text-indigo-900">Checklist do Evento Gerado</h4>
+            <p class="text-xs text-indigo-700" id="np-resumo-filtro">X tarefas ativadas.</p>
+          </div>
+          <button type="button" onclick="voltarParaEtapa1()" class="text-xs text-indigo-800 underline font-medium hover:text-indigo-950">
+            &larr; Alterar Evento
+          </button>
+        </div>
+
+        <p class="text-xs text-gray-600">Abaixo estão as tarefas e o cronograma reverso calculados para o seu evento. Você pode desmarcar itens desnecessários ou ajustar as datas:</p>
+
+        <!-- Tabela do Cronograma Filtrado -->
+        <div class="overflow-x-auto border rounded-lg max-h-96">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-gray-100 text-gray-700 sticky top-0 border-b">
+              <tr>
+                <th class="p-2.5 text-center w-10">
+                  <input type="checkbox" id="np-check-all" onchange="marcarTodasTarefas(this.checked)" checked>
+                </th>
+                <th class="p-2.5">Tarefa</th>
+                <th class="p-2.5">Etapa / Fase</th>
+                <th class="p-2.5 w-32">Data Início</th>
+                <th class="p-2.5 w-32">Data Fim</th>
+              </tr>
+            </thead>
+            <tbody id="np-tabela-previa" class="divide-y bg-white"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RODAPÉ DE AÇÕES -->
+    <div class="p-4 border-t bg-gray-50 flex justify-between items-center">
+      <span id="np-aviso-erro" class="text-xs font-semibold text-red-600"></span>
+      <div class="flex gap-2">
+        <button onclick="fecharModalNovoProjeto()" class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100">Cancelar</button>
+        
+        <!-- Botão Avançar (Etapa 1) -->
+        <button id="btn-wizard-avancar" onclick="processarTriagemEEmitirPrevia()" class="px-5 py-2 bg-indigo-900 hover:bg-indigo-800 text-white rounded-lg font-medium flex items-center gap-1">
+          <span>Carregar Tarefas do Evento</span> &rarr;
+        </button>
+
+        <!-- Botão Salvar (Etapa 2) -->
+        <button id="btn-wizard-salvar" onclick="salvarNovoProjeto()" class="hidden px-5 py-2 bg-green-700 hover:bg-green-800 text-white rounded-lg font-medium">
+          Salvar e Criar Evento
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // =========================================================
+  // CONSTANTES E VARIÁVEIS GLOBAIS
+  // =========================================================
+  const ETAPAS_POS_EVENTO = ['Pós-evento', 'Arquivamento', 'Etapa 10: Desmontagem, Pós-Evento & Arquivamento'];
+  let previaCronogramaGeral = [];
+
+  // =========================================================
+  // ABERTURA E FECHAMENTO DO MODAL
+  // =========================================================
+  function abrirModalNovoProjeto() {
+    document.getElementById('np-nome').value = '';
+    document.getElementById('np-data-evento').value = '';
+    document.getElementById('np-local').value = '';
+    document.getElementById('np-prioridade').value = 'Média';
+    document.getElementById('np-cor').value = '#4f46e5';
+    document.getElementById('np-tipo-evento').selectedIndex = 0;
+
+    voltarParaEtapa1();
+    document.getElementById('modal-novo-projeto').classList.remove('hidden');
+
+    if (!window.DB) window.DB = {};
+
+    if (!window.DB.Catalogo_Tarefas || window.DB.Catalogo_Tarefas.length === 0) {
+      document.getElementById('np-aviso-erro').innerText = 'Carregando catálogo da planilha...';
+      
+      google.script.run
+        .withSuccessHandler((dadosCompletos) => {
+          if (dadosCompletos && dadosCompletos.Catalogo_Tarefas) {
+            window.DB = dadosCompletos;
+          } else if (Array.isArray(dadosCompletos)) {
+            window.DB.Catalogo_Tarefas = dadosCompletos;
+          }
+          document.getElementById('np-aviso-erro').innerText = '';
+        })
+        .withFailureHandler((erro) => {
+          document.getElementById('np-aviso-erro').innerText = 'Erro ao carregar catálogo: ' + erro;
+        })
+        .getDadosPlanilha();
+    }
+  }
+
+  function fecharModalNovoProjeto() {
+    document.getElementById('modal-novo-projeto').classList.add('hidden');
+  }
+
+  function voltarParaEtapa1() {
+    document.getElementById('wizard-step-1').classList.remove('hidden');
+    document.getElementById('wizard-step-2').classList.add('hidden');
+    document.getElementById('btn-wizard-avancar').classList.remove('hidden');
+    document.getElementById('btn-wizard-salvar').classList.add('hidden');
+    document.getElementById('wizard-step-indicator').innerText = 'Etapa 1 de 2: Seleção de Evento e Parâmetros';
+    document.getElementById('np-aviso-erro').innerText = '';
+  }
+
+  // =========================================================
+  // FILTRAGEM DIRETA POR EVENTO E GERAÇÃO DA PRÉVIA
+  // =========================================================
+  function processarTriagemEEmitirPrevia() {
+    const nome = document.getElementById('np-nome').value.trim();
+    const dataEventoStr = document.getElementById('np-data-evento').value;
+    const tipoEventoSelecionado = document.getElementById('np-tipo-evento').value;
+    const aviso = document.getElementById('np-aviso-erro');
+
+    if (!nome || !dataEventoStr || !tipoEventoSelecionado) {
+      aviso.innerText = 'Preencha o Nome, a Data e selecione o Tipo de Evento.';
+      return;
+    }
+    aviso.innerText = '';
+
+    const catalogoCompleto = (window.DB && window.DB.Catalogo_Tarefas) ? window.DB.Catalogo_Tarefas : [];
+
+    // Busca exata pela coluna "Evento" da planilha
+    const tarefasFiltradas = catalogoCompleto.filter(t => {
+      const eventoNaPlanilha = (t.Evento || t.Tipo_Evento || '').trim().toLowerCase();
+      return eventoNaPlanilha === tipoEventoSelecionado.trim().toLowerCase();
+    });
+
+    if (tarefasFiltradas.length === 0) {
+      aviso.innerText = `Nenhuma tarefa encontrada na planilha para o evento "${tipoEventoSelecionado}".`;
+      return;
+    }
+
+    // Calcular Cronograma Reverso
+    previaCronogramaGeral = calcularCronogramaReverso(tarefasFiltradas, dataEventoStr);
+
+    // Renderizar Tabela na Etapa 2
+    const tbody = document.getElementById('np-tabela-previa');
+    tbody.innerHTML = previaCronogramaGeral.map((t, i) => `
+      <tr class="hover:bg-gray-50">
+        <td class="p-2.5 text-center">
+          <input type="checkbox" class="np-task-active-check rounded text-indigo-600" data-index="${i}" checked>
+        </td>
+        <td class="p-2.5 font-medium text-gray-800">
+          ${t.Nome_Tarefa}
+          ${t.Descricao_Detalhada ? `<p class="text-[10px] text-gray-400 font-normal">${t.Descricao_Detalhada}</p>` : ''}
+        </td>
+        <td class="p-2.5 text-gray-500">${t.Etapa || t.Categoria || 'Geral'}</td>
+        <td class="p-2.5"><input type="date" value="${t.Data_Inicio}" onchange="previaCronogramaGeral[${i}].Data_Inicio=this.value" class="border rounded p-1 text-xs w-full"></td>
+        <td class="p-2.5"><input type="date" value="${t.Data_Fim}" onchange="previaCronogramaGeral[${i}].Data_Fim=this.value" class="border rounded p-1 text-xs w-full"></td>
+      </tr>
+    `).join('');
+
+    document.getElementById('np-resumo-filtro').innerText = `${tarefasFiltradas.length} tarefas carregadas para o modelo "${tipoEventoSelecionado}".`;
+
+    // Transição de tela
+    document.getElementById('wizard-step-1').classList.add('hidden');
+    document.getElementById('wizard-step-2').classList.remove('hidden');
+    document.getElementById('btn-wizard-avancar').classList.add('hidden');
+    document.getElementById('btn-wizard-salvar').classList.remove('hidden');
+    document.getElementById('wizard-step-indicator').innerText = 'Etapa 2 de 2: Validação das Tarefas e Prazos';
+  }
+
+  // =========================================================
+  // MATEMÁTICA DO CRONOGRAMA REVERSO
+  // =========================================================
+  function calcularCronogramaReverso(tarefas, dataEventoStr) {
+    const dataEvento = new Date(dataEventoStr + 'T00:00:00');
+    const preEvento = tarefas.filter(t => !ETAPAS_POS_EVENTO.includes(t.Etapa));
+    const posEvento = tarefas.filter(t => ETAPAS_POS_EVENTO.includes(t.Etapa));
+
+    const resultado = [];
+
+    // Pré-Evento (Datas retroativas a partir do dia do evento)
+    let cursorFim = new Date(dataEvento);
+    for (let i = preEvento.length - 1; i >= 0; i--) {
+      const t = preEvento[i];
+      const dias = Number(t.Tempo_Estimado_Dias) || 1;
+      const fim = new Date(cursorFim);
+      const inicio = new Date(fim);
+      inicio.setDate(inicio.getDate() - (dias - 1));
+      resultado.unshift({ ...t, Data_Inicio: formatarDataISO(inicio), Data_Fim: formatarDataISO(fim) });
+      cursorFim = new Date(inicio);
+      cursorFim.setDate(cursorFim.getDate() - 1);
+    }
+
+    // Pós-Evento (Datas progressivas após a realização)
+    let cursorInicio = new Date(dataEvento);
+    cursorInicio.setDate(cursorInicio.getDate() + 1);
+    posEvento.forEach(t => {
+      const dias = Number(t.Tempo_Estimado_Dias) || 1;
+      const inicio = new Date(cursorInicio);
+      const fim = new Date(inicio);
+      fim.setDate(fim.getDate() + (dias - 1));
+      resultado.push({ ...t, Data_Inicio: formatarDataISO(inicio), Data_Fim: formatarDataISO(fim) });
+      cursorInicio = new Date(fim);
+      cursorInicio.setDate(cursorInicio.getDate() + 1);
+    });
+
+    return resultado;
+  }
+
+  function formatarDataISO(d) {
+    return d.toISOString().split('T')[0];
+  }
+
+  function marcarTodasTarefas(status) {
+    document.querySelectorAll('.np-task-active-check').forEach(chk => chk.checked = status);
+  }
+
+  // =========================================================
+  // SUBMISSÃO FINAL E SALVAMENTO NA PLANILHA
+  // =========================================================
+  function salvarNovoProjeto() {
+    const nome = document.getElementById('np-nome').value.trim();
+    const dataEvento = document.getElementById('np-data-evento').value;
+    const categoria = document.getElementById('np-tipo-evento').value;
+    const usuarioLogado = typeof usuarioAtual !== 'undefined' ? usuarioAtual : '';
+
+    const checkboxes = document.querySelectorAll('.np-task-active-check:checked');
+    const tarefasFinal = [];
+
+    checkboxes.forEach(chk => {
+      const idx = Number(chk.dataset.index);
+      const t = previaCronogramaGeral[idx];
+      if (t) {
+        tarefasFinal.push({
+          Nome_Tarefa: t.Nome_Tarefa,
+          Fase: t.Etapa || t.Categoria || 'Planejamento',
+          Data_Inicio: t.Data_Inicio,
+          Data_Fim: t.Data_Fim,
+          'Responsavel (FK)': usuarioLogado,
+          Status: 'Pendente'
+        });
+      }
+    });
+
+    if (tarefasFinal.length === 0) {
+      alert('Selecione pelo menos uma tarefa para criar o evento.');
+      return;
+    }
+
+    const projeto = {
+      Nome_Projeto: nome,
+      Categoria: categoria,
+      Prioridade: document.getElementById('np-prioridade').value,
+      Data_Evento: dataEvento,
+      Cor_Tema: document.getElementById('np-cor').value,
+      Local_Nome: document.getElementById('np-local').value,
+      Status_Geral: 'Em Andamento',
+      Criado_Por: usuarioLogado
+    };
+
+    fecharModalNovoProjeto();
+
+    google.script.run
+      .withSuccessHandler(() => {
+        alert(`Evento "${nome}" criado com sucesso! ${tarefasFinal.length} tarefas agendadas.`);
+        if (typeof carregarDadosDoBanco === 'function') carregarDadosDoBanco();
+      })
+      .withFailureHandler((erro) => alert('Erro ao criar evento: ' + erro))
+      .criarProjetoComTarefas({ projeto, tarefas: tarefasFinal });
+  }
+</script>

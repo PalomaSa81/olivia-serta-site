@@ -450,6 +450,7 @@ function criarProjetoComTarefas(payload) {
 
   inserirLinha('Projetos', projeto);
 
+
   tarefas.forEach(function(tarefa) {
     tarefa['ID_Projeto (FK)'] = idProjeto;
 
@@ -459,6 +460,7 @@ function criarProjetoComTarefas(payload) {
 
     inserirLinha('Tarefas_Ativas', tarefa);
   });
+
 
   return {
     idProjeto: idProjeto,
@@ -496,4 +498,8 @@ function testarConexaoPlanilha() {
     id: id,
     abas: abas
   };
+}
+
+function include(filename) {
+  return HtmlService.createTemplateFromFile(filename).getRawContent();
 }
